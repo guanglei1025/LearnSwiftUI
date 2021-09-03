@@ -1,0 +1,106 @@
+{
+    "drinks": [
+        {
+            "id": 1001,
+            "category": "Drink",
+            "name": "Pumpkin Spice Latte",
+            "description": "Celebrate fall with this delicious fall inspired vegan pumpkin spice latte! It’s creamy and totally divine, and made with pumpkin purée and fall spices. ",
+            "price": "1.00",
+            "imageName": "PumpkinSpiceLatte",
+            "imageURL": "https://lovingitvegan.com/wp-content/uploads/2019/11/Vegan-Pumpkin-Spice-Latte-9.jpg"
+        },
+        {
+            "id": 1002,
+            "category": "Drink",
+            "name": "Vegan Eggnog",
+            "description": "Rich, creamy and boozy vegan eggnog. This simple recipe uses cashew nuts instead of egg to create a deliciously thick creamy drink perfect for the holidays.",
+            "price": "2.00",
+            "imageName": "VeganEggnog",
+            "imageURL": "https://lovingitvegan.com/wp-content/uploads/2018/11/Vegan-Eggnog-8.jpg"
+        },
+        {
+            "id": 1003,
+            "category": "Drink",
+            "name": "Pumpkin Pie Smoothie",
+            "description": "Get the best fall flavors in this pumpkin pie smoothie. Perfect for when you want pumpkin pie without turning your oven on!",
+            "price": "3.00",
+            "imageName": "PumpkinPieSmoothie",
+            "imageURL": "https://lovingitvegan.com/wp-content/uploads/2020/10/Pumpkin-Pie-Smoothie-9.jpg"
+        },
+        {
+            "id": 1004,
+            "category": "Drink",
+            "name": "Peanut Butter Milkshake",
+            "description": "This peanut butter milkshake is in a league of its own. It falls squarely in the ‘dessert’ category, and not just any dessert but ‘super indulgent decadent dessert’",
+            "price": "4.00",
+            "imageName": "PeanutButterMilkshake",
+            "imageURL": "https://lovingitvegan.com/wp-content/uploads/2017/02/Vegan-Peanut-Butter-Milkshake-1.jpg"
+        },
+        {
+            "id": 1005,
+            "category": "Drink",
+            "name": "Carrot Cake Smoothie",
+            "description": "This ice-cold, double-thick, smooth and creamy vegan carrot cake smoothie tastes just like carrot cake in a glass!",
+            "price": "5.00",
+            "imageName": "CarrotCakeSmoothie",
+            "imageURL": "https://lovingitvegan.com/wp-content/uploads/2016/05/Carrot-Cake-Smoothie-2A.jpg"
+        },
+        {
+            "id": 1006,
+            "category": "Drink",
+            "name": "Blueberry Smoothie",
+            "description": "This ice-cold, double-thick, smooth and blueberry smoothie tastes just like carrot cake in a glass!",
+            "price": "6.00",
+            "imageName": "BlueberrySmoothie",
+            "imageURL": "https://lovingitvegan.com/wp-content/uploads/2015/10/Blueberry-Smoothie-3.jpg"
+        },
+    ],
+
+    "foods": [
+        {
+            "id": 1007,
+            "category": "Food",
+            "name": "Coconut Cupcakes",
+            "description": "Easy Chocolate Coconut Cupcakes are ultra tender and moist chocolate cupcakes topped with homemade coconut buttercream frosting and toasted coconut. Add some egg candies and it's the perfect Easter treat!",
+            "price": "7.00",
+            "imageName": "CoconutCupcakes",
+            "imageURL": "https://www.handletheheat.com/wp-content/uploads/2020/03/Homemade-Chocolate-Coconut-Cupcakes-SQUARE-02-1536x1536.jpg"
+        },
+        {
+            "id": 1008,
+            "category": "Food",
+            "name": "Chocolate Chip Cookie",
+            "description": "This Chocolate Chip Cookie Cake recipe features a thick base of chewy and slightly gooey chocolate chip cookie topped with creamy vanilla buttercream and garnished with ALL the sprinkles. It's the perfect birthday cake for any cookie lover!",
+            "price": "8.00",
+            "imageName": "ChocolateChipCookie",
+            "imageURL": "https://www.handletheheat.com/wp-content/uploads/2016/07/Chocolate-Chip-Cookie-Cake-SQUARE-1536x1536.jpg"
+        },
+        {
+            "id": 1009,
+            "category": "Food",
+            "name": "Lemon Cupcakes",
+            "description": "Easy homemade Lemon Cupcakes with lemon cream cheese frosting have the perfect balance of sweet and tanginess and are perfect for spring, Easter, or Mother's Day!",
+            "price": "9.00",
+            "imageName": "LemonCupcakes",
+            "imageURL": "https://www.handletheheat.com/wp-content/uploads/2019/03/lemon-cupcakes-SQUARE-02.jpg"
+        },
+        {
+            "id": 1010,
+            "category": "Food",
+            "name": "Chocolate Sheet Cake",
+            "description": "EASY Chocolate Sheet Cake with simple fudge frosting takes just minutes to prepare and doesn't even require an electric mixer. Such a crowd pleaser perfect for any party or BBQ!",
+            "price": "10.00",
+            "imageName": "ResChocolateSheetCake",
+            "imageURL": "https://www.handletheheat.com/wp-content/uploads/2019/04/Chocolate-Sheet-Cake-SQUARE.jpg"
+        },
+        {
+            "id": 1012,
+            "category": "Food",
+            "name": "German Chocolate Cake",
+            "description": "This easy German Chocolate Cake recipe features a tender cocoa cake layered with a thick and fudgy coconut and pecan frosting and can be made in just over an hour! No mixer required.",
+            "price": "12.00",
+            "imageName": "GermanChocolateCake",
+            "imageURL": "https://www.handletheheat.com/wp-content/uploads/2019/08/German-Chocolate-Cake-Recipe-SQUARE.jpg"
+        },
+    ]
+}
