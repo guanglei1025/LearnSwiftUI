@@ -15,6 +15,7 @@ struct ShoppingCartNew: Codable {
 
 /// Order details of a single product
 struct Order: Codable {
+    var id: Int
     var productId: Int
     var quantity: Int
 }
