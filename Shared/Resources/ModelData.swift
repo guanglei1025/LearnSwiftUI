@@ -18,16 +18,6 @@ final class ModelData: ObservableObject {
     }
 }
 
-struct ShoppingCart {
-    var products = [Product]()
-
-    var totalAmount: Decimal {
-        return products.reduce(0) {
-            $0 + $1.priceInDecimal
-        }
-    }
-}
-
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
 

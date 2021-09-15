@@ -8,13 +8,33 @@
 import Foundation
 
 /// A list of orders that user selected
-struct ShoppingCartNew: Codable {
-    var orders: [Order]
+struct ShoppingCart: Codable {
+    var orders = [Order]()
+}
+
+extension ShoppingCart {
+    func totalAmount() -> Decimal {
+        orders.reduce(0) {
+            $0 + $1.totalAmount()
+        }
+    }
 }
 
 /// Order details of a single product
-struct Order: Codable {
+struct Order: Codable, Identifiable, Hashable {
     var id: Int
     var product: Product
     var quantity: Int
+
+    init(from product: Product, quantity: Int) {
+        self.id = product.id
+        self.product = product
+        self.quantity = quantity
+    }
+}
+
+extension Order {
+    func totalAmount() -> Decimal {
+        product.priceInDecimal * Decimal(quantity)
+    }
 }

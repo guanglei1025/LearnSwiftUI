@@ -39,7 +39,7 @@ struct DetailsView: View {
                     .padding()
                 Spacer()
                 Button(action: {
-                    modelData.shoppingCart.products.append(product)
+                    modelData.shoppingCart.orders.append(Order(from: product, quantity: Int(total)!))
                 }) {
                     HStack {
                         Image(systemName: "cart")

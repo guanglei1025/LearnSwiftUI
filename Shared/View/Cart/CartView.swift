@@ -12,23 +12,23 @@ struct CartView: View {
     @EnvironmentObject var modelData: ModelData
 
     var body: some View {
-        if modelData.shoppingCart.products.isEmpty {
+        if modelData.shoppingCart.orders.isEmpty {
             Text("Your cart is empty.")
                 .font(.title)
                 .fontWeight(.bold)
         } else {
             NavigationView {
                 List {
-                    ForEach(modelData.shoppingCart.products) { product in
-                        NavigationLink(destination: DetailsView(product: product)) {
-                            ProductRow(product: product)
+                    ForEach(modelData.shoppingCart.orders) { order in
+                        NavigationLink(destination: DetailsView(product: order.product)) {
+                            OrderRow(order: order)
                         }
                     }
                     .onDelete(perform: deleteProduct)
 
                     HStack {
                         Spacer()
-                        let amount = modelData.shoppingCart.totalAmount.stringValue
+                        let amount = modelData.shoppingCart.totalAmount().stringValue
                         Text("Total Amount: $\(amount)")
                             .font(.title2)
                             .fontWeight(.semibold)
