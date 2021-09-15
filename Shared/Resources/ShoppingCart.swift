@@ -9,13 +9,12 @@ import Foundation
 
 /// A list of orders that user selected
 struct ShoppingCartNew: Codable {
-    var id: Int
     var orders: [Order]
 }
 
 /// Order details of a single product
 struct Order: Codable {
     var id: Int
-    var productId: Int
+    var product: Product
     var quantity: Int
 }

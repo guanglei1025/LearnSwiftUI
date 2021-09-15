@@ -2,6 +2,7 @@
     "drinks": [
         {
             "id": 1001,
+            "stockQuantity": 10,
             "category": "Drink",
             "name": "Pumpkin Spice Latte",
             "description": "Celebrate fall with this delicious fall inspired vegan pumpkin spice latte! It’s creamy and totally divine, and made with pumpkin purée and fall spices. ",
@@ -11,6 +12,7 @@
         },
         {
             "id": 1002,
+            "stockQuantity": 10,
             "category": "Drink",
             "name": "Vegan Eggnog",
             "description": "Rich, creamy and boozy vegan eggnog. This simple recipe uses cashew nuts instead of egg to create a deliciously thick creamy drink perfect for the holidays.",
@@ -20,6 +22,7 @@
         },
         {
             "id": 1003,
+            "stockQuantity": 10,
             "category": "Drink",
             "name": "Pumpkin Pie Smoothie",
             "description": "Get the best fall flavors in this pumpkin pie smoothie. Perfect for when you want pumpkin pie without turning your oven on!",
@@ -29,6 +32,7 @@
         },
         {
             "id": 1004,
+            "stockQuantity": 10,
             "category": "Drink",
             "name": "Peanut Butter Milkshake",
             "description": "This peanut butter milkshake is in a league of its own. It falls squarely in the ‘dessert’ category, and not just any dessert but ‘super indulgent decadent dessert’",
@@ -38,6 +42,7 @@
         },
         {
             "id": 1005,
+            "stockQuantity": 10,
             "category": "Drink",
             "name": "Carrot Cake Smoothie",
             "description": "This ice-cold, double-thick, smooth and creamy vegan carrot cake smoothie tastes just like carrot cake in a glass!",
@@ -47,6 +52,7 @@
         },
         {
             "id": 1006,
+            "stockQuantity": 10,
             "category": "Drink",
             "name": "Blueberry Smoothie",
             "description": "This ice-cold, double-thick, smooth and blueberry smoothie tastes just like carrot cake in a glass!",
@@ -59,6 +65,7 @@
     "foods": [
         {
             "id": 1007,
+            "stockQuantity": 10,
             "category": "Food",
             "name": "Coconut Cupcakes",
             "description": "Easy Chocolate Coconut Cupcakes are ultra tender and moist chocolate cupcakes topped with homemade coconut buttercream frosting and toasted coconut. Add some egg candies and it's the perfect Easter treat!",
@@ -68,6 +75,7 @@
         },
         {
             "id": 1008,
+            "stockQuantity": 10,
             "category": "Food",
             "name": "Chocolate Chip Cookie",
             "description": "This Chocolate Chip Cookie Cake recipe features a thick base of chewy and slightly gooey chocolate chip cookie topped with creamy vanilla buttercream and garnished with ALL the sprinkles. It's the perfect birthday cake for any cookie lover!",
@@ -77,6 +85,7 @@
         },
         {
             "id": 1009,
+            "stockQuantity": 10,
             "category": "Food",
             "name": "Lemon Cupcakes",
             "description": "Easy homemade Lemon Cupcakes with lemon cream cheese frosting have the perfect balance of sweet and tanginess and are perfect for spring, Easter, or Mother's Day!",
@@ -86,6 +95,7 @@
         },
         {
             "id": 1010,
+            "stockQuantity": 10,
             "category": "Food",
             "name": "Chocolate Sheet Cake",
             "description": "EASY Chocolate Sheet Cake with simple fudge frosting takes just minutes to prepare and doesn't even require an electric mixer. Such a crowd pleaser perfect for any party or BBQ!",
@@ -95,6 +105,7 @@
         },
         {
             "id": 1012,
+            "stockQuantity": 10,
             "category": "Food",
             "name": "German Chocolate Cake",
             "description": "This easy German Chocolate Cake recipe features a tender cocoa cake layered with a thick and fudgy coconut and pecan frosting and can be made in just over an hour! No mixer required.",
