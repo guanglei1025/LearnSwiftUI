@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-struct CartView: View {
+struct ShoppingCartView: View {
 
     @EnvironmentObject var modelData: ModelData
 
     var body: some View {
-        if modelData.shoppingCart.orders.isEmpty {
-            Text("Your cart is empty.")
-                .font(.title)
-                .fontWeight(.bold)
+        if modelData.shoppingCart.products.isEmpty {
+            NavigationView {
+                EmptyShoppingCartView()
+                .navigationTitle("Cart")
+            }
         } else {
             NavigationView {
                 List {
@@ -41,13 +42,13 @@ struct CartView: View {
     }
 
     func deleteProduct(offsets: IndexSet) {
-
+        // FIXME: Delete order from shopping cart
     }
 }
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView()
+        ShoppingCartView()
             .environmentObject(ModelData())
     }
 }
