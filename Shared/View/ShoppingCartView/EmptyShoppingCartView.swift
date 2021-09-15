@@ -26,8 +26,8 @@ struct EmptyShoppingCartView: View {
 
 struct EmptyShoppingCartView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            EmptyShoppingCartView()
-        }
+        EmptyShoppingCartView()
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

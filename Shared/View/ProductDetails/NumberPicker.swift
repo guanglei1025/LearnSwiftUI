@@ -23,5 +23,7 @@ struct NumberPicker: View {
 struct NumberPicker_Previews: PreviewProvider {
     static var previews: some View {
         NumberPicker(totalNumber: .constant("4"))
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

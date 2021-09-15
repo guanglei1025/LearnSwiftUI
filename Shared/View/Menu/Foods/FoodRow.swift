@@ -45,5 +45,7 @@ struct FoodRow: View {
 struct FoodRow_Previews: PreviewProvider {
     static var previews: some View {
         FoodRow(foods: ModelData().menu.foods)
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

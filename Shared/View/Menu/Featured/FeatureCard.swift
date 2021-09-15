@@ -46,5 +46,7 @@ struct TextOverlay: View {
 struct FeatureCard_Previews: PreviewProvider {
     static var previews: some View {
         FeatureCard(product: ModelData().menu.foods[0])
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
