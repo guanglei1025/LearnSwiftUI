@@ -36,6 +36,9 @@ struct ShoppingCartView: View {
                             .padding(.trailing)
                     }
                 }
+                .toolbar {
+                    EditButton()
+                }
                 .navigationTitle("Cart")
             }
         }
