@@ -33,8 +33,7 @@ struct Product: Codable, Identifiable, Hashable {
     var stockQuantity: Int
 
     static var possibleNumbers: [String] {
-        [ "0",
-          "1",
+        [ "1",
           "2",
           "3",
           "4",

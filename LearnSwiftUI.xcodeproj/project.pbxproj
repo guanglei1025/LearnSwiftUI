@@ -53,6 +53,7 @@
 		A1E60DD72587051F00AA8E79 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E60DD52587051F00AA8E79 /* CartView.swift */; };
 		A1E60DE825872B6400AA8E79 /* Decimal+CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E60DE725872B6400AA8E79 /* Decimal+CurrencyFormatter.swift */; };
 		A1E60DE925872B6400AA8E79 /* Decimal+CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E60DE725872B6400AA8E79 /* Decimal+CurrencyFormatter.swift */; };
+		DDFEBA6126F1986900FBAB85 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFEBA6026F1986900FBAB85 /* OrderRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		A1E60DCF2587034000AA8E79 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1E60DD52587051F00AA8E79 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		A1E60DE725872B6400AA8E79 /* Decimal+CurrencyFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decimal+CurrencyFormatter.swift"; sourceTree = "<group>"; };
+		DDFEBA6026F1986900FBAB85 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				A1E60DD42587050200AA8E79 /* Cart */,
 				A16C75152585A66C004BBD37 /* Menu */,
 				A16C75322585C134004BBD37 /* ProductList */,
+				DDFEBA5F26F1982800FBAB85 /* Orders */,
 				A16C75162585A683004BBD37 /* ProductDetails */,
 			);
 			path = View;
@@ -242,6 +245,14 @@
 			path = Cart;
 			sourceTree = "<group>";
 		};
+		DDFEBA5F26F1982800FBAB85 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				DDFEBA6026F1986900FBAB85 /* OrderRow.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -352,6 +363,7 @@
 				A1D747C925846C1500DCB7E1 /* PageControl.swift in Sources */,
 				A1D747BB25845F3600DCB7E1 /* PageViewController.swift in Sources */,
 				A1E60DD02587034000AA8E79 /* ContentView.swift in Sources */,
+				DDFEBA6126F1986900FBAB85 /* OrderRow.swift in Sources */,
 				A16C75342585C14F004BBD37 /* ProductList.swift in Sources */,
 				A1E5F82C2582BD4100C442E1 /* Product.swift in Sources */,
 				A10DE71426EC54A60060A091 /* ShoppingCart.swift in Sources */,
