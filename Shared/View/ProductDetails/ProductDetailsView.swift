@@ -1,5 +1,5 @@
 //
-//  DetailsView.swift
+//  ProductDetailsView.swift
 //  LearnSwiftUI
 //
 //  Created by Guanglei Liu on 12/12/20.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct DetailsView: View {
+struct ProductDetailsView: View {
 
     let product: Product
     @EnvironmentObject var modelData: ModelData
-    @State var total = "0"
+    @State var total = "1"
 
     var body: some View {
         ScrollView {
@@ -38,6 +38,11 @@ struct DetailsView: View {
                     .multilineTextAlignment(.leading)
                     .padding()
                 Spacer()
+
+                Text("Total: \(total)")
+                    .font(.title)
+                    .fontWeight(.bold)
+                NumberPicker(totalNumber: $total)
                 Button(action: {
                     let totalInt = Int(total) ?? 0
                     modelData.shoppingCart.orders.append(Order(from: product, quantity: totalInt))
@@ -57,18 +62,13 @@ struct DetailsView: View {
                     .background(Color.blue)
                     .cornerRadius(40)
                 }
-                .padding(30)
-                Text("Total: \(total)")
-                    .font(.title)
-                    .fontWeight(.bold)
-                NumberPicker(totalNumber: $total)
             }
         }
     }
 }
 
-struct DetailsView_Previews: PreviewProvider {
+struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsView(product: ModelData().menu.foods[0])
+        ProductDetailsView(product: ModelData().menu.foods[0])
     }
 }

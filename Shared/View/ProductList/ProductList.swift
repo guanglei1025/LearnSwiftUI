@@ -14,7 +14,7 @@ struct ProductList: View {
     var body: some View {
         List {
             ForEach(products) { product in
-                NavigationLink(destination: DetailsView(product: product)) {
+                NavigationLink(destination: ProductDetailsView(product: product)) {
                     ProductRow(product: product)
                 }
             }

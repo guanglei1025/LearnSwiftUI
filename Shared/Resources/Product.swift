@@ -30,8 +30,6 @@ struct Product: Codable, Identifiable, Hashable {
         case drink = "Drink"
     }
 
-    var stockQuantity: Int
-
     static var possibleNumbers: [String] {
         [ "1",
           "2",

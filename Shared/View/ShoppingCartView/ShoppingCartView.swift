@@ -26,7 +26,6 @@ struct ShoppingCartView: View {
                         }
                     }
                     .onDelete(perform: deleteProduct)
-
                     HStack {
                         Spacer()
                         let amount = modelData.shoppingCart.totalAmount().stringValue
