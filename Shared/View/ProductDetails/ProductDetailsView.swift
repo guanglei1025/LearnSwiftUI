@@ -21,7 +21,7 @@ struct ProductDetailsView: View {
                     .resizable()
                     .aspectRatio(2 / 2, contentMode: .fit)
                     .cornerRadius(10)
-                    .padding(20)
+                    .padding(50)
 
                 Text(product.name)
                     .font(.title)
@@ -40,7 +40,7 @@ struct ProductDetailsView: View {
                 Spacer()
 
                 Text("Total: \(total)")
-                    .font(.title)
+                    .font(.title2)
                     .fontWeight(.bold)
                 NumberPicker(totalNumber: $total)
                 Button(action: {
