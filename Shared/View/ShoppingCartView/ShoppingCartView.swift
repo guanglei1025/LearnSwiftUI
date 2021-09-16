@@ -12,7 +12,7 @@ struct ShoppingCartView: View {
     @EnvironmentObject var modelData: ModelData
 
     var body: some View {
-        if modelData.shoppingCart.products.isEmpty {
+        if modelData.shoppingCart.orders.isEmpty {
             NavigationView {
                 EmptyShoppingCartView()
                 .navigationTitle("Cart")
@@ -21,7 +21,7 @@ struct ShoppingCartView: View {
             NavigationView {
                 List {
                     ForEach(modelData.shoppingCart.orders) { order in
-                        NavigationLink(destination: DetailsView(product: order.product)) {
+                        NavigationLink(destination: EditShoppingCartView(product: order.product)) {
                             OrderRow(order: order)
                         }
                     }

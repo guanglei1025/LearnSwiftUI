@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A10DE71426EC54A60060A091 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10DE71326EC54A60060A091 /* ShoppingCart.swift */; };
 		A10DE71526EC54A60060A091 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10DE71326EC54A60060A091 /* ShoppingCart.swift */; };
+		A138E30F26F2E6DB004E6158 /* EditShoppingCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138E30E26F2E6DB004E6158 /* EditShoppingCartView.swift */; };
+		A138E31026F2E6DB004E6158 /* EditShoppingCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138E30E26F2E6DB004E6158 /* EditShoppingCartView.swift */; };
 		A149D1FB2583C78100CF379F /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149D1FA2583C78100CF379F /* FoodView.swift */; };
 		A149D1FC2583C78100CF379F /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149D1FA2583C78100CF379F /* FoodView.swift */; };
 		A16C751F2585A6C2004BBD37 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C751E2585A6C2004BBD37 /* MenuView.swift */; };
@@ -60,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		A10DE71326EC54A60060A091 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
+		A138E30E26F2E6DB004E6158 /* EditShoppingCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShoppingCartView.swift; sourceTree = "<group>"; };
 		A149D1FA2583C78100CF379F /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		A16C751E2585A6C2004BBD37 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		A16C75272585A734004BBD37 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
@@ -245,6 +248,7 @@
 			children = (
 				A1E60DD52587051F00AA8E79 /* ShoppingCartView.swift */,
 				A1BD6E3326F186630052A5D2 /* EmptyShoppingCartView.swift */,
+				A138E30E26F2E6DB004E6158 /* EditShoppingCartView.swift */,
 			);
 			path = ShoppingCartView;
 			sourceTree = "<group>";
@@ -375,6 +379,7 @@
 				A1E5F8302582BD4100C442E1 /* Menu.swift in Sources */,
 				A1D747B6258417B000DCB7E1 /* FeatureCard.swift in Sources */,
 				A16C751F2585A6C2004BBD37 /* MenuView.swift in Sources */,
+				A138E30F26F2E6DB004E6158 /* EditShoppingCartView.swift in Sources */,
 				A1E5F8082582B63A00C442E1 /* LearnSwiftUIApp.swift in Sources */,
 				A1D747A22583FE2C00DCB7E1 /* DrinkView.swift in Sources */,
 				A1D747AC258406C000DCB7E1 /* DrinkRow.swift in Sources */,
@@ -404,6 +409,7 @@
 				A1E5F8312582BD4100C442E1 /* Menu.swift in Sources */,
 				A1D747B7258417B000DCB7E1 /* FeatureCard.swift in Sources */,
 				A16C75202585A6C2004BBD37 /* MenuView.swift in Sources */,
+				A138E31026F2E6DB004E6158 /* EditShoppingCartView.swift in Sources */,
 				A1E5F8092582B63A00C442E1 /* LearnSwiftUIApp.swift in Sources */,
 				A1D747A32583FE2C00DCB7E1 /* DrinkView.swift in Sources */,
 				A1D747AD258406C000DCB7E1 /* DrinkRow.swift in Sources */,
