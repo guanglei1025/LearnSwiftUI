@@ -22,12 +22,11 @@ extension ShoppingCart {
 
 /// Order details of a single product
 struct Order: Codable, Identifiable, Hashable {
-    var id: Int
+    var id = UUID()
     var product: Product
     var quantity: Int
 
     init(from product: Product, quantity: Int) {
-        self.id = product.id
         self.product = product
         self.quantity = quantity
     }
