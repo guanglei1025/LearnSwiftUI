@@ -54,9 +54,9 @@ struct ProductDetailsView: View {
                             .padding(.trailing)
                         Text("Add to Cart")
                             .fontWeight(.semibold)
-                            .font(.title2)
-                            .padding(.trailing)
+                            .font(.title3)
                     }
+                    .frame(minWidth: 0, maxWidth: 250)
                     .padding()
                     .foregroundColor(.white)
                     .background(Color.blue)
