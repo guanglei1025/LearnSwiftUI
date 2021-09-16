@@ -39,7 +39,8 @@ struct DetailsView: View {
                     .padding()
                 Spacer()
                 Button(action: {
-                    modelData.shoppingCart.orders.append(Order(from: product, quantity: Int(total)!))
+                    let totalInt = Int(total) ?? 0
+                    modelData.shoppingCart.orders.append(Order(from: product, quantity: totalInt))
                 }) {
                     HStack {
                         Image(systemName: "cart")

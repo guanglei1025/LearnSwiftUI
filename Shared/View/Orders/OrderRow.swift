@@ -21,8 +21,13 @@ struct OrderRow: View {
                 Text(order.product.name)
                     .font(.headline)
                     .padding(.bottom, 1)
-                Text("$\(order.product.price) × \(order.quantity)")
-                    .foregroundColor(.secondary)
+                HStack {
+                    Text("$\(order.product.price) × \(order.quantity)")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    let amount = order.totalAmount().stringValue
+                    Text("$\(amount)")
+                }
             }
             Spacer()
         }
