@@ -21,7 +21,7 @@ struct ShoppingCartView: View {
             NavigationView {
                 List {
                     ForEach(modelData.shoppingCart.orders) { order in
-                        NavigationLink(destination: EditShoppingCartView(product: order.product)) {
+                        NavigationLink(destination: EditShoppingCartView(order: order)) {
                             OrderRow(order: order)
                         }
                     }

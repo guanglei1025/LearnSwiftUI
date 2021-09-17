@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct EditShoppingCartView: View {
-    let product: Product
+    let order: Order
+
+    private var product: Product {
+        order.product
+    }
+
     @EnvironmentObject var modelData: ModelData
     @State var total = "1"
 
@@ -38,7 +43,7 @@ struct EditShoppingCartView: View {
                     .fontWeight(.bold)
                 NumberPicker(totalNumber: $total)
                 Button(action: {
-                    modelData.shoppingCart.orders.append(product)
+                    modelData.shoppingCart.orders.append(order)
                 }) {
                     Text("Save")
                         .fontWeight(.semibold)
@@ -62,6 +67,7 @@ struct DefaultButtonStyle: ButtonStyle {
 
 struct EditShoppingCartView_Previews: PreviewProvider {
     static var previews: some View {
-        EditShoppingCartView(product: ModelData().menu.foods[0])
+        let order = Order.init(from: ModelData().menu.foods.first!, quantity: 4)
+        EditShoppingCartView(order: order)
     }
 }
