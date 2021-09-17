@@ -11,7 +11,7 @@ struct DetailsView: View {
 
     let product: Product
     @EnvironmentObject var modelData: ModelData
-    @State var total = "0"
+    @State var total = "1"
 
     var body: some View {
         ScrollView {

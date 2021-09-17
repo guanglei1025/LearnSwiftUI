@@ -24,7 +24,7 @@ struct CartView: View {
                             OrderRow(order: order)
                         }
                     }
-                    .onDelete(perform: deleteProduct)
+                    .onDelete(perform: deleteOrder)
 
                     HStack {
                         Spacer()
@@ -40,8 +40,8 @@ struct CartView: View {
         }
     }
 
-    func deleteProduct(offsets: IndexSet) {
-
+    func deleteOrder(offsets: IndexSet) {
+        modelData.shoppingCart.remove(at: offsets)
     }
 }
 
