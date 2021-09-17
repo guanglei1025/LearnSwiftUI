@@ -18,6 +18,10 @@ extension ShoppingCart {
             $0 + $1.totalAmount()
         }
     }
+
+    mutating func remove(at offsets: IndexSet) {
+        orders.remove(atOffsets: offsets)
+    }
 }
 
 /// Order details of a single product
