@@ -29,14 +29,4 @@ struct Product: Codable, Identifiable, Hashable {
         case food = "Food"
         case drink = "Drink"
     }
-
-    static var possibleNumbers: [String] {
-        [ "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
-        ]
-    }
 }

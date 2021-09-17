@@ -43,7 +43,8 @@ struct EditShoppingCartView: View {
                     .fontWeight(.bold)
                 NumberPicker(totalNumber: $total)
                 Button(action: {
-                    modelData.shoppingCart.orders.append(order)
+                    // TODO: Implement "update" feature
+
                 }) {
                     Text("Save")
                         .fontWeight(.semibold)
