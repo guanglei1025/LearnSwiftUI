@@ -25,7 +25,7 @@ struct ShoppingCartView: View {
                             OrderRow(order: order)
                         }
                     }
-                    .onDelete(perform: deleteProduct)
+                    .onDelete(perform: deleteOrder)
                     HStack {
                         Spacer()
                         let amount = modelData.shoppingCart.totalAmount().stringValue
@@ -43,8 +43,8 @@ struct ShoppingCartView: View {
         }
     }
 
-    func deleteProduct(offsets: IndexSet) {
-        // FIXME: Delete order from shopping cart
+    func deleteOrder(offsets: IndexSet) {
+        modelData.shoppingCart.remove(at: offsets)
     }
 }
 
