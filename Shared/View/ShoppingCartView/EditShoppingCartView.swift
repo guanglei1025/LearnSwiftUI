@@ -43,20 +43,14 @@ struct EditShoppingCartView: View {
                     Text("Save")
                         .fontWeight(.semibold)
                         .font(.title3)
-                        .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .frame(minWidth: 0, maxWidth: 250)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(40)
                 }
-                .buttonStyle(DefaultButtonStyle())
             }
         }
-    }
-}
-
-struct DefaultButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .background(Color.blue)
-            .foregroundColor(Color.white)
-            .cornerRadius(40)
     }
 }
 
