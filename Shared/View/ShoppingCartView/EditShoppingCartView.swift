@@ -15,7 +15,7 @@ struct EditShoppingCartView: View {
     }
 
     @EnvironmentObject var modelData: ModelData
-    @State var total = "1"
+    @State var total: String = ""
 
     var body: some View {
         ScrollView {
@@ -41,6 +41,9 @@ struct EditShoppingCartView: View {
                 Text("Total: \(total)")
                     .font(.title2)
                     .fontWeight(.bold)
+                    .onAppear { self.total = String(order.quantity) }
+//                NumberPicker(totalNumber: $total)
+
                 NumberPicker(totalNumber: $total)
                 Button(action: {
                     // TODO: Implement "update" feature
