@@ -44,8 +44,8 @@ struct ProductDetailsView: View {
                     .fontWeight(.bold)
                 NumberPicker(totalNumber: $total)
                 Button(action: {
-                    let totalInt = Int(total) ?? 0
-                    modelData.shoppingCart.orders.append(Order(from: product, quantity: totalInt))
+                    modelData.shoppingCart.orders.append(Order(from: product, quantity: total))
+
                 }) {
                     HStack {
                         Image(systemName: "cart")

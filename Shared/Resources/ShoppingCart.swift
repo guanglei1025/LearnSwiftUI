@@ -22,15 +22,27 @@ extension ShoppingCart {
     mutating func remove(at offsets: IndexSet) {
         orders.remove(atOffsets: offsets)
     }
+
+    mutating func updateOrder(_ order: Order) {
+        guard let index = indexForOrder(with: order.id) else {
+            return
+        }
+        orders[index] = order
+    }
+
+    func indexForOrder(with id: Order.ID) -> Int? {
+        orders.firstIndex { $0.id == id }
+    }
+
 }
 
 /// Order details of a single product
-struct Order: Codable, Identifiable, Hashable {
+struct Order: Codable, Identifiable, Hashable  {
     var id = UUID()
     var product: Product
-    var quantity: Int
+    var quantity: String
 
-    init(from product: Product, quantity: Int) {
+    init(from product: Product, quantity: String) {
         self.product = product
         self.quantity = quantity
     }
@@ -38,6 +50,7 @@ struct Order: Codable, Identifiable, Hashable {
 
 extension Order {
     func totalAmount() -> Decimal {
-        product.priceInDecimal * Decimal(quantity)
+        product.priceInDecimal * Decimal.decimalValueOrZero(fromString: quantity)
     }
 }
+

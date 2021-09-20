@@ -8,46 +8,37 @@
 import SwiftUI
 
 struct EditShoppingCartView: View {
-    let order: Order
-
-    private var product: Product {
-        order.product
-    }
-
     @EnvironmentObject var modelData: ModelData
-    @State var total: String = ""
+    @State var order: Order
 
     var body: some View {
         ScrollView {
             VStack {
-                product.image
+                order.product.image
                     .resizable()
                     .resizable()
                     .aspectRatio(2 / 2, contentMode: .fit)
                     .cornerRadius(10)
                     .padding(50)
 
-                Text(product.name)
+                Text(order.product.name)
                     .font(.title)
                     .fontWeight(.bold)
 
-                Text(product.description)
+                Text(order.product.description)
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
                     .padding()
                 Spacer()
 
-                Text("Total: \(total)")
+                Text("Total: \(order.quantity)")
                     .font(.title2)
                     .fontWeight(.bold)
-                    .onAppear { self.total = String(order.quantity) }
-//                NumberPicker(totalNumber: $total)
-
-                NumberPicker(totalNumber: $total)
+                NumberPicker(totalNumber: $order.quantity)
+                
                 Button(action: {
-                    // TODO: Implement "update" feature
-
+                    modelData.shoppingCart.updateOrder(order)
                 }) {
                     Text("Save")
                         .fontWeight(.semibold)
@@ -71,7 +62,7 @@ struct DefaultButtonStyle: ButtonStyle {
 
 struct EditShoppingCartView_Previews: PreviewProvider {
     static var previews: some View {
-        let order = Order.init(from: ModelData().menu.foods.first!, quantity: 4)
+        let order = Order.init(from: ModelData().menu.foods.first!, quantity: "4")
         EditShoppingCartView(order: order)
     }
 }
