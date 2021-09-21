@@ -12,6 +12,8 @@ struct ProductDetailsView: View {
     let product: Product
     @EnvironmentObject var modelData: ModelData
     @State var total = "1"
+    @State private var isAdded = false
+    @State private var totalQuantityChanged = true
 
     var body: some View {
         ScrollView {
@@ -43,9 +45,16 @@ struct ProductDetailsView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 NumberPicker(totalNumber: $total)
-                Button(action: {
-                    modelData.shoppingCart.orders.append(Order(from: product, quantity: total))
+                    .onChange(of: total) { _ in
+                        // Enable `Add to cart` button
+                        totalQuantityChanged = true
+                    }
 
+                Button(action: {
+                    // Trigger alert
+                    isAdded = true
+                    let order = Order(from: product, quantity: total)
+                    modelData.shoppingCart.addOrder(order)
                 }) {
                     HStack {
                         Image(systemName: "cart")
@@ -61,6 +70,14 @@ struct ProductDetailsView: View {
                     .foregroundColor(.white)
                     .background(Color.blue)
                     .cornerRadius(40)
+                }
+                .disabled(!totalQuantityChanged)
+                .alert(isPresented: $isAdded) { () -> Alert in
+                    let button = Alert.Button.default(Text("OK")) {
+                        // Disable `Add to cart` button
+                        totalQuantityChanged = false
+                    }
+                    return Alert(title: Text("Added to cart"), dismissButton: button)
                 }
             }
         }
