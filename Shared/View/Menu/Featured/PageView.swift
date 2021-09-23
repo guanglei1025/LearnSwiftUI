@@ -26,5 +26,7 @@ struct PageView_Previews: PreviewProvider {
             FeatureCard(product: $0)
         })
         .aspectRatio(3 / 2, contentMode: .fit)
+        .previewLayout(.sizeThatFits)
+        .padding()
     }
 }

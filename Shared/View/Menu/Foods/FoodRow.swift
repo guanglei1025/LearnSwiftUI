@@ -32,7 +32,7 @@ struct FoodRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(foods) { food in
-                        NavigationLink(destination: DetailsView(product: food)) {
+                        NavigationLink(destination: ProductDetailsView(product: food)) {
                             FoodView(food: food)
                         }
                     }
@@ -45,5 +45,7 @@ struct FoodRow: View {
 struct FoodRow_Previews: PreviewProvider {
     static var previews: some View {
         FoodRow(foods: ModelData().menu.foods)
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

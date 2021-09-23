@@ -11,9 +11,14 @@ struct NumberPicker: View {
 
     @Binding var totalNumber: String
 
+    private let pickerNumbers = 1...19
+    private var pickerNumbersInString: [String] {
+        pickerNumbers.map { String($0)}
+    }
+
     var body: some View {
         Picker(selection: $totalNumber, label: Spacer()) {
-            ForEach(Product.possibleNumbers, id: \.self) {
+            ForEach(pickerNumbersInString, id: \.self) {
                 Text($0)
             }
         }
@@ -23,5 +28,7 @@ struct NumberPicker: View {
 struct NumberPicker_Previews: PreviewProvider {
     static var previews: some View {
         NumberPicker(totalNumber: .constant("4"))
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

@@ -22,15 +22,43 @@ extension ShoppingCart {
     mutating func remove(at offsets: IndexSet) {
         orders.remove(atOffsets: offsets)
     }
+
+    // Add order to shopping cart based on different condition
+    mutating func addOrder(_ newOrder: Order) {
+        // If the product of the new order already exists in the orders,
+        // then get the sum of quantity as the updated quantity of the order for this specific product
+        if let index = orders.firstIndex(where: {$0.product == newOrder.product}) {
+            guard let previousQuantity = Int(orders[index].quantity), let newQuantity = Int(newOrder.quantity) else {
+                return
+            }
+            let updatedQuantity = previousQuantity + newQuantity
+            orders[index].quantity = String(updatedQuantity)
+        } else {
+            // If not, then directly add new order to orders
+            orders.append(newOrder)
+        }
+    }
+
+    mutating func updateOrder(_ order: Order) {
+        guard let index = indexForOrder(with: order.id) else {
+            return
+        }
+        orders[index] = order
+    }
+
+    func indexForOrder(with id: Order.ID) -> Int? {
+        orders.firstIndex { $0.id == id }
+    }
+
 }
 
 /// Order details of a single product
-struct Order: Codable, Identifiable, Hashable {
+struct Order: Codable, Identifiable, Hashable  {
     var id = UUID()
     var product: Product
-    var quantity: Int
+    var quantity: String
 
-    init(from product: Product, quantity: Int) {
+    init(from product: Product, quantity: String) {
         self.product = product
         self.quantity = quantity
     }
@@ -38,6 +66,7 @@ struct Order: Codable, Identifiable, Hashable {
 
 extension Order {
     func totalAmount() -> Decimal {
-        product.priceInDecimal * Decimal(quantity)
+        product.priceInDecimal * Decimal.decimalValueOrZero(fromString: quantity)
     }
 }
+

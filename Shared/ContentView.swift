@@ -23,7 +23,7 @@ struct ContentView: View {
                     Label("Menu", systemImage: "heart")
                 }
                 .tag(Tab.menu)
-            CartView()
+            ShoppingCartView()
                 .environmentObject(modelData)
                 .tabItem {
                     Label("Cart", systemImage: "cart")
