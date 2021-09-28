@@ -7,22 +7,50 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case badURL
-    case noData
-}
-
 protocol WebService {
-    func get() async throws -> Menu
+    func get<T: Decodable>(from url: URL) async throws -> T
+    func post(with body: Data, to url: URL) async throws -> Data
 }
 
-final class ProductService: WebService {
-    func get() async throws -> Menu {
-        guard let url = URL(string: "http://127.0.0.1:8080/products") else {
-            throw NetworkError.badURL
-        }
+final class Service: WebService {
+    var session = URLSession.shared
 
-        let (data, _) = try await URLSession.shared.data(from: url)
-        return try JSONDecoder().decode(Menu.self, from: data)
+    func get<T: Decodable>(from url: URL) async throws -> T {
+
+        // Use the async variant of URLSession to fetch data
+        let (data, _) = try await session.data(from: url)
+
+        // Parse the JSON data
+        let decodedData = try JSONDecoder().decode(T.self, from: data)
+        return decodedData
+    }
+
+    func post(with body: Data, to url: URL) async throws -> Data {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = body
+
+        let (data, _) = try await session.data(for: request)
+
+        return data
+    }
+
+    func put(with body: Data, to url: URL) async throws -> Data {
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.httpBody = body
+
+        let (data, _) = try await session.data(for: request)
+
+        return data
+    }
+
+    func delete(from url: URL) async throws -> Data {
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+
+        let (data, _) = try await session.data(for: request)
+
+        return data
     }
 }

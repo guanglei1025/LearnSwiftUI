@@ -13,19 +13,9 @@ final class ModelData: ObservableObject {
     @Published var menu: Menu = load("fakeData.json")
     @Published var shoppingCart: ShoppingCart
 
-    private let service: WebService
-
-    init(shoppingCart: ShoppingCart = ShoppingCart(), service: WebService) {
+    init(shoppingCart: ShoppingCart = ShoppingCart()) {
         self.shoppingCart = shoppingCart
-        self.service = service
     }
-
-//    init(shoppingCart: ShoppingCart = ShoppingCart()) {
-//        self.shoppingCart = shoppingCart
-//    }
-
-    /// Get menu using service api
-
 }
 
 func load<T: Decodable>(_ filename: String) -> T {
