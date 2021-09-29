@@ -24,7 +24,7 @@ private enum RequestType: String {
 /// and how to send up and receive JSON bodies.
 /// This provides an abstraction for testing and flexibility
 protocol WebService {
-    func get<T: Decodable>(from url: URL) async throws -> [T]
+    func get(from url: URL) async throws -> Data
     func delete(from url: URL) async throws -> URLResponse
     func post(with body: Data, to url: URL) async throws -> URLResponse
     func put(with body: Data, to url: URL) async throws -> URLResponse
@@ -38,27 +38,24 @@ final class Service: WebService {
 
     // MARK: - Public API
 
-    func get<T: Decodable>(from url: URL) async throws -> [T] {
+    func get(from url: URL) async throws -> Data {
         let taskResponse: DataTaskResponse = try await sendRequest(url: url, requestType: .get, body: nil)
-
-        // Parse the JSON data
-        let decodedData = try JSONDecoder().decode([T].self, from: taskResponse.data)
-        return decodedData
+        return taskResponse.data
     }
 
     func post(with body: Data, to url: URL) async throws -> URLResponse {
-        let (_, response) = try await sendRequest(url: url, requestType: .post, body: body)
-        return response
+        let taskResponse: DataTaskResponse = try await sendRequest(url: url, requestType: .post, body: body)
+        return taskResponse.response
     }
 
     func put(with body: Data, to url: URL) async throws -> URLResponse {
-        let (_, response) = try await sendRequest(url: url, requestType: .put, body: body)
-        return response
+        let taskResponse: DataTaskResponse  = try await sendRequest(url: url, requestType: .put, body: body)
+        return taskResponse.response
     }
 
     func delete(from url: URL) async throws -> URLResponse {
-        let (_, response) = try await sendRequest(url: url, requestType: .delete, body: nil)
-        return response
+        let taskResponse: DataTaskResponse = try await sendRequest(url: url, requestType: .delete, body: nil)
+        return taskResponse.response
     }
 
     // MARK: - Private Helper Functions

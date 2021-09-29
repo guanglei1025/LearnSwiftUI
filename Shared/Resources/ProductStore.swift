@@ -24,4 +24,14 @@ final class ProductStore: ObservableObject {
             print("fetch products error: \(error)")
         }
     }
+
+    func fetchProduct() async {
+        do {
+            let id = "AAEDBCB7-D32C-4F1E-89F8-C41E2D93CA32"
+            let item = try await service.fetchProduct(with: id)
+            print(item)
+        } catch {
+            print("fetch product error: \(error)")
+        }
+    }
 }

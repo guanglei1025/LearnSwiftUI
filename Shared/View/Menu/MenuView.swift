@@ -36,7 +36,8 @@ struct MenuView: View {
             .navigationTitle("Featured")
         }
         .task {
-            await productStore.fetchProducts()
+//            await productStore.fetchProducts()
+            await productStore.fetchProduct()
         }
     }
 
