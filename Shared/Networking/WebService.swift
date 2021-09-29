@@ -24,7 +24,7 @@ private enum RequestType: String {
 /// and how to send up and receive JSON bodies.
 /// This provides an abstraction for testing and flexibility
 protocol WebService {
-    func get<T: Decodable>(from url: URL) async throws -> T
+    func get<T: Decodable>(from url: URL) async throws -> [T]
     func delete(from url: URL) async throws -> URLResponse
     func post(with body: Data, to url: URL) async throws -> URLResponse
     func put(with body: Data, to url: URL) async throws -> URLResponse
@@ -38,11 +38,11 @@ final class Service: WebService {
 
     // MARK: - Public API
 
-    func get<T: Decodable>(from url: URL) async throws -> T {
-        let (data, _) = try await sendRequest(url: url, requestType: .post, body: nil)
+    func get<T: Decodable>(from url: URL) async throws -> [T] {
+        let taskResponse: DataTaskResponse = try await sendRequest(url: url, requestType: .get, body: nil)
 
         // Parse the JSON data
-        let decodedData = try JSONDecoder().decode(T.self, from: data)
+        let decodedData = try JSONDecoder().decode([T].self, from: taskResponse.data)
         return decodedData
     }
 

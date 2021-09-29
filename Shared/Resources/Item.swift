@@ -1,5 +1,5 @@
 //
-//  Products.swift
+//  Item.swift
 //  LearnSwiftUI (iOS)
 //
 //  Created by Lina Gao on 28/09/2021.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Item: Codable {
+struct Item: Codable, Identifiable, Hashable {
     let id: UUID
-    let stockQuantity: String
+    let stockQuantity: Int
     let price: String
     let imageURL: String
     let description: String

@@ -29,6 +29,17 @@ struct ContentView: View {
                     Label("Cart", systemImage: "cart")
                 }
                 .tag(Tab.cart)
+//            MenuView()
+//                .tabItem {
+//                    Label("Menu", systemImage: "heart")
+//                }
+//                .tag(Tab.menu)
+//            ShoppingCartView()
+//                .environmentObject(modelData)
+//                .tabItem {
+//                    Label("Cart", systemImage: "cart")
+//                }
+//                .tag(Tab.cart)
         }
     }
 }

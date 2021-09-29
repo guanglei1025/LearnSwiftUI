@@ -23,6 +23,7 @@ final class ProductAPI: ProductService {
         guard let url = URL(string: "http://127.0.0.1:8080/products") else {
             throw WebServiceError.invalidURL
         }
+
         return try await webService.get(from: url)
     }
 

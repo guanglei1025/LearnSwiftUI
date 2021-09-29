@@ -9,28 +9,34 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject var modelData: ModelData
+    @StateObject private var productStore = ProductStore(
+        service: ProductAPI(webService: Service()))
 
     var body: some View {
         NavigationView {
             List {
-                PageView(pages: modelData.menu.foods.map {
-                    FeatureCard(product: $0)
-                })
-                .aspectRatio(3 / 2, contentMode: .fit)
-                .listRowInsets(EdgeInsets())
-
-                NavigationLink(destination: ProductList(products: ModelData().menu.foods)) {
-                    FoodRow(foods: ModelData().menu.foods)
-                }
-                .listRowInsets(EdgeInsets())
-
-                NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
-                    DrinkRow(drinks: ModelData().menu.drinks)
-                }
-                .listRowInsets(EdgeInsets())
+//                PageView(pages: modelData.menu.foods.map {
+//                    FeatureCard(product: $0)
+//                })
+//                .aspectRatio(3 / 2, contentMode: .fit)
+//                .listRowInsets(EdgeInsets())
+//
+//                NavigationLink(destination: ProductList(products: ModelData().menu.foods)) {
+//                    FoodRow(foods: ModelData().menu.foods)
+//                }
+//                .listRowInsets(EdgeInsets())
+//
+//                NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
+//                    DrinkRow(drinks: ModelData().menu.drinks)
+//                }
+//                .listRowInsets(EdgeInsets())
+                Text("Fetch Successful")
             }
             .listStyle(InsetListStyle())
             .navigationTitle("Featured")
+        }
+        .task {
+            await productStore.fetchProducts()
         }
     }
 
