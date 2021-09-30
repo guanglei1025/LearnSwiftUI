@@ -24,16 +24,18 @@ struct MenuView: View {
                     .listRowInsets(EdgeInsets())
                 }
 
-                if productStore.foods.count > 0 {
-                    NavigationLink(destination: ProductList(products: ModelData().menu.foods)) {
-                        FoodRow(foods: productStore.foods)
+                let foods = productStore.foods
+                if foods.count > 0 {
+                    NavigationLink(destination: ProductList(products: foods)) {
+                        FoodRow(foods: foods)
                     }
                     .listRowInsets(EdgeInsets())
                 }
 
-                if productStore.drinks.count > 0 {
-                    NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
-                        DrinkRow(drinks: productStore.drinks)
+                let drinks = productStore.drinks
+                if drinks.count > 0 {
+                    NavigationLink(destination: ProductList(products: drinks)) {
+                        DrinkRow(drinks: drinks)
                     }
                     .listRowInsets(EdgeInsets())
                 }

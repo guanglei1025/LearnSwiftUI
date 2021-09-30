@@ -9,23 +9,26 @@ import SwiftUI
 
 struct ProductList: View {
 
-    var products: [Product]
+    var products: [Item]
 
     var body: some View {
         List {
+//            ForEach(products) { product in
+//                NavigationLink(destination: ProductDetailsView(product: product)) {
+//                    ProductRow(product: product)
+//                }
+//            }
             ForEach(products) { product in
-                NavigationLink(destination: ProductDetailsView(product: product)) {
-                    ProductRow(product: product)
-                }
+                NewProductRow(product: product)
             }
         }
-        .navigationTitle(products[0].category.rawValue)
+        .navigationTitle(products[0].category)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct ProductList_Previews: PreviewProvider {
     static var previews: some View {
-        ProductList(products: ModelData().menu.drinks)
+        ProductList(products: ModelData().fakeItems)
     }
 }
