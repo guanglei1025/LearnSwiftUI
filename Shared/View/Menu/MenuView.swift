@@ -12,6 +12,7 @@ struct MenuView: View {
     @StateObject private var productStore = ProductStore(
         service: ProductAPI(webService: Service()))
 
+/*
     var body: some View {
         NavigationView {
             List {
@@ -36,8 +37,38 @@ struct MenuView: View {
             .navigationTitle("Featured")
         }
         .task {
-//            await productStore.fetchProducts()
-            await productStore.fetchProduct()
+             await productStore.fetchProducts()
+        }
+    }
+*/
+
+    var body: some View {
+        NavigationView {
+            List {
+                let featuredItems = productStore.foods
+                if featuredItems.count > 0 {
+                    FeaturedView(pages: featuredItems.map {
+                        FeaturedCard(product: $0)
+                    })
+                    .aspectRatio(3 / 2, contentMode: .fit)
+                    .listRowInsets(EdgeInsets())
+                }
+//
+//                NavigationLink(destination: ProductList(products: ModelData().menu.foods)) {
+//                    FoodRow(foods: ModelData().menu.foods)
+//                }
+//                .listRowInsets(EdgeInsets())
+//
+//                NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
+//                    DrinkRow(drinks: ModelData().menu.drinks)
+//                }
+//                .listRowInsets(EdgeInsets())
+            }
+            .listStyle(InsetListStyle())
+            .navigationTitle("Featured")
+        }
+        .task {
+             await productStore.fetchProducts()
         }
     }
 

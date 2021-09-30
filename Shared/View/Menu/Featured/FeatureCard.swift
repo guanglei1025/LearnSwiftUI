@@ -14,12 +14,13 @@ struct FeatureCard: View {
         product.image
             .resizable()
             .aspectRatio(3 / 2, contentMode: .fit)
-            .overlay(TextOverlay(product: product))
+            .overlay(TextOverlay(name: product.name))
     }
 }
 
 struct TextOverlay: View {
-    var product: Product
+//    var product: Product
+    var name: String
 
     var gradient: LinearGradient {
         LinearGradient(
@@ -32,7 +33,7 @@ struct TextOverlay: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Rectangle().fill(gradient)
-            Text(product.name)
+            Text(name)
                 .font(.title)
                 .bold()
                 .padding(.leading, 20)

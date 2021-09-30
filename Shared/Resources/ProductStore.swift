@@ -35,3 +35,19 @@ final class ProductStore: ObservableObject {
         }
     }
 }
+
+extension ProductStore {
+    typealias ItemCategory = Item.NewCategory
+
+    var foods: [Item] {
+        products.filter {
+            $0.category == ItemCategory.food.rawValue
+        }
+    }
+
+    var drinks: [Item] {
+        products.filter {
+            $0.category == ItemCategory.drink.rawValue
+        }
+    }
+}
