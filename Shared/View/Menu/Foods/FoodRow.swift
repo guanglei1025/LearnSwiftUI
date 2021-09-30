@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoodRow: View {
-    var foods: [Product]
+    var foods: [Item]
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -31,10 +31,13 @@ struct FoodRow: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
+//                    ForEach(foods) { food in
+//                        NavigationLink(destination: ProductDetailsView(product: food)) {
+//                            FoodView(food: food)
+//                        }
+//                    }
                     ForEach(foods) { food in
-                        NavigationLink(destination: ProductDetailsView(product: food)) {
-                            FoodView(food: food)
-                        }
+                        NewFoodView(food: food)
                     }
                 }
             }
@@ -44,7 +47,7 @@ struct FoodRow: View {
 
 struct FoodRow_Previews: PreviewProvider {
     static var previews: some View {
-        FoodRow(foods: ModelData().menu.foods)
+        FoodRow(foods: ModelData().fakeItems)
             .previewLayout(.sizeThatFits)
             .padding()
     }

@@ -53,11 +53,14 @@ struct MenuView: View {
                     .aspectRatio(3 / 2, contentMode: .fit)
                     .listRowInsets(EdgeInsets())
                 }
-//
-//                NavigationLink(destination: ProductList(products: ModelData().menu.foods)) {
-//                    FoodRow(foods: ModelData().menu.foods)
-//                }
-//                .listRowInsets(EdgeInsets())
+
+                if productStore.foods.count > 0 {
+                    NavigationLink(destination: ProductList(products: ModelData().menu.foods)) {
+                        FoodRow(foods: productStore.foods)
+                    }
+                    .listRowInsets(EdgeInsets())
+                }
+
 //
 //                NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
 //                    DrinkRow(drinks: ModelData().menu.drinks)
