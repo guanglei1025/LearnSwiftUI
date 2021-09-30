@@ -12,36 +12,6 @@ struct MenuView: View {
     @StateObject private var productStore = ProductStore(
         service: ProductAPI(webService: Service()))
 
-/*
-    var body: some View {
-        NavigationView {
-            List {
-//                PageView(pages: modelData.menu.foods.map {
-//                    FeatureCard(product: $0)
-//                })
-//                .aspectRatio(3 / 2, contentMode: .fit)
-//                .listRowInsets(EdgeInsets())
-//
-//                NavigationLink(destination: ProductList(products: ModelData().menu.foods)) {
-//                    FoodRow(foods: ModelData().menu.foods)
-//                }
-//                .listRowInsets(EdgeInsets())
-//
-//                NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
-//                    DrinkRow(drinks: ModelData().menu.drinks)
-//                }
-//                .listRowInsets(EdgeInsets())
-                Text("Fetch Successful")
-            }
-            .listStyle(InsetListStyle())
-            .navigationTitle("Featured")
-        }
-        .task {
-             await productStore.fetchProducts()
-        }
-    }
-*/
-
     var body: some View {
         NavigationView {
             List {
@@ -61,11 +31,12 @@ struct MenuView: View {
                     .listRowInsets(EdgeInsets())
                 }
 
-//
-//                NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
-//                    DrinkRow(drinks: ModelData().menu.drinks)
-//                }
-//                .listRowInsets(EdgeInsets())
+                if productStore.drinks.count > 0 {
+                    NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
+                        DrinkRow(drinks: productStore.drinks)
+                    }
+                    .listRowInsets(EdgeInsets())
+                }
             }
             .listStyle(InsetListStyle())
             .navigationTitle("Featured")
@@ -74,7 +45,6 @@ struct MenuView: View {
              await productStore.fetchProducts()
         }
     }
-
 }
 
 struct MenuView_Previews: PreviewProvider {

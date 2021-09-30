@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DrinkRow: View {
-    var drinks: [Product]
+    var drinks: [Item]
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -32,9 +32,10 @@ struct DrinkRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(drinks) { drink in
-                        NavigationLink(destination: ProductDetailsView(product: drink)) {
-                            DrinkView(drink: drink)
-                        }
+//                        NavigationLink(destination: ProductDetailsView(product: drink)) {
+//                            DrinkView(drink: drink)
+//                        }
+                        NewDrinkView(drink: drink)
                     }
                 }
             }
@@ -44,7 +45,7 @@ struct DrinkRow: View {
 
 struct DrinkRow_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkRow(drinks: ModelData().menu.drinks)
+        DrinkRow(drinks: ModelData().fakeItems)
             .previewLayout(.sizeThatFits)
             .padding()
     }

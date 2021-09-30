@@ -1,5 +1,5 @@
 //
-//  NewFoodView.swift
+//  NewDrinkView.swift
 //  LearnSwiftUI
 //
 //  Created by Guanglei Liu on 9/29/21.
@@ -7,23 +7,23 @@
 
 import SwiftUI
 
-struct NewFoodView: View {
-    let food: Item
+struct NewDrinkView: View {
+    let drink: Item
 
     var body: some View {
         VStack(alignment: .leading) {
-            AsyncImage(url: URL(string: food.imageURL)) { image in
+            AsyncImage(url: URL(string: drink.imageURL)) { image in
                 image
                     .resizable()
-                    .frame(width: 250, height: 180)
+                    .frame(width: 160, height: 200)
                     .cornerRadius(10)
             } placeholder: {
                 ProgressView()
             }
-            Text(food.name)
-                .font(.subheadline)
+            Text(drink.name)
+                .font(.body)
                 .foregroundColor(.primary)
-            Text(food.price)
+            Text(drink.price)
                 .font(.body)
                 .foregroundColor(.secondary)
                 .padding(.top, 1)
@@ -32,9 +32,9 @@ struct NewFoodView: View {
     }
 }
 
-struct NewFoodView_Previews: PreviewProvider {
+struct NewDrinkView_Previews: PreviewProvider {
     static var previews: some View {
-        NewFoodView(food: ModelData().fakeItems.first!)
+        NewDrinkView(drink: ModelData().fakeItems.first!)
             .previewLayout(.sizeThatFits)
             .padding()
     }
