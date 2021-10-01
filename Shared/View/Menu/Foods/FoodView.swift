@@ -1,5 +1,5 @@
 //
-//  NewFoodView.swift
+//  FoodView.swift
 //  LearnSwiftUI
 //
 //  Created by Guanglei Liu on 9/29/21.
@@ -32,7 +32,7 @@ struct FoodView: View {
     }
 }
 
-struct NewFoodView_Previews: PreviewProvider {
+struct FoodView_Previews: PreviewProvider {
     static var previews: some View {
         FoodView(food: ModelData().fakeItems.first!)
             .previewLayout(.sizeThatFits)

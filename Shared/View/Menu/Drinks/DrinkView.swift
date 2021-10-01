@@ -1,5 +1,5 @@
 //
-//  NewDrinkView.swift
+//  DrinkView.swift
 //  LearnSwiftUI
 //
 //  Created by Guanglei Liu on 9/29/21.
@@ -32,7 +32,7 @@ struct DrinkView: View {
     }
 }
 
-struct NewDrinkView_Previews: PreviewProvider {
+struct DrinkView_Previews: PreviewProvider {
     static var previews: some View {
         DrinkView(drink: ModelData().fakeItems.first!)
             .previewLayout(.sizeThatFits)

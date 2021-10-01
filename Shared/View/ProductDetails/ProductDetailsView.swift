@@ -1,5 +1,5 @@
 //
-//  NewProductDetailsView.swift
+//  ProductDetailsView.swift
 //  LearnSwiftUI
 //
 //  Created by Guanglei Liu on 9/30/21.
@@ -87,7 +87,7 @@ struct ProductDetailsView: View {
     }
 }
 
-struct NewProductDetailsView_Previews: PreviewProvider {
+struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ProductDetailsView(product: ModelData().fakeItems.first!)
     }

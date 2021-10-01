@@ -1,5 +1,5 @@
 //
-//  NewProductRow.swift
+//  ProductRow.swift
 //  LearnSwiftUI
 //
 //  Created by Guanglei Liu on 9/29/21.
@@ -34,7 +34,7 @@ struct ProductRow: View {
     }
 }
 
-struct NewProductRow_Previews: PreviewProvider {
+struct ProductRow_Previews: PreviewProvider {
     static var previews: some View {
         ProductRow(product: ModelData().fakeItems.first!)
             .previewLayout(.sizeThatFits)
