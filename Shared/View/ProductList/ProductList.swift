@@ -13,13 +13,10 @@ struct ProductList: View {
 
     var body: some View {
         List {
-//            ForEach(products) { product in
-//                NavigationLink(destination: ProductDetailsView(product: product)) {
-//                    ProductRow(product: product)
-//                }
-//            }
             ForEach(products) { product in
-                NewProductRow(product: product)
+                NavigationLink(destination: NewProductDetailsView(product: product)) {
+                    NewProductRow(product: product)
+                }
             }
         }
         .navigationTitle(products[0].category)
