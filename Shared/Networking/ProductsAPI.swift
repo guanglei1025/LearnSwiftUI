@@ -13,7 +13,7 @@ protocol ProductService {
 }
 
 final class ProductAPI: ProductService {
-    var webService: WebService
+    private var webService: WebService
 
     init(webService: WebService) {
         self.webService = webService
