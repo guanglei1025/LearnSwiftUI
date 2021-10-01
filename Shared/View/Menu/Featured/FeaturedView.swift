@@ -1,16 +1,16 @@
 //
-//  PageView.swift
+//  FeaturedView.swift
 //  LearnSwiftUI
 //
-//  Created by Guanglei Liu on 12/11/20.
+//  Created by Guanglei Liu on 9/29/21.
 //
 
 import SwiftUI
 
-struct PageView<Page: View>: View {
+struct FeaturedView<Page: View>: View {
     var pages: [Page]
     @State private var currentPage = 0
-
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             PageViewController(pages: pages, currentPage: $currentPage)
@@ -20,10 +20,10 @@ struct PageView<Page: View>: View {
     }
 }
 
-struct PageView_Previews: PreviewProvider {
+struct FeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        PageView(pages: ModelData().menu.foods.map {
-            FeatureCard(product: $0)
+        FeaturedView(pages: ModelData().fakeItems.map {
+            FeaturedCard(product: $0)
         })
         .aspectRatio(3 / 2, contentMode: .fit)
         .previewLayout(.sizeThatFits)

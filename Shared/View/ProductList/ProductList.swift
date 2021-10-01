@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductList: View {
 
-    var products: [Product]
+    var products: [Item]
 
     var body: some View {
         List {
@@ -19,13 +19,13 @@ struct ProductList: View {
                 }
             }
         }
-        .navigationTitle(products[0].category.rawValue)
+        .navigationTitle(products[0].category)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct ProductList_Previews: PreviewProvider {
     static var previews: some View {
-        ProductList(products: ModelData().menu.drinks)
+        ProductList(products: ModelData().fakeItems)
     }
 }

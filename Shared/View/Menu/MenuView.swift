@@ -8,37 +8,48 @@
 import SwiftUI
 
 struct MenuView: View {
-    @EnvironmentObject var modelData: ModelData
+    @StateObject private var productStore = ProductStore(
+        service: ProductAPI(webService: Service()))
 
     var body: some View {
         NavigationView {
             List {
-                PageView(pages: modelData.menu.foods.map {
-                    FeatureCard(product: $0)
-                })
-                .aspectRatio(3 / 2, contentMode: .fit)
-                .listRowInsets(EdgeInsets())
-
-                NavigationLink(destination: ProductList(products: ModelData().menu.foods)) {
-                    FoodRow(foods: ModelData().menu.foods)
+                let featuredItems = productStore.foods
+                if featuredItems.count > 0 {
+                    FeaturedView(pages: featuredItems.map {
+                        FeaturedCard(product: $0)
+                    })
+                        .aspectRatio(3 / 2, contentMode: .fit)
+                        .listRowInsets(EdgeInsets())
                 }
-                .listRowInsets(EdgeInsets())
 
-                NavigationLink(destination: ProductList(products: ModelData().menu.drinks)) {
-                    DrinkRow(drinks: ModelData().menu.drinks)
+                let foods = productStore.foods
+                if foods.count > 0 {
+                    NavigationLink(destination: ProductList(products: foods)) {
+                        FoodRow(foods: foods)
+                    }
+                    .listRowInsets(EdgeInsets())
                 }
-                .listRowInsets(EdgeInsets())
+
+                let drinks = productStore.drinks
+                if drinks.count > 0 {
+                    NavigationLink(destination: ProductList(products: drinks)) {
+                        DrinkRow(drinks: drinks)
+                    }
+                    .listRowInsets(EdgeInsets())
+                }
             }
             .listStyle(InsetListStyle())
             .navigationTitle("Featured")
         }
+        .task {
+            await productStore.fetchProducts()
+        }
     }
-
 }
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
-            .environmentObject(ModelData())
     }
 }

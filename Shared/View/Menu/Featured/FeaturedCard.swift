@@ -1,25 +1,29 @@
 //
-//  FeatureCard.swift
+//  FeaturedCard.swift
 //  LearnSwiftUI
 //
-//  Created by Guanglei Liu on 12/11/20.
+//  Created by Guanglei Liu on 9/29/21.
 //
 
 import SwiftUI
 
-struct FeatureCard: View {
-    var product: Product
+struct FeaturedCard: View {
+    var product: Item
 
     var body: some View {
-        product.image
-            .resizable()
-            .aspectRatio(3 / 2, contentMode: .fit)
-            .overlay(TextOverlay(product: product))
+        AsyncImage(url: URL(string: product.imageURL)) { image in
+            image
+                .resizable()
+                .aspectRatio(3 / 2, contentMode: .fit)
+                .overlay(TextOverlay(name: product.name))
+        } placeholder: {
+            ProgressView()
+        }
     }
 }
 
 struct TextOverlay: View {
-    var product: Product
+    var name: String
 
     var gradient: LinearGradient {
         LinearGradient(
@@ -32,7 +36,7 @@ struct TextOverlay: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Rectangle().fill(gradient)
-            Text(product.name)
+            Text(name)
                 .font(.title)
                 .bold()
                 .padding(.leading, 20)
@@ -42,10 +46,9 @@ struct TextOverlay: View {
     }
 }
 
-
-struct FeatureCard_Previews: PreviewProvider {
+struct NewFeatureCard_Previews: PreviewProvider {
     static var previews: some View {
-        FeatureCard(product: ModelData().menu.foods[0])
+        FeaturedCard(product: ModelData().fakeItems.first!)
             .previewLayout(.sizeThatFits)
             .padding()
     }

@@ -2,14 +2,13 @@
 //  ProductDetailsView.swift
 //  LearnSwiftUI
 //
-//  Created by Guanglei Liu on 12/12/20.
+//  Created by Guanglei Liu on 9/30/21.
 //
 
 import SwiftUI
 
 struct ProductDetailsView: View {
-
-    let product: Product
+    let product: Item
     @EnvironmentObject var modelData: ModelData
     @State var total = "1"
     @State private var isAdded = false
@@ -18,12 +17,15 @@ struct ProductDetailsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                product.image
-                    .resizable()
-                    .resizable()
-                    .aspectRatio(2 / 2, contentMode: .fit)
-                    .cornerRadius(10)
-                    .padding(50)
+                AsyncImage(url: URL(string: product.imageURL)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(2 / 2, contentMode: .fit)
+                        .cornerRadius(10)
+                        .padding(50)
+                } placeholder: {
+                    ProgressView()
+                }
 
                 Text(product.name)
                     .font(.title)
@@ -53,8 +55,9 @@ struct ProductDetailsView: View {
                 Button(action: {
                     // Trigger alert
                     isAdded = true
-                    let order = Order(from: product, quantity: total)
-                    modelData.shoppingCart.addOrder(order)
+                    // FIXME: Need to use Item next
+//                    let order = Order(from: product, quantity: total)
+//                    modelData.shoppingCart.addOrder(order)
                 }) {
                     HStack {
                         Image(systemName: "cart")
@@ -86,6 +89,6 @@ struct ProductDetailsView: View {
 
 struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailsView(product: ModelData().menu.foods[0])
+        ProductDetailsView(product: ModelData().fakeItems.first!)
     }
 }

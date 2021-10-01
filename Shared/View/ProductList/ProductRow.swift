@@ -2,21 +2,26 @@
 //  ProductRow.swift
 //  LearnSwiftUI
 //
-//  Created by Guanglei Liu on 12/12/20.
+//  Created by Guanglei Liu on 9/29/21.
 //
 
 import SwiftUI
 
 struct ProductRow: View {
-    let product: Product
+    let product: Item
 
     var body: some View {
         HStack {
-            product.image
-                .resizable()
-                .cornerRadius(6)
-                .frame(width: 60, height: 60)
-                .padding(.trailing, 5)
+            AsyncImage(url: URL(string: product.imageURL)) { image in
+                image
+                    .resizable()
+                    .cornerRadius(6)
+                    .frame(width: 60, height: 60)
+                    .padding(.trailing, 5)
+            } placeholder: {
+                ProgressView()
+            }
+
             VStack(alignment: .leading) {
                 Text(product.name)
                     .font(.headline)
@@ -31,7 +36,7 @@ struct ProductRow: View {
 
 struct ProductRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductRow(product: ModelData().menu.drinks[0])
+        ProductRow(product: ModelData().fakeItems.first!)
             .previewLayout(.sizeThatFits)
             .padding()
     }
