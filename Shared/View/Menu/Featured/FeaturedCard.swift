@@ -23,7 +23,6 @@ struct FeaturedCard: View {
 }
 
 struct TextOverlay: View {
-//    var product: Product
     var name: String
 
     var gradient: LinearGradient {

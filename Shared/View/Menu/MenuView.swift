@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MenuView: View {
-    @EnvironmentObject var modelData: ModelData
+    @StateObject private var productStore = ProductStore(
+        service: ProductAPI(webService: Service()))
 
     var body: some View {
         NavigationView {
@@ -18,8 +19,8 @@ struct MenuView: View {
                     FeaturedView(pages: featuredItems.map {
                         FeaturedCard(product: $0)
                     })
-                    .aspectRatio(3 / 2, contentMode: .fit)
-                    .listRowInsets(EdgeInsets())
+                        .aspectRatio(3 / 2, contentMode: .fit)
+                        .listRowInsets(EdgeInsets())
                 }
 
                 let foods = productStore.foods
@@ -42,7 +43,7 @@ struct MenuView: View {
             .navigationTitle("Featured")
         }
         .task {
-             await productStore.fetchProducts()
+            await productStore.fetchProducts()
         }
     }
 }
@@ -50,6 +51,5 @@ struct MenuView: View {
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
-            .environmentObject(ModelData())
     }
 }
