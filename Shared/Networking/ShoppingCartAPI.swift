@@ -62,5 +62,7 @@ final class ShoppingCartAPI: ShoppingCartService {
         }
         print(res.statusCode)
     }
+
+    // TODO: Implement the API that can update shopping cart using `PUT: update-shopping-cart` endpoint once that endpoint get fixed
 }
 
