@@ -14,7 +14,7 @@ protocol ShoppingCartService {
 }
 
 final class ShoppingCartAPI: ShoppingCartService {
-    var webService: WebService
+    private var webService: WebService
 
     init(webService: WebService) {
         self.webService = webService
@@ -28,10 +28,10 @@ final class ShoppingCartAPI: ShoppingCartService {
         let jsonData = try JSONEncoder().encode(newItem)
         let taskResponse = try await webService.post(with: jsonData, to: url)
 
-        guard let res = taskResponse.response as? HTTPURLResponse else {
+        guard let response = taskResponse.response as? HTTPURLResponse else {
             throw WebServiceError.unexpectedStatusCode
         }
-        print(res.statusCode)
+        print(response.statusCode)
     }
 
     /// This api call will update product's stock quantity once a new order get submitted into shopping cart
@@ -43,10 +43,10 @@ final class ShoppingCartAPI: ShoppingCartService {
         let jsonData = try JSONEncoder().encode(newItem)
         let taskResponse = try await webService.post(with: jsonData, to: url)
 
-        guard let res = taskResponse.response as? HTTPURLResponse else {
+        guard let response = taskResponse.response as? HTTPURLResponse else {
             throw WebServiceError.unexpectedStatusCode
         }
-        print(res.statusCode)
+        print(response.statusCode)
     }
 
     func deleteShoppingCart(_ newItem: Cart) async throws {
@@ -57,10 +57,10 @@ final class ShoppingCartAPI: ShoppingCartService {
         let jsonData = try JSONEncoder().encode(newItem)
         let taskResponse = try await webService.delete(with: jsonData, from: url)
 
-        guard let res = taskResponse.response as? HTTPURLResponse else {
+        guard let response = taskResponse.response as? HTTPURLResponse else {
             throw WebServiceError.unexpectedStatusCode
         }
-        print(res.statusCode)
+        print(response.statusCode)
     }
 
     // TODO: Implement the API that can update shopping cart using `PUT: update-shopping-cart` endpoint once that endpoint get fixed
