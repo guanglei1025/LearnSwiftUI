@@ -21,3 +21,14 @@ struct Item: Codable, Identifiable, Hashable {
         case drink = "drink"
     }
 }
+
+struct Cart: Codable {
+    var id: UUID? = nil
+    let orders: [NewOrder]
+}
+
+struct NewOrder: Codable {
+    var id: UUID? = nil
+    let productId: UUID
+    let quantity: Int
+}
