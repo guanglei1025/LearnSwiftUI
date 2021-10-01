@@ -32,8 +32,8 @@ struct FoodRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(foods) { food in
-                        NavigationLink(destination: NewProductDetailsView(product: food)) {
-                            NewFoodView(food: food)
+                        NavigationLink(destination: ProductDetailsView(product: food)) {
+                            FoodView(food: food)
                         }
                     }
                 }

@@ -22,6 +22,31 @@ struct FeaturedCard: View {
     }
 }
 
+struct TextOverlay: View {
+//    var product: Product
+    var name: String
+
+    var gradient: LinearGradient {
+        LinearGradient(
+            gradient: Gradient(
+                colors: [Color.black.opacity(0.6), Color.black.opacity(0)]),
+            startPoint: .bottom,
+            endPoint: .center)
+    }
+
+    var body: some View {
+        ZStack(alignment: .bottomLeading) {
+            Rectangle().fill(gradient)
+            Text(name)
+                .font(.title)
+                .bold()
+                .padding(.leading, 20)
+                .padding(.bottom, 50)
+        }
+        .foregroundColor(.white)
+    }
+}
+
 struct NewFeatureCard_Previews: PreviewProvider {
     static var previews: some View {
         FeaturedCard(product: ModelData().fakeItems.first!)
