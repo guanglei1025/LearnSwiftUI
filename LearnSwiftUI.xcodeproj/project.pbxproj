@@ -40,6 +40,7 @@
 		A1D747C925846C1500DCB7E1 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D747C825846C1500DCB7E1 /* PageControl.swift */; };
 		A1D747CA25846C1500DCB7E1 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D747C825846C1500DCB7E1 /* PageControl.swift */; };
 		A1E3D14E2707A61D007FF815 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3D14D2707A61D007FF815 /* ProductStore.swift */; };
+		A1E3D1522707A71A007FF815 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3D1512707A719007FF815 /* Order.swift */; };
 		A1E5F8082582B63A00C442E1 /* LearnSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E5F7F52582B63700C442E1 /* LearnSwiftUIApp.swift */; };
 		A1E5F8092582B63A00C442E1 /* LearnSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E5F7F52582B63700C442E1 /* LearnSwiftUIApp.swift */; };
 		A1E5F80C2582B63A00C442E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1E5F7F72582B63900C442E1 /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		A1D747BA25845F3600DCB7E1 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		A1D747C825846C1500DCB7E1 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		A1E3D14D2707A61D007FF815 /* ProductStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductStore.swift; sourceTree = "<group>"; };
+		A1E3D1512707A719007FF815 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		A1E5F7F52582B63700C442E1 /* LearnSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSwiftUIApp.swift; sourceTree = "<group>"; };
 		A1E5F7F72582B63900C442E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1E5F7FC2582B63A00C442E1 /* LearnSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +202,24 @@
 			path = Featured;
 			sourceTree = "<group>";
 		};
+		A1E3D14F2707A6D4007FF815 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				DD1E56A52703C01C002C58AE /* Item.swift */,
+				A1E3D14D2707A61D007FF815 /* ProductStore.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		A1E3D1502707A6FB007FF815 /* ShoppingCart */ = {
+			isa = PBXGroup;
+			children = (
+				A10DE71326EC54A60060A091 /* ShoppingCart.swift */,
+				A1E3D1512707A719007FF815 /* Order.swift */,
+			);
+			path = ShoppingCart;
+			sourceTree = "<group>";
+		};
 		A1E5F7EF2582B63700C442E1 = {
 			isa = PBXGroup;
 			children = (
@@ -252,14 +272,13 @@
 		A1E5F8192582BBAF00C442E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A1E3D1502707A6FB007FF815 /* ShoppingCart */,
+				A1E3D14F2707A6D4007FF815 /* Product */,
 				A1E5F8212582BCBB00C442E1 /* fakeData.json */,
 				A1E60DE725872B6400AA8E79 /* Decimal+CurrencyFormatter.swift */,
 				A1E5F81A2582BBCC00C442E1 /* ModelData.swift */,
 				A1E5F8292582BD4100C442E1 /* Menu.swift */,
 				A1E5F8272582BD4100C442E1 /* Product.swift */,
-				A10DE71326EC54A60060A091 /* ShoppingCart.swift */,
-				DD1E56A52703C01C002C58AE /* Item.swift */,
-				A1E3D14D2707A61D007FF815 /* ProductStore.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -403,6 +422,7 @@
 				DDB5B91026FC1CB200E42738 /* WebService.swift in Sources */,
 				A1D747C925846C1500DCB7E1 /* PageControl.swift in Sources */,
 				A1D747BB25845F3600DCB7E1 /* PageViewController.swift in Sources */,
+				A1E3D1522707A71A007FF815 /* Order.swift in Sources */,
 				A1BD6E3426F186630052A5D2 /* EmptyShoppingCartView.swift in Sources */,
 				DDD1F77C27054715000A0873 /* ShoppingCartAPI.swift in Sources */,
 				A1E60DD02587034000AA8E79 /* ContentView.swift in Sources */,
