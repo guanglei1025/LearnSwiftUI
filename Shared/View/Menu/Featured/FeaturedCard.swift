@@ -48,7 +48,7 @@ struct TextOverlay: View {
 
 struct NewFeatureCard_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedCard(product: ModelData().fakeItems.first!)
+        FeaturedCard(product: ProductStore.fakeItems().first!)
             .previewLayout(.sizeThatFits)
             .padding()
     }

@@ -26,6 +26,6 @@ struct ProductList: View {
 
 struct ProductList_Previews: PreviewProvider {
     static var previews: some View {
-        ProductList(products: ModelData().fakeItems)
+        ProductList(products: ProductStore.fakeItems())
     }
 }

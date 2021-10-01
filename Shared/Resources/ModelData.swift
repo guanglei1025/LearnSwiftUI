@@ -13,14 +13,6 @@ final class ModelData: ObservableObject {
     @Published var menu: Menu = load("fakeData.json")
     @Published var shoppingCart: ShoppingCart
 
-    let fakeItems = [Item(id: UUID(uuidString: "AAEDBCB7-D32C-4F1E-89F8-C41E2D93CA32")!,
-                        stockQuantity: 10,
-                        price: "3.99",
-                        imageURL: "https://lovingitvegan.com/wp-content/uploads/2018/11/Vegan-Eggnog-8.jpg",
-                        description: "description",
-                        name: "Name",
-                        category: "food")]
-
     init(shoppingCart: ShoppingCart = ShoppingCart()) {
         self.shoppingCart = shoppingCart
     }

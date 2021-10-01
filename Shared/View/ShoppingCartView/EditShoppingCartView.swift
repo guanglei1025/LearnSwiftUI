@@ -75,7 +75,7 @@ struct EditShoppingCartView: View {
 
 struct EditShoppingCartView_Previews: PreviewProvider {
     static var previews: some View {
-        let order = Order.init(from: ModelData().fakeItems.first!, quantity: "4")
+        let order = Order(from: ProductStore.fakeItems().first!, quantity: "4")
         EditShoppingCartView(order: order)
     }
 }

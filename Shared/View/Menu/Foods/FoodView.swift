@@ -34,7 +34,7 @@ struct FoodView: View {
 
 struct FoodView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodView(food: ModelData().fakeItems.first!)
+        FoodView(food: ProductStore.fakeItems().first!)
             .previewLayout(.sizeThatFits)
             .padding()
     }

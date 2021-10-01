@@ -88,6 +88,6 @@ struct ProductDetailsView: View {
 
 struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailsView(product: ModelData().fakeItems.first!)
+        ProductDetailsView(product: ProductStore.fakeItems().first!)
     }
 }

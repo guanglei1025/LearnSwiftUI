@@ -44,7 +44,7 @@ struct DrinkRow: View {
 
 struct DrinkRow_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkRow(drinks: ModelData().fakeItems)
+        DrinkRow(drinks: ProductStore.fakeItems())
             .previewLayout(.sizeThatFits)
             .padding()
     }

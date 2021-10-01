@@ -41,7 +41,7 @@ struct OrderRow: View {
 
 struct OrderRow_Previews: PreviewProvider {
     static var previews: some View {
-        OrderRow(order: Order(from: ModelData().fakeItems.first!, quantity: "3"))
+        OrderRow(order: Order(from: ProductStore.fakeItems().first!, quantity: "3"))
             .previewLayout(.sizeThatFits)
             .padding()
     }
