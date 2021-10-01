@@ -25,8 +25,8 @@ private enum RequestType: String {
 /// This provides an abstraction for testing and flexibility
 protocol WebService {
     func get(from url: URL) async throws -> Data
-    func delete(from url: URL) async throws -> URLResponse
-    func post(with body: Data, to url: URL) async throws -> URLResponse
+    func delete(with body: Data, from url: URL) async throws -> DataTaskResponse
+    func post(with body: Data, to url: URL) async throws -> DataTaskResponse
     func put(with body: Data, to url: URL) async throws -> URLResponse
 }
 
@@ -43,9 +43,9 @@ final class Service: WebService {
         return taskResponse.data
     }
 
-    func post(with body: Data, to url: URL) async throws -> URLResponse {
+    func post(with body: Data, to url: URL) async throws -> DataTaskResponse {
         let taskResponse: DataTaskResponse = try await sendRequest(url: url, requestType: .post, body: body)
-        return taskResponse.response
+        return taskResponse
     }
 
     func put(with body: Data, to url: URL) async throws -> URLResponse {
@@ -53,9 +53,9 @@ final class Service: WebService {
         return taskResponse.response
     }
 
-    func delete(from url: URL) async throws -> URLResponse {
-        let taskResponse: DataTaskResponse = try await sendRequest(url: url, requestType: .delete, body: nil)
-        return taskResponse.response
+    func delete(with body: Data, from url: URL) async throws -> DataTaskResponse {
+        let taskResponse: DataTaskResponse = try await sendRequest(url: url, requestType: .delete, body: body)
+        return taskResponse
     }
 
     // MARK: - Private Helper Functions
@@ -65,6 +65,10 @@ final class Service: WebService {
         var request = URLRequest(url: url)
         request.httpMethod = requestType.rawValue
         request.httpBody = body
+
+        // Set HTTP Request Header
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         // Use the async variant of URLSession to make the request
         let taskResponse: DataTaskResponse = try await session.data(for: request)
