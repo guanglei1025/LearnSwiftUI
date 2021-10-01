@@ -16,12 +16,15 @@ struct EditShoppingCartView: View {
     var body: some View {
         ScrollView {
             VStack {
-                order.product.image
-                    .resizable()
-                    .resizable()
-                    .aspectRatio(2 / 2, contentMode: .fit)
-                    .cornerRadius(10)
-                    .padding(50)
+                AsyncImage(url: URL(string: order.product.imageURL)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(2 / 2, contentMode: .fit)
+                        .cornerRadius(10)
+                        .padding(50)
+                } placeholder: {
+                    ProgressView()
+                }
 
                 Text(order.product.name)
                     .font(.title)
@@ -72,7 +75,7 @@ struct EditShoppingCartView: View {
 
 struct EditShoppingCartView_Previews: PreviewProvider {
     static var previews: some View {
-        let order = Order.init(from: ModelData().menu.foods.first!, quantity: "4")
+        let order = Order.init(from: ModelData().fakeItems.first!, quantity: "4")
         EditShoppingCartView(order: order)
     }
 }

@@ -10,10 +10,10 @@ import Foundation
 /// Order details of a single product
 struct Order: Codable, Identifiable, Hashable  {
     var id = UUID()
-    var product: Product
+    var product: Item
     var quantity: String
 
-    init(from product: Product, quantity: String) {
+    init(from product: Item, quantity: String) {
         self.product = product
         self.quantity = quantity
     }

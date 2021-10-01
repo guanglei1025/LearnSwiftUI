@@ -22,6 +22,12 @@ struct Item: Codable, Identifiable, Hashable {
     }
 }
 
+extension Item {
+    var priceInDecimal: Decimal {
+        Decimal.decimalValueOrZero(fromString: price)
+    }
+}
+
 struct Cart: Codable {
     var id: UUID? = nil
     let orders: [NewOrder]

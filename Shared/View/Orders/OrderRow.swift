@@ -12,11 +12,16 @@ struct OrderRow: View {
 
     var body: some View {
         HStack {
-            order.product.image
-                .resizable()
-                .cornerRadius(6)
-                .frame(width: 60, height: 60)
-                .padding(.trailing, 5)
+            AsyncImage(url: URL(string: order.product.imageURL)) { image in
+                image
+                    .resizable()
+                    .cornerRadius(6)
+                    .frame(width: 60, height: 60)
+                    .padding(.trailing, 5)
+            } placeholder: {
+                ProgressView()
+            }
+
             VStack(alignment: .leading) {
                 Text(order.product.name)
                     .font(.headline)
@@ -36,7 +41,7 @@ struct OrderRow: View {
 
 struct OrderRow_Previews: PreviewProvider {
     static var previews: some View {
-        OrderRow(order: Order(from: ModelData().menu.drinks[0], quantity: "3"))
+        OrderRow(order: Order(from: ModelData().fakeItems.first!, quantity: "3"))
             .previewLayout(.sizeThatFits)
             .padding()
     }

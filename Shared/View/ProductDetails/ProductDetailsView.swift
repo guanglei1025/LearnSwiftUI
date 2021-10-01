@@ -55,9 +55,8 @@ struct ProductDetailsView: View {
                 Button(action: {
                     // Trigger alert
                     isAdded = true
-                    // FIXME: Need to use Item next
-//                    let order = Order(from: product, quantity: total)
-//                    modelData.shoppingCart.addOrder(order)
+                    let order = Order(from: product, quantity: total)
+                    modelData.shoppingCart.addOrder(order)
                 }) {
                     HStack {
                         Image(systemName: "cart")
