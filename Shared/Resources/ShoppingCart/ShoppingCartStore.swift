@@ -8,10 +8,10 @@
 import Foundation
 
 class ShoppingCartStore: ObservableObject {
-    @Published var shoppingCart: ShoppingCart?
+    @Published var shoppingCart = ShoppingCart()
     private let shoppingCartService: ShoppingCartService
 
-    init(shoppingCartService: ShoppingCartService) {
-        self.shoppingCartService = shoppingCartService
+    init(service: ShoppingCartService) {
+        self.shoppingCartService = service
     }
 }

@@ -9,18 +9,21 @@ import SwiftUI
 
 struct ShoppingCartView: View {
 
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var shoppingCartStore: ShoppingCartStore
 
     var body: some View {
-        if modelData.shoppingCart.orders.isEmpty {
+
+        let orders = shoppingCartStore.shoppingCart.orders
+
+        if orders.isEmpty {
             NavigationView {
                 EmptyShoppingCartView()
-                .navigationTitle("Cart")
+                    .navigationTitle("Cart")
             }
         } else {
             NavigationView {
                 List {
-                    ForEach(modelData.shoppingCart.orders) { order in
+                    ForEach(orders) { order in
                         NavigationLink(destination: EditShoppingCartView(order: order)) {
                             OrderRow(order: order)
                         }
@@ -28,7 +31,7 @@ struct ShoppingCartView: View {
                     .onDelete(perform: deleteOrder)
                     HStack {
                         Spacer()
-                        let amount = modelData.shoppingCart.totalAmount().stringValue
+                        let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
                         Text("Total Amount: $\(amount)")
                             .font(.title2)
                             .fontWeight(.semibold)
@@ -44,13 +47,12 @@ struct ShoppingCartView: View {
     }
 
     func deleteOrder(offsets: IndexSet) {
-        modelData.shoppingCart.remove(at: offsets)
+        shoppingCartStore.shoppingCart.remove(at: offsets)
     }
 }
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
         ShoppingCartView()
-            .environmentObject(ModelData())
     }
 }

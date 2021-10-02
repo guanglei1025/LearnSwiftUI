@@ -9,7 +9,7 @@ import Foundation
 
 /// A list of orders that user selected
 struct ShoppingCart: Codable {
-    var orders = [Order]()
+    private(set) var orders = [Order]()
 }
 
 extension ShoppingCart {

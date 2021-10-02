@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     let product: Item
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var shoppingCartStore: ShoppingCartStore
+
     @State var total = "1"
     @State private var isAdded = false
     @State private var totalQuantityChanged = true
@@ -56,7 +57,7 @@ struct ProductDetailsView: View {
                     // Trigger alert
                     isAdded = true
                     let order = Order(from: product, quantity: total)
-                    modelData.shoppingCart.addOrder(order)
+                    shoppingCartStore.shoppingCart.addOrder(order)
                 }) {
                     HStack {
                         Image(systemName: "cart")
