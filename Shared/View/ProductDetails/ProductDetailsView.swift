@@ -59,22 +59,11 @@ struct ProductDetailsView: View {
                     let order = Order(from: product, quantity: total)
                     shoppingCartStore.shoppingCart.addOrder(order)
                 }) {
-                    HStack {
-                        Image(systemName: "cart")
-                            .font(.title)
-                            .padding(.leading)
-                            .padding(.trailing)
-                        Text("Add to Cart")
-                            .fontWeight(.semibold)
-                            .font(.title3)
-                    }
-                    .frame(minWidth: 0, maxWidth: 250)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(40)
+                    Text("Add to Cart")
+                        .fontWeight(.semibold)
+                        .font(.title3)
+                        .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-                .disabled(!totalQuantityChanged)
                 .alert(isPresented: $isAdded) { () -> Alert in
                     let button = Alert.Button.default(Text("OK")) {
                         // Disable `Add to cart` button
@@ -82,6 +71,7 @@ struct ProductDetailsView: View {
                     }
                     return Alert(title: Text("Added to cart"), dismissButton: button)
                 }
+                .buttonStyle(DefaultButtonStyle())
             }
         }
     }

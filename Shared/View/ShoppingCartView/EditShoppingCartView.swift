@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditShoppingCartView: View {
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
+    @Environment(\.presentationMode) var presentationMode
 
     /// Current selected order to edit
     @State var order: Order
@@ -50,28 +51,37 @@ struct EditShoppingCartView: View {
                 
                 Button(action: {
                     // Trigger alert once value is true
-                    isSaved = true
-                    shoppingCartStore.shoppingCart.updateOrder(order)
+                    if quantityChanged {
+                        isSaved = true
+                        shoppingCartStore.shoppingCart.updateOrder(order)
+                    }
                 }) {
                     Text("Save")
                         .fontWeight(.semibold)
                         .font(.title3)
-                        .frame(minWidth: 0, maxWidth: 250)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(40)
+                        .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-                .disabled(!quantityChanged)
                 .alert(isPresented: $isSaved) { () -> Alert in
                     let button = Alert.Button.default(Text("OK")) {
                         // Disable save button
                         quantityChanged = false
+                        presentationMode.wrappedValue.dismiss()
                     }
                     return Alert(title: Text("Order is updated"), dismissButton: button)
                 }
+                .buttonStyle(DefaultButtonStyle(disabled: !quantityChanged))
             }
         }
+    }
+}
+
+struct DefaultButtonStyle: ButtonStyle {
+    var disabled = false
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .background(disabled ? .gray : .blue)
+            .foregroundColor(.white)
+            .cornerRadius(40)
     }
 }
 
