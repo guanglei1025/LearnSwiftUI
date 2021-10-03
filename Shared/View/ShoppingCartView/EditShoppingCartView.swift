@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct EditShoppingCartView: View {
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var shoppingCartStore: ShoppingCartStore
+
+    /// Current selected order to edit
     @State var order: Order
     @State private var isSaved = false
-    @State private var totalQuantityChanged = false
+    @State private var quantityChanged = false
 
     var body: some View {
         ScrollView {
@@ -43,13 +45,13 @@ struct EditShoppingCartView: View {
                 NumberPicker(totalNumber: $order.quantity)
                     .onChange(of: order.quantity) { _ in
                         // Enable the save button
-                        totalQuantityChanged = true
+                        quantityChanged = true
                     }
                 
                 Button(action: {
                     // Trigger alert once value is true
                     isSaved = true
-                    modelData.shoppingCart.updateOrder(order)
+                    shoppingCartStore.shoppingCart.updateOrder(order)
                 }) {
                     Text("Save")
                         .fontWeight(.semibold)
@@ -60,11 +62,11 @@ struct EditShoppingCartView: View {
                         .background(Color.blue)
                         .cornerRadius(40)
                 }
-                .disabled(!totalQuantityChanged)
+                .disabled(!quantityChanged)
                 .alert(isPresented: $isSaved) { () -> Alert in
                     let button = Alert.Button.default(Text("OK")) {
                         // Disable save button
-                        totalQuantityChanged = false
+                        quantityChanged = false
                     }
                     return Alert(title: Text("Order is updated"), dismissButton: button)
                 }
