@@ -46,8 +46,8 @@ struct ShoppingCartView: View {
         }
     }
 
-    func deleteOrder(offsets: IndexSet) {
-        shoppingCartStore.shoppingCart.remove(at: offsets)
+    func deleteOrder(index: IndexSet) {
+        shoppingCartStore.shoppingCart.remove(at: index)
     }
 }
 

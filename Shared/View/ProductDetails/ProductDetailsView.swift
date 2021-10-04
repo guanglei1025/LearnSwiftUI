@@ -10,6 +10,7 @@ import SwiftUI
 struct ProductDetailsView: View {
     let product: Item
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
+    @Environment(\.presentationMode) var presentationMode
 
     @State var total = "1"
     @State private var isAdded = false
@@ -64,14 +65,18 @@ struct ProductDetailsView: View {
                         .font(.title3)
                         .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
+                .buttonStyle(DefaultButtonStyle())
                 .alert(isPresented: $isAdded) { () -> Alert in
                     let button = Alert.Button.default(Text("OK")) {
                         // Disable `Add to cart` button
                         totalQuantityChanged = false
+                        presentationMode.wrappedValue.dismiss()
                     }
-                    return Alert(title: Text("Added to cart"), dismissButton: button)
+                    return Alert(title: Text("Added to cart"),
+                                 message: Text("Please continue check out from shopping cart."),
+                                 dismissButton: button)
                 }
-                .buttonStyle(DefaultButtonStyle())
+
             }
         }
     }

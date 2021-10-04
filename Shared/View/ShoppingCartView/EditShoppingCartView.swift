@@ -61,15 +61,17 @@ struct EditShoppingCartView: View {
                         .font(.title3)
                         .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
+                .buttonStyle(DefaultButtonStyle(disabled: !quantityChanged))
                 .alert(isPresented: $isSaved) { () -> Alert in
                     let button = Alert.Button.default(Text("OK")) {
                         // Disable save button
                         quantityChanged = false
                         presentationMode.wrappedValue.dismiss()
                     }
-                    return Alert(title: Text("Order is updated"), dismissButton: button)
+                    return Alert(title: Text("Shopping cart is updated"),
+                                 message: Text("Please continue check out from shopping cart."),
+                                 dismissButton: button)
                 }
-                .buttonStyle(DefaultButtonStyle(disabled: !quantityChanged))
             }
         }
     }
