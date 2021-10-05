@@ -10,6 +10,7 @@ import SwiftUI
 struct EditShoppingCartView: View {
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var productStore: ProductStore
 
     /// Current selected order to edit
     @State var order: Order
@@ -18,8 +19,11 @@ struct EditShoppingCartView: View {
 
     var body: some View {
         ScrollView {
+            // Current product in the order
+            let product = productStore.getProduct(from: order.productId)
+
             VStack {
-                AsyncImage(url: URL(string: order.product.imageURL)) { image in
+                AsyncImage(url: URL(string: product.imageURL)) { image in
                     image
                         .resizable()
                         .aspectRatio(2 / 2, contentMode: .fit)
@@ -29,11 +33,11 @@ struct EditShoppingCartView: View {
                     ProgressView()
                 }
 
-                Text(order.product.name)
+                Text(product.name)
                     .font(.title)
                     .fontWeight(.bold)
 
-                Text(order.product.description)
+                Text(product.description)
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
@@ -48,7 +52,7 @@ struct EditShoppingCartView: View {
                         // Enable the save button
                         quantityChanged = true
                     }
-                
+
                 Button(action: {
                     // Trigger alert once value is true
                     if quantityChanged {
@@ -89,7 +93,6 @@ struct DefaultButtonStyle: ButtonStyle {
 
 struct EditShoppingCartView_Previews: PreviewProvider {
     static var previews: some View {
-        let order = Order(from: ProductStore.fakeItems().first!, quantity: "4")
-        EditShoppingCartView(order: order)
+        EditShoppingCartView(order: ProductStore.fakeOrder())
     }
 }

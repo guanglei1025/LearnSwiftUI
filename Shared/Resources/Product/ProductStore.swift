@@ -50,11 +50,19 @@ extension ProductStore {
             $0.category == ItemCategory.drink.rawValue
         }
     }
+
+    /// Get a `Item` from `id`
+    func getProduct(from productId: UUID) -> Item {
+        guard let product = products.first(where: { $0.id == productId }) else {
+            preconditionFailure("Doesn't have a matching product")
+        }
+        return product
+    }
 }
 
 extension ProductStore {
     static func fakeItems() -> [Item] {
-        return [
+        [
             Item(id: UUID(uuidString: "AAEDBCB7-D32C-4F1E-89F8-C41E2D93CA32")!,
                  stockQuantity: 10,
                  price: "3.99",
@@ -63,5 +71,10 @@ extension ProductStore {
                  name: "Name",
                  category: "food")
         ]
+    }
+
+    static func fakeOrder() -> Order {
+        Order.init(from: UUID(uuidString: "AAEDBCB7-D32C-4F1E-89F8-C41E2D93CA32")!,
+                   quantity: "10")
     }
 }

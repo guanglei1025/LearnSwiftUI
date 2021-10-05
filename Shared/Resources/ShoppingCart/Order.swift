@@ -10,17 +10,19 @@ import Foundation
 /// Order details of a single product
 struct Order: Codable, Identifiable, Hashable  {
     var id = UUID()
-    var product: Item
+    let productId: UUID
     var quantity: String
 
-    init(from product: Item, quantity: String) {
-        self.product = product
+    init(from productId: UUID, quantity: String) {
+        self.productId = productId
         self.quantity = quantity
     }
 }
 
 extension Order {
     func totalAmount() -> Decimal {
-        product.priceInDecimal * Decimal.decimalValueOrZero(fromString: quantity)
+//        product.priceInDecimal * Decimal.decimalValueOrZero(fromString: quantity)
+        //FIXME:
+        return 12.0
     }
 }

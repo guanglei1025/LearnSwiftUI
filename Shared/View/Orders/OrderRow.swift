@@ -9,10 +9,14 @@ import SwiftUI
 
 struct OrderRow: View {
     let order: Order
+    @EnvironmentObject var productStore: ProductStore
 
     var body: some View {
+        // Current product in the order
+        let product = productStore.getProduct(from: order.productId)
+
         HStack {
-            AsyncImage(url: URL(string: order.product.imageURL)) { image in
+            AsyncImage(url: URL(string: product.imageURL)) { image in
                 image
                     .resizable()
                     .cornerRadius(6)
@@ -23,11 +27,11 @@ struct OrderRow: View {
             }
 
             VStack(alignment: .leading) {
-                Text(order.product.name)
+                Text(product.name)
                     .font(.headline)
                     .padding(.bottom, 1)
                 HStack {
-                    Text("$\(order.product.price) × \(order.quantity)")
+                    Text("$\(product.price) × \(order.quantity)")
                         .foregroundColor(.secondary)
                     Spacer()
                     let amount = order.totalAmount().stringValue
@@ -41,7 +45,7 @@ struct OrderRow: View {
 
 struct OrderRow_Previews: PreviewProvider {
     static var previews: some View {
-        OrderRow(order: Order(from: ProductStore.fakeItems().first!, quantity: "3"))
+        OrderRow(order: ProductStore.fakeOrder())
             .previewLayout(.sizeThatFits)
             .padding()
     }
