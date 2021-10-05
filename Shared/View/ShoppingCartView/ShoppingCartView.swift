@@ -22,22 +22,39 @@ struct ShoppingCartView: View {
             }
         } else {
             NavigationView {
-                List {
-                    ForEach(orders) { order in
-                        NavigationLink(destination: EditShoppingCartView(order: order)) {
-                            OrderRow(order: order)
+                ZStack {
+                    List {
+                        ForEach(orders) { order in
+                            NavigationLink(destination: EditShoppingCartView(order: order)) {
+                                OrderRow(order: order)
+                            }
+                        }
+                        .onDelete(perform: deleteOrder)
+                        HStack {
+                            Spacer()
+                            let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
+                            Text("Total Amount: $\(amount)")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .padding(.trailing)
                         }
                     }
-                    .onDelete(perform: deleteOrder)
-                    HStack {
+
+                    VStack {
                         Spacer()
-                        let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
-                        Text("Total Amount: $\(amount)")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .padding(.trailing)
+                        Button(action: {
+                            shoppingCartStore.submitOrder()
+                        }) {
+                            Text("Submit order")
+                                .fontWeight(.semibold)
+                                .font(.title3)
+                                .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        }
+                        .buttonStyle(DefaultButtonStyle())
+                        .padding(.bottom)
                     }
                 }
+
                 .toolbar {
                     EditButton()
                 }

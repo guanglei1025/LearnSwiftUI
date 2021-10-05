@@ -14,4 +14,8 @@ class ShoppingCartStore: ObservableObject {
     init(service: ShoppingCartService) {
         self.shoppingCartService = service
     }
+
+    func submitOrder() {
+        //TODO:
+    }
 }
