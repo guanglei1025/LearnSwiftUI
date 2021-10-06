@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductDetailsView: View {
-    let product: Item
+    let product: Product
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
     @Environment(\.presentationMode) var presentationMode
 

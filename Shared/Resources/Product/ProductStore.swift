@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 final class ProductStore: ObservableObject {
-    @Published var products = [Item]()
+    @Published var products = [Product]()
     private let service: ProductService
 
     init(service: ProductService) {
@@ -37,22 +37,22 @@ final class ProductStore: ObservableObject {
 }
 
 extension ProductStore {
-    typealias ItemCategory = Item.NewCategory
+    typealias ItemCategory = Product.NewCategory
 
-    var foods: [Item] {
+    var foods: [Product] {
         products.filter {
             $0.category == ItemCategory.food.rawValue
         }
     }
 
-    var drinks: [Item] {
+    var drinks: [Product] {
         products.filter {
             $0.category == ItemCategory.drink.rawValue
         }
     }
 
-    /// Get a `Item` from `id`
-    func getProduct(from productId: UUID) -> Item {
+    /// Get a `Product` from `id`
+    func getProduct(from productId: UUID) -> Product {
         guard let product = products.first(where: { $0.id == productId }) else {
             preconditionFailure("Doesn't have a matching product")
         }
@@ -61,9 +61,9 @@ extension ProductStore {
 }
 
 extension ProductStore {
-    static func fakeItems() -> [Item] {
+    static func fakeItems() -> [Product] {
         [
-            Item(id: UUID(uuidString: "AAEDBCB7-D32C-4F1E-89F8-C41E2D93CA32")!,
+            Product(id: UUID(uuidString: "AAEDBCB7-D32C-4F1E-89F8-C41E2D93CA32")!,
                  stockQuantity: 10,
                  price: "3.99",
                  imageURL: "https://lovingitvegan.com/wp-content/uploads/2018/11/Vegan-Eggnog-8.jpg",

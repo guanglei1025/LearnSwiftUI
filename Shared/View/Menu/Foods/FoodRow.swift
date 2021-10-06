@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoodRow: View {
-    var foods: [Item]
+    var foods: [Product]
 
     var body: some View {
         VStack(alignment: .leading) {

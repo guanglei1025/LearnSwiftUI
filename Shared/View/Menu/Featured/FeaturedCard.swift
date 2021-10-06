@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeaturedCard: View {
-    var product: Item
+    var product: Product
 
     var body: some View {
         AsyncImage(url: URL(string: product.imageURL)) { image in

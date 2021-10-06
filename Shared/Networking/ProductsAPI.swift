@@ -8,8 +8,8 @@
 import Foundation
 
 protocol ProductService {
-    func fetchAllProducts() async throws -> [Item]
-    func fetchProduct(with id: String) async throws -> Item
+    func fetchAllProducts() async throws -> [Product]
+    func fetchProduct(with id: String) async throws -> Product
 }
 
 final class ProductAPI: ProductService {
@@ -19,23 +19,23 @@ final class ProductAPI: ProductService {
         self.webService = webService
     }
 
-    func fetchAllProducts() async throws -> [Item] {
+    func fetchAllProducts() async throws -> [Product] {
         guard let url = URL(string: "http://127.0.0.1:8080/products") else {
             throw WebServiceError.invalidURL
         }
 
         let data = try await webService.get(from: url)
-        let decodedData = try JSONDecoder().decode([Item].self, from: data)
+        let decodedData = try JSONDecoder().decode([Product].self, from: data)
         return decodedData 
     }
 
-    func fetchProduct(with id: String) async throws -> Item {
+    func fetchProduct(with id: String) async throws -> Product {
         guard let url = URL(string: "http://127.0.0.1:8080/products/\(id)") else {
             throw WebServiceError.invalidURL
         }
 
         let data = try await webService.get(from: url)
-        let decodedData = try JSONDecoder().decode(Item.self, from: data)
+        let decodedData = try JSONDecoder().decode(Product.self, from: data)
         return decodedData
     }
 }

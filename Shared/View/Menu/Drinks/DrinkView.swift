@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DrinkView: View {
-    let drink: Item
+    let drink: Product
 
     var body: some View {
         VStack(alignment: .leading) {

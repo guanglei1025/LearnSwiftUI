@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductList: View {
 
-    var products: [Item]
+    var products: [Product]
 
     var body: some View {
         List {

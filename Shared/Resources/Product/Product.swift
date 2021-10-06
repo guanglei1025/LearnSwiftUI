@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  Product.swift
 //  LearnSwiftUI (iOS)
 //
 //  Created by Lina Gao on 28/09/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Item: Codable, Identifiable, Hashable {
+struct Product: Codable, Identifiable, Hashable {
     let id: UUID
     let stockQuantity: Int
     let price: String
@@ -22,7 +22,7 @@ struct Item: Codable, Identifiable, Hashable {
     }
 }
 
-extension Item {
+extension Product {
     var priceInDecimal: Decimal {
         Decimal.decimalValueOrZero(fromString: price)
     }

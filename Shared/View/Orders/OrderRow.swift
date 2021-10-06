@@ -44,7 +44,7 @@ struct OrderRow: View {
 }
 
 /// Calculate the amount of an `order`, which contains the `product`
-func amount(of product: Item, in order: Order) -> Decimal {
+func amount(of product: Product, in order: Order) -> Decimal {
     product.priceInDecimal * Decimal.decimalValueOrZero(fromString: order.quantity)
 }
 
