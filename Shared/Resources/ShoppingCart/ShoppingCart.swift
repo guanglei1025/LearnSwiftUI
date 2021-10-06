@@ -9,6 +9,7 @@ import Foundation
 
 /// A list of orders that user selected
 struct ShoppingCart: Codable {
+    var id = UUID()
     private(set) var orders = [Order]()
 }
 

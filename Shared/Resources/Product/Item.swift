@@ -27,14 +27,3 @@ extension Item {
         Decimal.decimalValueOrZero(fromString: price)
     }
 }
-
-struct Cart: Codable {
-    var id: UUID? = nil
-    let orders: [NewOrder]
-}
-
-struct NewOrder: Codable {
-    var id: UUID? = nil
-    let productId: UUID
-    let quantity: Int
-}

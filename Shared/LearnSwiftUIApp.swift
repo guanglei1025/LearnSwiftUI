@@ -11,10 +11,13 @@ import SwiftUI
 struct LearnSwiftUIApp: App {
     @StateObject private var modelData = ModelData()
     @StateObject private var shoppingCartStore = ShoppingCartStore(service: ShoppingCartAPI(webService: Service()))
+    @StateObject private var productStore = ProductStore(service: ProductAPI(webService: Service()))
+
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(shoppingCartStore)
+                .environmentObject(productStore)
         }
     }
 }
