@@ -65,6 +65,7 @@ struct ShoppingCartView: View {
         }
     }
 
+    /// Get the total amount of the `shoppingCart`
     private func totalAmount(in shoppingCart: ShoppingCart, productStore: ProductStore) -> String {
         var sum: Decimal = 0
         for order in shoppingCart.orders {
@@ -74,6 +75,7 @@ struct ShoppingCartView: View {
         return sum.stringValue
     }
 
+    /// Delete order from `shoppingCart`
     private func deleteOrder(index: IndexSet) {
         shoppingCartStore.shoppingCart.remove(at: index)
     }
