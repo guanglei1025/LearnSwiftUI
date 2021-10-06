@@ -14,12 +14,6 @@ struct ShoppingCart: Codable {
 }
 
 extension ShoppingCart {
-    func totalAmount() -> Decimal {
-        orders.reduce(0) {
-            $0 + $1.totalAmount()
-        }
-    }
-
     mutating func remove(at offsets: IndexSet) {
         orders.remove(atOffsets: offsets)
     }
@@ -50,6 +44,5 @@ extension ShoppingCart {
     func indexForOrder(with id: UUID) -> Int? {
         orders.firstIndex { $0.productId == id }
     }
-
 }
 

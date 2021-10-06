@@ -18,11 +18,3 @@ struct Order: Codable, Identifiable, Hashable  {
         self.quantity = quantity
     }
 }
-
-extension Order {
-    func totalAmount() -> Decimal {
-//        product.priceInDecimal * Decimal.decimalValueOrZero(fromString: quantity)
-        //FIXME:
-        return 12.0
-    }
-}

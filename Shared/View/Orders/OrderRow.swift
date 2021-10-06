@@ -34,14 +34,20 @@ struct OrderRow: View {
                     Text("$\(product.price) × \(order.quantity)")
                         .foregroundColor(.secondary)
                     Spacer()
-                    let amount = order.totalAmount().stringValue
-                    Text("$\(amount)")
+                    let amount = amount(of: product, in: order)
+                    Text("$\(amount.stringValue)")
                 }
             }
             Spacer()
         }
     }
 }
+
+/// Calculate the amount of an `order`, which contains the `product`
+func amount(of product: Item, in order: Order) -> Decimal {
+    product.priceInDecimal * Decimal.decimalValueOrZero(fromString: order.quantity)
+}
+
 
 struct OrderRow_Previews: PreviewProvider {
     static var previews: some View {
