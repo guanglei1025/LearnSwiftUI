@@ -23,7 +23,7 @@ struct EditShoppingCartView: View {
             let product = productStore.getProduct(from: order.productId)
 
             VStack {
-                AsyncImage(url: URL(string: product.imageURL)) { image in
+                CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                     image
                         .resizable()
                         .aspectRatio(2 / 2, contentMode: .fit)
