@@ -23,7 +23,26 @@ struct CacheAsyncImage<Content>: View where Content: View {
     }
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if let cachedImage = ImageCache[url] {
+            let _ = print("cached \(url.absoluteString)")
+
+            // Return cached image
+            content(.success(cachedImage))
+        } else {
+            let _ = print("request \(url.absoluteString)")
+
+            // Return the regular AsyncImage view
+            AsyncImage(url: url) { phase in
+                cacheAndRender(phase: phase)
+            }
+        }
+    }
+
+    func cacheAndRender(phase: AsyncImagePhase) -> some View {
+        if case .success(let image) = phase {
+            ImageCache[url] = image
+        }
+        return content(phase)
     }
 }
 
@@ -69,6 +88,19 @@ extension CacheAsyncImage {
                     fatalError()
                 }
             }
+        }
+    }
+}
+
+fileprivate class ImageCache {
+    static private var cache = [URL: Image]()
+
+    static subscript(_ url: URL) -> Image? {
+        get {
+            ImageCache.cache[url]
+        }
+        set {
+            ImageCache.cache[url] = newValue
         }
     }
 }
