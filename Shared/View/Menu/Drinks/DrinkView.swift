@@ -12,7 +12,7 @@ struct DrinkView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            AsyncImage(url: URL(string: drink.imageURL)) { image in
+            CacheAsyncImage(url: URL(string: drink.imageURL)!) { image in
                 image
                     .resizable()
                     .frame(width: 160, height: 200)

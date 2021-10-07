@@ -12,7 +12,7 @@ struct ProductRow: View {
 
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: product.imageURL)) { image in
+            CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                 image
                     .resizable()
                     .cornerRadius(6)

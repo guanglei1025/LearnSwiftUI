@@ -16,7 +16,7 @@ struct OrderRow: View {
         let product = productStore.getProduct(from: order.productId)
 
         HStack {
-            AsyncImage(url: URL(string: product.imageURL)) { image in
+            CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                 image
                     .resizable()
                     .cornerRadius(6)

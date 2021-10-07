@@ -19,7 +19,7 @@ struct ProductDetailsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                AsyncImage(url: URL(string: product.imageURL)) { image in
+                CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                     image
                         .resizable()
                         .aspectRatio(2 / 2, contentMode: .fit)

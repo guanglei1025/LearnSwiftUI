@@ -68,30 +68,6 @@ extension CacheAsyncImage {
     }
 }
 
-extension CacheAsyncImage {
-    init<I>(url: URL, content: @escaping (Image) -> I) where
-        Content == Group
-        <_ConditionalContent
-            <_ConditionalContent
-                <ProgressView<EmptyView, EmptyView>,I>,_ConditionalContent<Text, Never>>>,
-        I : View {
-        self.init(url: url) { phase in
-            Group {
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    content(image)
-                case .failure(let error):
-                    Text("Error: \(error.localizedDescription)")
-                @unknown default:
-                    fatalError()
-                }
-            }
-        }
-    }
-}
-
 fileprivate class ImageCache {
     static private var cache = [URL: Image]()
 
