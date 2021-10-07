@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductList: View {
 
-    var products: [Item]
+    var products: [Product]
 
     var body: some View {
         List {
@@ -26,6 +26,6 @@ struct ProductList: View {
 
 struct ProductList_Previews: PreviewProvider {
     static var previews: some View {
-        ProductList(products: ModelData().fakeItems)
+        ProductList(products: ProductStore.fakeItems())
     }
 }

@@ -8,9 +8,9 @@
 import Foundation
 
 protocol ShoppingCartService {
-    func saveShoppingCart(_ newItem: Cart) async throws
-    func submitShoppingCart(_ newItem: Cart) async throws
-    func deleteShoppingCart(_ newItem: Cart) async throws
+    func saveShoppingCart(_ newItem: ShoppingCart) async throws
+    func submitShoppingCart(_ newItem: ShoppingCart) async throws
+    func deleteShoppingCart(_ newItem: ShoppingCart) async throws
 }
 
 final class ShoppingCartAPI: ShoppingCartService {
@@ -20,7 +20,7 @@ final class ShoppingCartAPI: ShoppingCartService {
         self.webService = webService
     }
 
-    func saveShoppingCart(_ newItem: Cart) async throws {
+    func saveShoppingCart(_ newItem: ShoppingCart) async throws {
         guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/save") else {
             throw WebServiceError.invalidURL
         }
@@ -35,7 +35,7 @@ final class ShoppingCartAPI: ShoppingCartService {
     }
 
     /// This api call will update product's stock quantity once a new order get submitted into shopping cart
-    func submitShoppingCart(_ newItem: Cart) async throws {
+    func submitShoppingCart(_ newItem: ShoppingCart) async throws {
         guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/submit") else {
             throw WebServiceError.invalidURL
         }
@@ -49,7 +49,7 @@ final class ShoppingCartAPI: ShoppingCartService {
         print(response.statusCode)
     }
 
-    func deleteShoppingCart(_ newItem: Cart) async throws {
+    func deleteShoppingCart(_ newItem: ShoppingCart) async throws {
         guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/delete") else {
             throw WebServiceError.invalidURL
         }

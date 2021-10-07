@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection: Tab = .menu
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var shoppingCartStore: ShoppingCartStore
+    @EnvironmentObject var productStore: ProductStore
 
     enum Tab {
         case menu
@@ -23,8 +24,8 @@ struct ContentView: View {
                     Label("Menu", systemImage: "heart")
                 }
                 .tag(Tab.menu)
+
             ShoppingCartView()
-                .environmentObject(modelData)
                 .tabItem {
                     Label("Cart", systemImage: "cart")
                 }
@@ -35,7 +36,11 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+        let shoppingCartService = ShoppingCartStore(service: ShoppingCartAPI(webService: Service()))
+        let productStore = ProductStore(service: ProductAPI(webService: Service()))
+
         ContentView()
-            .environmentObject(ModelData())
+            .environmentObject(shoppingCartService)
+            .environmentObject(productStore)
     }
 }

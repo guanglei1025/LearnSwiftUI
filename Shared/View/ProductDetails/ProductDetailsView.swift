@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ProductDetailsView: View {
-    let product: Item
-    @EnvironmentObject var modelData: ModelData
+    let product: Product
+    @EnvironmentObject var shoppingCartStore: ShoppingCartStore
+    @Environment(\.presentationMode) var presentationMode
+
     @State var total = "1"
     @State private var isAdded = false
     @State private var totalQuantityChanged = true
@@ -55,33 +57,26 @@ struct ProductDetailsView: View {
                 Button(action: {
                     // Trigger alert
                     isAdded = true
-                    // FIXME: Need to use Item next
-//                    let order = Order(from: product, quantity: total)
-//                    modelData.shoppingCart.addOrder(order)
+                    let order = Order(from: product.id, quantity: total)
+                    shoppingCartStore.shoppingCart.addOrder(order)
                 }) {
-                    HStack {
-                        Image(systemName: "cart")
-                            .font(.title)
-                            .padding(.leading)
-                            .padding(.trailing)
-                        Text("Add to Cart")
-                            .fontWeight(.semibold)
-                            .font(.title3)
-                    }
-                    .frame(minWidth: 0, maxWidth: 250)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(40)
+                    Text("Add to Cart")
+                        .fontWeight(.semibold)
+                        .font(.title3)
+                        .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-                .disabled(!totalQuantityChanged)
+                .buttonStyle(DefaultButtonStyle())
                 .alert(isPresented: $isAdded) { () -> Alert in
                     let button = Alert.Button.default(Text("OK")) {
                         // Disable `Add to cart` button
                         totalQuantityChanged = false
+                        presentationMode.wrappedValue.dismiss()
                     }
-                    return Alert(title: Text("Added to cart"), dismissButton: button)
+                    return Alert(title: Text("Added to cart"),
+                                 message: Text("Please continue check out from shopping cart."),
+                                 dismissButton: button)
                 }
+
             }
         }
     }
@@ -89,6 +84,6 @@ struct ProductDetailsView: View {
 
 struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailsView(product: ModelData().fakeItems.first!)
+        ProductDetailsView(product: ProductStore.fakeItems().first!)
     }
 }

@@ -8,26 +8,36 @@
 import SwiftUI
 
 struct EditShoppingCartView: View {
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var shoppingCartStore: ShoppingCartStore
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var productStore: ProductStore
+
+    /// Current selected order to edit
     @State var order: Order
     @State private var isSaved = false
-    @State private var totalQuantityChanged = false
+    @State private var quantityChanged = false
 
     var body: some View {
         ScrollView {
-            VStack {
-                order.product.image
-                    .resizable()
-                    .resizable()
-                    .aspectRatio(2 / 2, contentMode: .fit)
-                    .cornerRadius(10)
-                    .padding(50)
+            // Current product in the order
+            let product = productStore.getProduct(from: order.productId)
 
-                Text(order.product.name)
+            VStack {
+                AsyncImage(url: URL(string: product.imageURL)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(2 / 2, contentMode: .fit)
+                        .cornerRadius(10)
+                        .padding(50)
+                } placeholder: {
+                    ProgressView()
+                }
+
+                Text(product.name)
                     .font(.title)
                     .fontWeight(.bold)
 
-                Text(order.product.description)
+                Text(product.description)
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
@@ -40,39 +50,49 @@ struct EditShoppingCartView: View {
                 NumberPicker(totalNumber: $order.quantity)
                     .onChange(of: order.quantity) { _ in
                         // Enable the save button
-                        totalQuantityChanged = true
+                        quantityChanged = true
                     }
-                
+
                 Button(action: {
                     // Trigger alert once value is true
-                    isSaved = true
-                    modelData.shoppingCart.updateOrder(order)
+                    if quantityChanged {
+                        isSaved = true
+                        shoppingCartStore.shoppingCart.updateOrder(order)
+                    }
                 }) {
                     Text("Save")
                         .fontWeight(.semibold)
                         .font(.title3)
-                        .frame(minWidth: 0, maxWidth: 250)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(40)
+                        .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-                .disabled(!totalQuantityChanged)
+                .buttonStyle(DefaultButtonStyle(disabled: !quantityChanged))
                 .alert(isPresented: $isSaved) { () -> Alert in
                     let button = Alert.Button.default(Text("OK")) {
                         // Disable save button
-                        totalQuantityChanged = false
+                        quantityChanged = false
+                        presentationMode.wrappedValue.dismiss()
                     }
-                    return Alert(title: Text("Order is updated"), dismissButton: button)
+                    return Alert(title: Text("Shopping cart is updated"),
+                                 message: Text("Please continue check out from shopping cart."),
+                                 dismissButton: button)
                 }
             }
         }
     }
 }
 
+struct DefaultButtonStyle: ButtonStyle {
+    var disabled = false
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .background(disabled ? .gray : .blue)
+            .foregroundColor(.white)
+            .cornerRadius(40)
+    }
+}
+
 struct EditShoppingCartView_Previews: PreviewProvider {
     static var previews: some View {
-        let order = Order.init(from: ModelData().menu.foods.first!, quantity: "4")
-        EditShoppingCartView(order: order)
+        EditShoppingCartView(order: ProductStore.fakeOrder())
     }
 }

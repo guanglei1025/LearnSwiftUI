@@ -9,24 +9,33 @@ import SwiftUI
 
 struct OrderRow: View {
     let order: Order
+    @EnvironmentObject var productStore: ProductStore
 
     var body: some View {
+        // Current product in the order
+        let product = productStore.getProduct(from: order.productId)
+
         HStack {
-            order.product.image
-                .resizable()
-                .cornerRadius(6)
-                .frame(width: 60, height: 60)
-                .padding(.trailing, 5)
+            AsyncImage(url: URL(string: product.imageURL)) { image in
+                image
+                    .resizable()
+                    .cornerRadius(6)
+                    .frame(width: 60, height: 60)
+                    .padding(.trailing, 5)
+            } placeholder: {
+                ProgressView()
+            }
+
             VStack(alignment: .leading) {
-                Text(order.product.name)
+                Text(product.name)
                     .font(.headline)
                     .padding(.bottom, 1)
                 HStack {
-                    Text("$\(order.product.price) × \(order.quantity)")
+                    Text("$\(product.price) × \(order.quantity)")
                         .foregroundColor(.secondary)
                     Spacer()
-                    let amount = order.totalAmount().stringValue
-                    Text("$\(amount)")
+                    let amount = amount(of: product, in: order)
+                    Text("$\(amount.stringValue)")
                 }
             }
             Spacer()
@@ -34,9 +43,15 @@ struct OrderRow: View {
     }
 }
 
+/// Calculate the amount of an `order`, which contains the `product`
+func amount(of product: Product, in order: Order) -> Decimal {
+    product.priceInDecimal * Decimal.decimalValueOrZero(fromString: order.quantity)
+}
+
+
 struct OrderRow_Previews: PreviewProvider {
     static var previews: some View {
-        OrderRow(order: Order(from: ModelData().menu.drinks[0], quantity: "3"))
+        OrderRow(order: ProductStore.fakeOrder())
             .previewLayout(.sizeThatFits)
             .padding()
     }

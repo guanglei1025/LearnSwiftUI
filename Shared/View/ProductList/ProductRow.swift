@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductRow: View {
-    let product: Item
+    let product: Product
 
     var body: some View {
         HStack {
@@ -36,7 +36,7 @@ struct ProductRow: View {
 
 struct ProductRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductRow(product: ModelData().fakeItems.first!)
+        ProductRow(product: ProductStore.fakeItems().first!)
             .previewLayout(.sizeThatFits)
             .padding()
     }

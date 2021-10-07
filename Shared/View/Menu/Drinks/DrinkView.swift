@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DrinkView: View {
-    let drink: Item
+    let drink: Product
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -34,7 +34,7 @@ struct DrinkView: View {
 
 struct DrinkView_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkView(drink: ModelData().fakeItems.first!)
+        DrinkView(drink: ProductStore.fakeItems().first!)
             .previewLayout(.sizeThatFits)
             .padding()
     }

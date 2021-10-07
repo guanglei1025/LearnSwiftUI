@@ -22,7 +22,7 @@ struct FeaturedView<Page: View>: View {
 
 struct FeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedView(pages: ModelData().fakeItems.map {
+        FeaturedView(pages: ProductStore.fakeItems().map {
             FeaturedCard(product: $0)
         })
         .aspectRatio(3 / 2, contentMode: .fit)

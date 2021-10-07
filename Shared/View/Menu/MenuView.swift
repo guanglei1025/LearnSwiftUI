@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
-    @StateObject private var productStore = ProductStore(
-        service: ProductAPI(webService: Service()))
+    @EnvironmentObject var productStore: ProductStore
 
     var body: some View {
         NavigationView {

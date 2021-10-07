@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeaturedCard: View {
-    var product: Item
+    var product: Product
 
     var body: some View {
         AsyncImage(url: URL(string: product.imageURL)) { image in
@@ -48,7 +48,7 @@ struct TextOverlay: View {
 
 struct NewFeatureCard_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedCard(product: ModelData().fakeItems.first!)
+        FeaturedCard(product: ProductStore.fakeItems().first!)
             .previewLayout(.sizeThatFits)
             .padding()
     }
