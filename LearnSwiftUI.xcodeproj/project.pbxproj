@@ -124,10 +124,10 @@
 			isa = PBXGroup;
 			children = (
 				A16C75152585A66C004BBD37 /* Menu */,
-				A1E60DD42587050200AA8E79 /* ShoppingCartView */,
 				A16C75322585C134004BBD37 /* ProductList */,
 				DDFEBA5F26F1982800FBAB85 /* Orders */,
 				A16C75162585A683004BBD37 /* ProductDetails */,
+				A1E60DD42587050200AA8E79 /* ShoppingCartView */,
 			);
 			path = View;
 			sourceTree = "<group>";

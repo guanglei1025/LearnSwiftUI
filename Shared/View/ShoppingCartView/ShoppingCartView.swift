@@ -53,7 +53,7 @@ struct ShoppingCartView: View {
                                 .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         }
                         .buttonStyle(DefaultButtonStyle())
-                        .padding(.bottom)
+                        .padding(.bottom, 50)
                     }
                 }
 
