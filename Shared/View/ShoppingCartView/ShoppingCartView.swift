@@ -10,7 +10,6 @@ import SwiftUI
 struct ShoppingCartView: View {
 
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
-    @EnvironmentObject var productStore: ProductStore
 
     var body: some View {
 
@@ -33,8 +32,7 @@ struct ShoppingCartView: View {
                         .onDelete(perform: deleteOrder)
                         HStack {
                             Spacer()
-                            let amount = totalAmount(in: shoppingCartStore.shoppingCart,
-                                                     productStore: productStore)
+                            let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
                             Text("Total Amount: $\(amount)")
                                 .font(.title2)
                                 .fontWeight(.semibold)
@@ -69,7 +67,7 @@ struct ShoppingCartView: View {
     private func totalAmount(in shoppingCart: ShoppingCart, productStore: ProductStore) -> String {
         var sum: Decimal = 0
         for order in shoppingCart.orders {
-            let product = productStore.getProduct(from: order.productId)
+            let product = order.product
             sum = sum + amount(of: product, in: order)
         }
         return sum.stringValue
