@@ -69,6 +69,7 @@ extension ProductStore {
                     imageURL: "https://lovingitvegan.com/wp-content/uploads/2018/11/Vegan-Eggnog-8.jpg",
                     description: "description",
                     name: "Name",
+                    isFeatured: true,
                     category: "food")
         ]
     }
