@@ -12,7 +12,7 @@ struct ProductDetailsView: View {
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
     @Environment(\.presentationMode) var presentationMode
 
-    @State var total = "1"
+    @State var total = 1
     @State private var isAdded = false
     @State private var totalQuantityChanged = true
 

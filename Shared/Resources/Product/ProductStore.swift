@@ -76,6 +76,6 @@ extension ProductStore {
 
     static func fakeOrder() -> Order {
         Order(from: fakeItems()[0],
-              quantity: "10")
+              quantity: 10)
     }
 }

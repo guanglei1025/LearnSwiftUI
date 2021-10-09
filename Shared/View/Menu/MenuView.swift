@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject var productStore: ProductStore
+    @EnvironmentObject var shoppingCartStore: ShoppingCartStore
 
     var body: some View {
         NavigationView {
@@ -43,6 +44,7 @@ struct MenuView: View {
         }
         .task {
             await productStore.fetchProducts()
+            await shoppingCartStore.fetchShoppingCart()
         }
     }
 }

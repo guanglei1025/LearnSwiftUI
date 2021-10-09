@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ShoppingCartService {
-    func fetchShoppingCart(_ id: UUID) async throws -> ShoppingCart
+    func fetchShoppingCart() async throws -> ShoppingCart
     func saveShoppingCart(_ newItem: ShoppingCart) async throws
     func submitShoppingCart(_ newItem: ShoppingCart) async throws
     func deleteShoppingCart(_ newItem: ShoppingCart) async throws
@@ -21,8 +21,9 @@ final class ShoppingCartAPI: ShoppingCartService {
         self.webService = webService
     }
 
-    func fetchShoppingCart(_ id: UUID) async throws -> ShoppingCart {
-        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/\(id)") else {
+    func fetchShoppingCart() async throws -> ShoppingCart {
+        let shoppingCartId = "24105A91-F0E2-49A7-A08D-E4E506B88D2B"
+        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/\(shoppingCartId)") else {
             throw WebServiceError.invalidURL
         }
         let data = try await webService.get(from: url)

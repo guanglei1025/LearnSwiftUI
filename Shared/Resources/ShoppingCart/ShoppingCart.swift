@@ -29,11 +29,10 @@ extension ShoppingCart {
         // If the product of the new order already exists in the orders,
         // then get the sum of quantity as the updated quantity of the order for this specific product
         if let index = orders.firstIndex(where: {$0.product.id == newOrder.product.id}) {
-            guard let previousQuantity = Int(orders[index].quantity), let newQuantity = Int(newOrder.quantity) else {
-                return
-            }
+            let previousQuantity = orders[index].quantity
+            let newQuantity = newOrder.quantity
             let updatedQuantity = previousQuantity + newQuantity
-            orders[index].quantity = String(updatedQuantity)
+            orders[index].quantity = updatedQuantity
         } else {
             // If not, then directly add new order to orders
             orders.append(newOrder)

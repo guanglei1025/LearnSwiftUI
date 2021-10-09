@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NumberPicker: View {
 
-    @Binding var totalNumber: String
+    @Binding var totalNumber: Int
 
     private let pickerNumbers = 1...19
     private var pickerNumbersInString: [String] {
@@ -27,7 +27,7 @@ struct NumberPicker: View {
 
 struct NumberPicker_Previews: PreviewProvider {
     static var previews: some View {
-        NumberPicker(totalNumber: .constant("4"))
+        NumberPicker(totalNumber: .constant(4))
             .previewLayout(.sizeThatFits)
             .padding()
     }
