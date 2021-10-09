@@ -10,7 +10,6 @@ import SwiftUI
 struct EditShoppingCartView: View {
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var productStore: ProductStore
 
     /// Current selected order to edit
     @State var order: Order
@@ -20,8 +19,7 @@ struct EditShoppingCartView: View {
     var body: some View {
         ScrollView {
             // Current product in the order
-            let product = productStore.getProduct(from: order.productId)
-
+            let product = order.product
             VStack {
                 CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                     image

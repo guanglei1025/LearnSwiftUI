@@ -9,12 +9,11 @@ import SwiftUI
 
 struct OrderRow: View {
     let order: Order
-    @EnvironmentObject var productStore: ProductStore
 
     var body: some View {
         // Current product in the order
-        let product = productStore.getProduct(from: order.productId)
-
+        let product = order.product
+        
         HStack {
             CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                 image

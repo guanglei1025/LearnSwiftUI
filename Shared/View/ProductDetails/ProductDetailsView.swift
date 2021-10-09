@@ -57,7 +57,7 @@ struct ProductDetailsView: View {
                 Button(action: {
                     // Trigger alert
                     isAdded = true
-                    let order = Order(from: product.id, quantity: total)
+                    let order = Order(from: product, quantity: total)
                     shoppingCartStore.shoppingCart.addOrder(order)
                 }) {
                     Text("Add to Cart")
