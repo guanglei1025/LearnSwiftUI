@@ -203,8 +203,8 @@
 		A1E3D14F2707A6D4007FF815 /* Product */ = {
 			isa = PBXGroup;
 			children = (
-				DD1E56A52703C01C002C58AE /* Product.swift */,
 				A1E3D14D2707A61D007FF815 /* ProductStore.swift */,
+				DD1E56A52703C01C002C58AE /* Product.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
