@@ -50,14 +50,6 @@ extension ProductStore {
             $0.category == ItemCategory.drink.rawValue
         }
     }
-
-    /// Get a `Product` from `id`
-    func getProduct(from productId: UUID) -> Product {
-        guard let product = products.first(where: { $0.id == productId }) else {
-            preconditionFailure("Doesn't have a matching product")
-        }
-        return product
-    }
 }
 
 extension ProductStore {
