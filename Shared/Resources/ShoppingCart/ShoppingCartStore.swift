@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class ShoppingCartStore: ObservableObject {
     @Published var shoppingCart = ShoppingCart()
     private let shoppingCartService: ShoppingCartService
