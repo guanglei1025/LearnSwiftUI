@@ -29,4 +29,13 @@ class ShoppingCartStore: ObservableObject {
     func submitOrder() {
         //TODO:
     }
+
+    /// Implement saving shopping cart, when the shoppingCart object is updated.
+    func save() async {
+        do {
+            try await shoppingCartService.saveShoppingCart(self.shoppingCart)
+        } catch {
+            print("save error: \(error)")
+        }
+    }
 }

@@ -60,6 +60,9 @@ struct ShoppingCartView: View {
                 }
                 .navigationTitle("Cart")
             }
+            .task {
+                await shoppingCartStore.save()
+            }
         }
     }
 

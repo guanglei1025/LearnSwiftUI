@@ -37,6 +37,10 @@ final class ShoppingCartAPI: ShoppingCartService {
         }
 
         let jsonData = try JSONEncoder().encode(newItem)
+
+        // Test
+        print(String(data: jsonData, encoding: .utf8)!)
+
         let taskResponse = try await webService.post(with: jsonData, to: url)
 
         guard let response = taskResponse.response as? HTTPURLResponse else {
