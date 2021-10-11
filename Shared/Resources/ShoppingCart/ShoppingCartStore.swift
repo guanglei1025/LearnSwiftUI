@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 class ShoppingCartStore: ObservableObject {
     @Published var shoppingCart = ShoppingCart()
+    @Published var hasShoppingCart = false
     private let shoppingCartService: ShoppingCartService
 
     init(service: ShoppingCartService) {
@@ -21,6 +22,10 @@ class ShoppingCartStore: ObservableObject {
             let shoppingCart = try await shoppingCartService.fetchShoppingCart()
             self.shoppingCart = shoppingCart
             print(self.shoppingCart.orders)
+
+            if !shoppingCart.orders.isEmpty {
+                hasShoppingCart = true
+            }
         } catch {
             print("fetch products error: \(error)")
         }
@@ -30,7 +35,7 @@ class ShoppingCartStore: ObservableObject {
         //TODO:
     }
 
-    /// Implement saving shopping cart, when the shoppingCart object is updated.
+    /// Implement saving shopping cart
     func save() async {
         do {
             try await shoppingCartService.saveShoppingCart(self.shoppingCart)

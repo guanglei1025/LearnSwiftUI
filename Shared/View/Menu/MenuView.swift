@@ -44,7 +44,7 @@ struct MenuView: View {
         }
         .task {
             await productStore.fetchProducts()
-//            await shoppingCartStore.fetchShoppingCart()
+            await shoppingCartStore.fetchShoppingCart()
         }
     }
 }
