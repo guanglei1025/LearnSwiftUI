@@ -20,6 +20,7 @@ class ShoppingCartStore: ObservableObject {
         do {
             let shoppingCart = try await shoppingCartService.fetchShoppingCart()
             self.shoppingCart = shoppingCart
+            print(self.shoppingCart.orders)
         } catch {
             print("fetch products error: \(error)")
         }
