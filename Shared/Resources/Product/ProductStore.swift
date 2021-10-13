@@ -50,14 +50,6 @@ extension ProductStore {
             $0.category == ItemCategory.drink.rawValue
         }
     }
-
-    /// Get a `Product` from `id`
-    func getProduct(from productId: UUID) -> Product {
-        guard let product = products.first(where: { $0.id == productId }) else {
-            preconditionFailure("Doesn't have a matching product")
-        }
-        return product
-    }
 }
 
 extension ProductStore {
@@ -69,12 +61,13 @@ extension ProductStore {
                     imageURL: "https://lovingitvegan.com/wp-content/uploads/2018/11/Vegan-Eggnog-8.jpg",
                     description: "description",
                     name: "Name",
+                    isFeatured: true,
                     category: "food")
         ]
     }
 
     static func fakeOrder() -> Order {
         Order(from: fakeItems()[0],
-              quantity: "10")
+              quantity: 10)
     }
 }

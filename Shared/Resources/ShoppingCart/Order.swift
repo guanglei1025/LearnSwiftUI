@@ -11,9 +11,9 @@ import Foundation
 struct Order: Codable, Identifiable, Hashable  {
     var id = UUID()
     let product: Product
-    var quantity: String
+    var quantity: Int
 
-    init(from product: Product, quantity: String) {
+    init(from product: Product, quantity: Int) {
         self.product = product
         self.quantity = quantity
     }
@@ -21,6 +21,6 @@ struct Order: Codable, Identifiable, Hashable  {
 
 extension Order {
     func totalAmount() -> Decimal {
-        product.priceInDecimal * Decimal.decimalValueOrZero(fromString: quantity)
+        product.priceInDecimal * Decimal(quantity)
     }
 }

@@ -14,6 +14,7 @@ struct Product: Codable, Identifiable, Hashable {
     let imageURL: String
     let description: String
     let name: String
+    let isFeatured: Bool
     var category: NewCategory.RawValue
 
     enum NewCategory: String, CaseIterable, Codable {
