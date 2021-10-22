@@ -21,7 +21,15 @@ class ShoppingCartStore: ObservableObject {
             let shoppingCart = try await shoppingCartService.fetchShoppingCart()
             self.shoppingCart = shoppingCart
         } catch {
-            print("fetch products error: \(error)")
+            print("fetch shopping cart error: \(error)")
+        }
+    }
+
+    func deleteShoppingCart() async {
+        do {
+            _ = try await shoppingCartService.deleteShoppingCart(self.shoppingCart)
+        } catch {
+            print("delete shopping cart error: \(error)")
         }
     }
 

@@ -69,6 +69,9 @@ struct ShoppingCartView: View {
         let isLastOrderInCart = shoppingCart.orders.count == 1
         if isLastOrderInCart {
             //TODO: Implement delete shopping cart
+            Task.init {
+                await shoppingCartStore.deleteShoppingCart()
+            }
         } else {
             shoppingCart.remove(at: index)
         }
