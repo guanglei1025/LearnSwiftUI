@@ -61,62 +61,12 @@ struct ShoppingCartView: View {
                 .navigationTitle("Cart")
             }
             .task {
-                if !shoppingCartStore.hasShoppingCart {
-                    await shoppingCartStore.save()
-                } else {
+                if shoppingCartStore.hasShoppingCart {
                     // TODO: If shoppingCart existed, then update shoppingCart on server
+                } else {
+                    await shoppingCartStore.save()
                 }
             }
-
-
-//        if orders.isEmpty {
-//            NavigationView {
-//                EmptyShoppingCartView()
-//                    .navigationTitle("Cart")
-//            }
-//        } else {
-//            NavigationView {
-//                ZStack {
-//                    List {
-//                        ForEach(orders) { order in
-//                            NavigationLink(destination: EditShoppingCartView(order: order)) {
-//                                OrderRow(order: order)
-//                            }
-//                        }
-//                        .onDelete(perform: deleteOrder)
-//                        HStack {
-//                            Spacer()
-//                            let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
-//                            Text("Total Amount: $\(amount)")
-//                                .font(.title2)
-//                                .fontWeight(.semibold)
-//                                .padding(.trailing)
-//                        }
-//                    }
-//
-//                    VStack {
-//                        Spacer()
-//                        Button(action: {
-//                            shoppingCartStore.submitOrder()
-//                        }) {
-//                            Text("Submit order")
-//                                .fontWeight(.semibold)
-//                                .font(.title3)
-//                                .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                        }
-//                        .buttonStyle(DefaultButtonStyle())
-//                        .padding(.bottom)
-//                    }
-//                }
-//
-//                .toolbar {
-//                    EditButton()
-//                }
-//                .navigationTitle("Cart")
-//            }
-//            .task {
-//                await shoppingCartStore.save()
-//            }
         }
     }
 

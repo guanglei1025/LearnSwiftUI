@@ -23,9 +23,7 @@ class ShoppingCartStore: ObservableObject {
             self.shoppingCart = shoppingCart
             print(self.shoppingCart.orders)
 
-            if !shoppingCart.orders.isEmpty {
-                hasShoppingCart = true
-            }
+            hasShoppingCart = shoppingCart.orders.isEmpty ? false : true
         } catch {
             print("fetch products error: \(error)")
         }

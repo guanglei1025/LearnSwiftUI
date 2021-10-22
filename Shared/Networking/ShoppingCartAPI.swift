@@ -22,7 +22,7 @@ final class ShoppingCartAPI: ShoppingCartService {
     }
 
     func fetchShoppingCart() async throws -> ShoppingCart {
-        let shoppingCartId = "24105A91-F0E2-49A7-A08D-E4E506B88D2B"
+        let shoppingCartId = "72FC0D5E-ABDB-48AC-886B-269FD2624BE9"
         guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/\(shoppingCartId)") else {
             throw WebServiceError.invalidURL
         }
@@ -37,10 +37,6 @@ final class ShoppingCartAPI: ShoppingCartService {
         }
 
         let jsonData = try JSONEncoder().encode(newItem)
-
-        // Test
-        print(String(data: jsonData, encoding: .utf8)!)
-
         let taskResponse = try await webService.post(with: jsonData, to: url)
 
         guard let response = taskResponse.response as? HTTPURLResponse else {
