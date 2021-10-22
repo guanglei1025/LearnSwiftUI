@@ -28,6 +28,7 @@ class ShoppingCartStore: ObservableObject {
     func deleteShoppingCart() async {
         do {
             _ = try await shoppingCartService.deleteShoppingCart(self.shoppingCart)
+            self.shoppingCart = ShoppingCart()
         } catch {
             print("delete shopping cart error: \(error)")
         }
