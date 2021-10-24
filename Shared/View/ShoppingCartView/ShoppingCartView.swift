@@ -60,6 +60,13 @@ struct ShoppingCartView: View {
                 }
                 .navigationTitle("Cart")
             }
+            .task {
+                if shoppingCartStore.hasShoppingCart {
+                    // TODO: If shoppingCart existed, then update shoppingCart on server
+                } else {
+                    await shoppingCartStore.save()
+                }
+            }
         }
     }
 
