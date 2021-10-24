@@ -22,7 +22,7 @@ final class ShoppingCartAPI: ShoppingCartService {
     }
 
     func fetchShoppingCart() async throws -> ShoppingCart {
-        let shoppingCartId = "24105A91-F0E2-49A7-A08D-E4E506B88D2B"
+        let shoppingCartId = "707CB142-F9CB-4972-A416-9E484F1EAE23"
         guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/\(shoppingCartId)") else {
             throw WebServiceError.invalidURL
         }
@@ -61,7 +61,8 @@ final class ShoppingCartAPI: ShoppingCartService {
     }
 
     func deleteShoppingCart(_ newItem: ShoppingCart) async throws {
-        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/delete") else {
+        let shoppingCartId = newItem.id
+        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/delete/\(shoppingCartId)") else {
             throw WebServiceError.invalidURL
         }
         
