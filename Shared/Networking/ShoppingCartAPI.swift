@@ -9,9 +9,11 @@ import Foundation
 
 protocol ShoppingCartService {
     func fetchShoppingCart() async throws -> ShoppingCart
+    func deleteShoppingCart(_ newItem: ShoppingCart) async throws
+    func updateShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart
+    
     func saveShoppingCart(_ newItem: ShoppingCart) async throws
     func submitShoppingCart(_ newItem: ShoppingCart) async throws
-    func deleteShoppingCart(_ newItem: ShoppingCart) async throws
 }
 
 final class ShoppingCartAPI: ShoppingCartService {
@@ -22,14 +24,26 @@ final class ShoppingCartAPI: ShoppingCartService {
     }
 
     func fetchShoppingCart() async throws -> ShoppingCart {
-        let shoppingCartId = "707CB142-F9CB-4972-A416-9E484F1EAE23"
-        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/\(shoppingCartId)") else {
+        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart") else {
             throw WebServiceError.invalidURL
         }
         let data = try await webService.get(from: url)
         let decodedData = try JSONDecoder().decode(ShoppingCart.self, from: data)
         return decodedData
     }
+
+    func updateShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart {
+        let shoppingCartId = newItem.id
+        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/update/\(shoppingCartId)") else {
+            throw WebServiceError.invalidURL
+        }
+        
+        let jsonData = try JSONEncoder().encode(newItem)
+        let taskResponse = try await webService.put(with: jsonData, to: url)
+
+        let decodedData = try JSONDecoder().decode(ShoppingCart.self, from: taskResponse.data)
+        return decodedData
+   }
 
     func saveShoppingCart(_ newItem: ShoppingCart) async throws {
         guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/save") else {

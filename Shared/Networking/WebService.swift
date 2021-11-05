@@ -27,7 +27,7 @@ protocol WebService {
     func get(from url: URL) async throws -> Data
     func delete(with body: Data, from url: URL) async throws -> DataTaskResponse
     func post(with body: Data, to url: URL) async throws -> DataTaskResponse
-    func put(with body: Data, to url: URL) async throws -> URLResponse
+    func put(with body: Data, to url: URL) async throws -> DataTaskResponse
 }
 
 public typealias DataTaskResponse = (data: Data, response: URLResponse)
@@ -48,9 +48,9 @@ final class Service: WebService {
         return taskResponse
     }
 
-    func put(with body: Data, to url: URL) async throws -> URLResponse {
+    func put(with body: Data, to url: URL) async throws -> DataTaskResponse {
         let taskResponse: DataTaskResponse  = try await sendRequest(url: url, requestType: .put, body: body)
-        return taskResponse.response
+        return taskResponse
     }
 
     func delete(with body: Data, from url: URL) async throws -> DataTaskResponse {
