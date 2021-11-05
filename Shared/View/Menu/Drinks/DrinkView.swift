@@ -20,10 +20,10 @@ struct DrinkView: View {
             } placeholder: {
                 ProgressView()
             }
-            Text(drink.name)
+            Text(LocalizedStringKey(drink.name))
                 .font(.body)
                 .foregroundColor(.primary)
-            Text(drink.price)
+            Text(LocalizedStringKey(drink.price))
                 .font(.body)
                 .foregroundColor(.secondary)
                 .padding(.top, 1)

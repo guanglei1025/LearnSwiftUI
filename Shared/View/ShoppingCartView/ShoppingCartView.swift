@@ -18,7 +18,7 @@ struct ShoppingCartView: View {
         if orders.isEmpty {
             NavigationView {
                 EmptyShoppingCartView()
-                    .navigationTitle("Cart")
+                    .navigationTitle(LocalizedStringKey("Cart"))
             }
         } else {
             NavigationView {
@@ -33,7 +33,7 @@ struct ShoppingCartView: View {
                         HStack {
                             Spacer()
                             let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
-                            Text("Total Amount: $\(amount)")
+                            Text(LocalizedStringKey("Total Amount: $\(amount)"))
                                 .font(.title2)
                                 .fontWeight(.semibold)
                                 .padding(.trailing)
@@ -45,7 +45,7 @@ struct ShoppingCartView: View {
                         Button(action: {
                             shoppingCartStore.submitOrder()
                         }) {
-                            Text("Submit order")
+                            Text(LocalizedStringKey("Submit order"))
                                 .fontWeight(.semibold)
                                 .font(.title3)
                                 .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -58,7 +58,7 @@ struct ShoppingCartView: View {
                 .toolbar {
                     EditButton()
                 }
-                .navigationTitle("Cart")
+                .navigationTitle(LocalizedStringKey("Cart"))
             }
         }
     }

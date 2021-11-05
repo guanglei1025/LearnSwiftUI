@@ -14,33 +14,41 @@ struct MenuView: View {
     var body: some View {
         NavigationView {
             List {
-                let featuredItems = productStore.foods
-                if featuredItems.count > 0 {
-                    FeaturedView(pages: featuredItems.map {
+                // REVIEW: I'm not against creating local constants like this.
+                // It can stay or be changed to just use `productStore.foods.count` or `.map`
+                // See my example below
+                // let featuredItems = productStore.foods
+                if productStore.foods.count > 0 {
+                    FeaturedView(pages: productStore.foods.map {
                         FeaturedCard(product: $0)
                     })
                         .aspectRatio(3 / 2, contentMode: .fit)
                         .listRowInsets(EdgeInsets())
                 }
 
-                let foods = productStore.foods
-                if foods.count > 0 {
-                    NavigationLink(destination: ProductList(products: foods)) {
-                        FoodRow(foods: foods)
+                // REVIEW: Isn't this a duplicate of `featuredItems`?
+                // In general I prefer to juse have the data model handle properties
+                // like this.
+                // let foods = productStore.foods
+                if productStore.foods.count > 0 {
+                    NavigationLink(destination: ProductList(products: productStore.foods)) {
+                        FoodRow(foods: productStore.foods)
                     }
                     .listRowInsets(EdgeInsets())
                 }
 
-                let drinks = productStore.drinks
-                if drinks.count > 0 {
-                    NavigationLink(destination: ProductList(products: drinks)) {
-                        DrinkRow(drinks: drinks)
+                // REVIEW: Same comment for drinks
+                // let drinks = productStore.drinks
+                if productStore.drinks.count > 0 {
+                    NavigationLink(destination: ProductList(products: productStore.drinks)) {
+                        DrinkRow(drinks: productStore.drinks)
                     }
                     .listRowInsets(EdgeInsets())
                 }
             }
             .listStyle(InsetListStyle())
-            .navigationTitle("Featured")
+            // REVIEW: In keeping with BNR's standards we should localize all our strings
+            .navigationTitle(LocalizedStringKey("Featured"))
         }
         .task {
             await productStore.fetchProducts()

@@ -20,10 +20,10 @@ struct FoodView: View {
             } placeholder: {
                 ProgressView()
             }
-            Text(food.name)
+            Text(LocalizedStringKey(food.name))
                 .font(.subheadline)
                 .foregroundColor(.primary)
-            Text(food.price)
+            Text(LocalizedStringKey(food.price))
                 .font(.body)
                 .foregroundColor(.secondary)
                 .padding(.top, 1)

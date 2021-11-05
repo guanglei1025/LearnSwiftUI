@@ -16,7 +16,7 @@ struct EmptyShoppingCartView: View {
                 .foregroundColor(.secondary)
                 .frame(width: 60.0, height: 50.0, alignment: .center)
                 .padding(.bottom)
-            Text("Your cart is empty.")
+            Text(LocalizedStringKey("Your cart is empty."))
                 .font(.subheadline)
                 .fontWeight(.bold)
                 .foregroundColor(.secondary)
