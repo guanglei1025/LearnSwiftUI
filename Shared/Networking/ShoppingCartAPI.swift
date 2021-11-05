@@ -22,8 +22,7 @@ final class ShoppingCartAPI: ShoppingCartService {
     }
 
     func fetchShoppingCart() async throws -> ShoppingCart {
-        let shoppingCartId = "707CB142-F9CB-4972-A416-9E484F1EAE23"
-        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/\(shoppingCartId)") else {
+        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart") else {
             throw WebServiceError.invalidURL
         }
         let data = try await webService.get(from: url)
