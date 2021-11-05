@@ -43,7 +43,12 @@ class ShoppingCartStore: ObservableObject {
         }
     }
 
-    func submitOrder() {
-        //TODO:
+    func submitShoppingCart() async {
+        do {
+            let shoppingCart = try await shoppingCartService.submitShoppingCart(self.shoppingCart)
+            self.shoppingCart = shoppingCart
+        } catch {
+            print("submit shopping cart error: \(error)")
+        }
     }
 }
