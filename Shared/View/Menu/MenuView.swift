@@ -42,6 +42,7 @@ struct MenuView: View {
             .listStyle(InsetListStyle())
             .navigationTitle("Featured")
         }
+        .navigationViewStyle(.stack)
         .task {
             await productStore.fetchProducts()
             await shoppingCartStore.fetchShoppingCart()
