@@ -9,9 +9,11 @@ import Foundation
 
 protocol ShoppingCartService {
     func fetchShoppingCart() async throws -> ShoppingCart
+    func deleteShoppingCart(_ newItem: ShoppingCart) async throws
+    func updateShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart
+    
     func saveShoppingCart(_ newItem: ShoppingCart) async throws
     func submitShoppingCart(_ newItem: ShoppingCart) async throws
-    func deleteShoppingCart(_ newItem: ShoppingCart) async throws
 }
 
 final class ShoppingCartAPI: ShoppingCartService {
@@ -29,6 +31,18 @@ final class ShoppingCartAPI: ShoppingCartService {
         let decodedData = try JSONDecoder().decode(ShoppingCart.self, from: data)
         return decodedData
     }
+
+    func updateShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart {
+        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/update") else {
+            throw WebServiceError.invalidURL
+        }
+        
+        let jsonData = try JSONEncoder().encode(newItem)
+        let taskResponse = try await webService.put(with: jsonData, to: url)
+
+        let decodedData = try JSONDecoder().decode(ShoppingCart.self, from: taskResponse.data)
+        return decodedData
+   }
 
     func saveShoppingCart(_ newItem: ShoppingCart) async throws {
         guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/save") else {
