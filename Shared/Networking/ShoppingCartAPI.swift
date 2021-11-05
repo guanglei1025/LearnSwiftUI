@@ -33,7 +33,8 @@ final class ShoppingCartAPI: ShoppingCartService {
     }
 
     func updateShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart {
-        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/update") else {
+        let shoppingCartId = newItem.id
+        guard let url = URL(string: "http://127.0.0.1:8080/shoppingCart/update/\(shoppingCartId)") else {
             throw WebServiceError.invalidURL
         }
         

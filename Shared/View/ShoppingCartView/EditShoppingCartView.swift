@@ -55,7 +55,7 @@ struct EditShoppingCartView: View {
                     // Trigger alert once value is true
                     if quantityChanged {
                         isSaved = true
-                        shoppingCartStore.shoppingCart.updateOrder(order)
+                        updateShoppingCart()
                     }
                 }) {
                     Text("Save")
@@ -75,6 +75,17 @@ struct EditShoppingCartView: View {
                                  dismissButton: button)
                 }
             }
+        }
+    }
+}
+
+extension EditShoppingCartView {
+    func updateShoppingCart() {
+        // TODO: Mabye we need to make the following call `await` as well? I am not sure.
+        shoppingCartStore.shoppingCart.updateOrder(order)
+        
+        Task.init {
+            await shoppingCartStore.updateShoppingCart()
         }
     }
 }
