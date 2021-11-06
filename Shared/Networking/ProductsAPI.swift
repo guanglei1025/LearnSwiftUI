@@ -14,13 +14,14 @@ protocol ProductService {
 
 final class ProductAPI: ProductService {
     private var webService: WebService
-
+    private let productsBaseURL = "http://127.0.0.1:8080/products"
+    
     init(webService: WebService) {
         self.webService = webService
     }
 
     func fetchAllProducts() async throws -> [Product] {
-        guard let url = URL(string: "http://127.0.0.1:8080/products") else {
+        guard let url = URL(string: productsBaseURL) else {
             throw WebServiceError.invalidURL
         }
 
@@ -30,7 +31,7 @@ final class ProductAPI: ProductService {
     }
 
     func fetchProduct(with id: String) async throws -> Product {
-        guard let url = URL(string: "http://127.0.0.1:8080/products/\(id)") else {
+        guard let url = URL(string: "\(productsBaseURL)/\(id)") else {
             throw WebServiceError.invalidURL
         }
 
