@@ -43,7 +43,7 @@ struct ShoppingCartView: View {
                     VStack {
                         Spacer()
                         Button(action: {
-                            shoppingCartStore.submitOrder()
+                            submitShoppingCart()
                         }) {
                             Text(LocalizedStringKey("Submit order"))
                                 .fontWeight(.semibold)
@@ -73,6 +73,12 @@ struct ShoppingCartView: View {
             }
         } else {
             shoppingCart.remove(at: index)
+        }
+    }
+    
+    private func submitShoppingCart() {
+        Task.init {
+            await shoppingCartStore.submitShoppingCart()
         }
     }
 }
