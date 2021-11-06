@@ -45,7 +45,7 @@ struct ProductDetailsView: View {
                     .padding()
                 Spacer()
 
-                Text("Total: \(total)")
+                Text(LocalizedStringKey("Total: \(total)"))
                     .font(.title2)
                     .fontWeight(.bold)
                 NumberPicker(totalNumber: $total)
@@ -60,7 +60,7 @@ struct ProductDetailsView: View {
                     let order = Order(from: product, quantity: total)
                     shoppingCartStore.shoppingCart.addOrder(order)
                 }) {
-                    Text("Add to Cart")
+                    Text(LocalizedStringKey("Add to Cart"))
                         .fontWeight(.semibold)
                         .font(.title3)
                         .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -72,8 +72,8 @@ struct ProductDetailsView: View {
                         totalQuantityChanged = false
                         presentationMode.wrappedValue.dismiss()
                     }
-                    return Alert(title: Text("Added to cart"),
-                                 message: Text("Please continue check out from shopping cart."),
+                    return Alert(title: Text(LocalizedStringKey("Added to cart")),
+                                 message: Text(LocalizedStringKey("Please continue check out from shopping cart.")),
                                  dismissButton: button)
                 }
 

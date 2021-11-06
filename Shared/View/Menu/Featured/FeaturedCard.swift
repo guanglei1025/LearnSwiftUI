@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeaturedCard: View {
     var product: Product
-
+    
     var body: some View {
         CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
             image
@@ -24,7 +24,7 @@ struct FeaturedCard: View {
 
 struct TextOverlay: View {
     var name: String
-
+    
     var gradient: LinearGradient {
         LinearGradient(
             gradient: Gradient(
@@ -32,7 +32,7 @@ struct TextOverlay: View {
             startPoint: .bottom,
             endPoint: .center)
     }
-
+    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Rectangle().fill(gradient)

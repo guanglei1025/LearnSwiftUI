@@ -21,13 +21,13 @@ struct ContentView: View {
         TabView(selection: $selection) {
             MenuView()
                 .tabItem {
-                    Label("Menu", systemImage: "heart")
+                    Label(LocalizedStringKey("Menu"), systemImage: "heart")
                 }
                 .tag(Tab.menu)
 
             ShoppingCartView()
                 .tabItem {
-                    Label("Cart", systemImage: "cart")
+                    Label(LocalizedStringKey("Cart"), systemImage: "cart")
                 }
                 .tag(Tab.cart)
         }

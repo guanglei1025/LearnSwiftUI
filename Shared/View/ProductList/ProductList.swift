@@ -19,7 +19,8 @@ struct ProductList: View {
                 }
             }
         }
-        .navigationTitle(products[0].category)
+        // REVIEW: We should capitalize the navigation title
+        .navigationTitle(products[0].category.capitalized(with: .current))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+// REVIEW: Small nit here but we could probably extract some of the view
+// combinations into their own dedicated view to help consolidate complexity
+// inside the ScrollView. Not a blocker or deal breaker.
+
 struct EditShoppingCartView: View {
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
     @Environment(\.presentationMode) var presentationMode
@@ -42,7 +46,7 @@ struct EditShoppingCartView: View {
                     .padding()
                 Spacer()
 
-                Text("Total: \(order.quantity)")
+                Text(LocalizedStringKey("Total: \(order.quantity)"))
                     .font(.title2)
                     .fontWeight(.bold)
                 NumberPicker(totalNumber: $order.quantity)
@@ -58,20 +62,20 @@ struct EditShoppingCartView: View {
                         updateShoppingCart()
                     }
                 }) {
-                    Text("Save")
+                    Text(LocalizedStringKey("Save"))
                         .fontWeight(.semibold)
                         .font(.title3)
                         .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(DefaultButtonStyle(disabled: !quantityChanged))
                 .alert(isPresented: $isSaved) { () -> Alert in
-                    let button = Alert.Button.default(Text("OK")) {
+                    let button = Alert.Button.default(Text(LocalizedStringKey("OK"))) {
                         // Disable save button
                         quantityChanged = false
                         presentationMode.wrappedValue.dismiss()
                     }
-                    return Alert(title: Text("Shopping cart is updated"),
-                                 message: Text("Please continue check out from shopping cart."),
+                    return Alert(title: Text(LocalizedStringKey("Shopping cart is updated")),
+                                 message: Text(LocalizedStringKey("Please continue check out from shopping cart.")),
                                  dismissButton: button)
                 }
             }

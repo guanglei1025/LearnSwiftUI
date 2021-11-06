@@ -13,7 +13,7 @@ struct FoodRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .bottom) {
-                Text("Foods")
+                Text(LocalizedStringKey("Foods"))
                     .font(.system(size: 25))
                     .fontWeight(.bold)
                     .foregroundColor(.secondary)
@@ -22,7 +22,7 @@ struct FoodRow: View {
 
                 Spacer()
 
-                Text("See all")
+                Text(LocalizedStringKey("See all"))
                     .fontWeight(.bold)
                     .foregroundColor(Color.blue)
                     .padding(.trailing, 10)
