@@ -52,6 +52,18 @@ struct ShoppingCartView: View {
                         }
                         .buttonStyle(DefaultButtonStyle())
                         .padding(.bottom)
+                        
+                        Button(action: {
+                            saveShoppingCart()
+                        }) {
+                            Text(LocalizedStringKey("Save order"))
+                                .fontWeight(.semibold)
+                                .font(.title3)
+                                .frame(width: 250, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        }
+                        .buttonStyle(DefaultButtonStyle())
+                        .padding(.bottom)
+                        
                     }
                 }
 
@@ -68,7 +80,7 @@ struct ShoppingCartView: View {
         var shoppingCart = shoppingCartStore.shoppingCart
         let isLastOrderInCart = shoppingCart.orders.count == 1
         if isLastOrderInCart {
-            Task.init {
+            Task {
                 await shoppingCartStore.deleteShoppingCart()
             }
         } else {
@@ -77,8 +89,14 @@ struct ShoppingCartView: View {
     }
     
     private func submitShoppingCart() {
-        Task.init {
+        Task {
             await shoppingCartStore.submitShoppingCart()
+        }
+    }
+    
+    private func saveShoppingCart() {
+        Task {
+            await shoppingCartStore.saveShoppingCart()
         }
     }
 }
