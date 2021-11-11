@@ -12,8 +12,7 @@ protocol ShoppingCartService {
     func deleteShoppingCart(_ newItem: ShoppingCart) async throws
     func updateShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart
     func submitShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart
-
-    func saveShoppingCart(_ newItem: ShoppingCart) async throws
+    func saveShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart
 }
 
 final class ShoppingCartAPI: ShoppingCartService {
@@ -41,16 +40,14 @@ final class ShoppingCartAPI: ShoppingCartService {
         return decodedData
    }
 
-    func saveShoppingCart(_ newItem: ShoppingCart) async throws {
+    func saveShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart {
         let url = ShoppingCartURL.save.url
 
         let jsonData = try JSONEncoder().encode(newItem)
         let taskResponse = try await webService.post(with: jsonData, to: url)
-
-        guard let response = taskResponse.response as? HTTPURLResponse else {
-            throw WebServiceError.unexpectedStatusCode
-        }
-        print(response.statusCode)
+        
+        let decodedData = try JSONDecoder().decode(ShoppingCart.self, from: taskResponse.data)
+        return decodedData
     }
 
     func submitShoppingCart(_ newItem: ShoppingCart) async throws -> ShoppingCart {
