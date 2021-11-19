@@ -65,14 +65,8 @@ struct ShoppingCartView: View {
 
     /// Delete order from `shoppingCart`
     private func deleteOrder(index: IndexSet) {
-        var shoppingCart = shoppingCartStore.shoppingCart
-        let isLastOrderInCart = shoppingCart.orders.count == 1
-        if isLastOrderInCart {
-            Task {
-                await shoppingCartStore.deleteShoppingCart()
-            }
-        } else {
-            shoppingCart.remove(at: index)
+        Task {
+            await shoppingCartStore.deleteOrder(index: index)
         }
     }
     

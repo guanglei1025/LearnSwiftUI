@@ -24,15 +24,6 @@ class ShoppingCartStore: ObservableObject {
             print("fetch shopping cart error: \(error)")
         }
     }
-
-    func deleteShoppingCart() async {
-        do {
-            _ = try await shoppingCartService.deleteShoppingCart(self.shoppingCart)
-            self.shoppingCart = ShoppingCart()
-        } catch {
-            print("delete shopping cart error: \(error)")
-        }
-    }
     
     func submitShoppingCart() async {
         do {
@@ -60,6 +51,18 @@ class ShoppingCartStore: ObservableObject {
         await updateShoppingCart()
     }
     
+    /// Delete `shoppingCart` from server if deleting the last order, otherwise update it.
+    func deleteOrder(index: IndexSet) async {
+        if shoppingCart.onlyOneLeft {
+            await deleteShoppingCart()
+        } else {
+            shoppingCart.remove(at: index)
+            await updateShoppingCart()
+        }
+    }
+
+    // MARK: - Private methods
+
     private func updateShoppingCart() async {
         do {
             let shoppingCart = try await shoppingCartService.updateShoppingCart(self.shoppingCart)
@@ -75,6 +78,15 @@ class ShoppingCartStore: ObservableObject {
             self.shoppingCart = shoppingCart
         } catch {
             print("save shopping cart error: \(error)")
+        }
+    }
+    
+    private func deleteShoppingCart() async {
+        do {
+            _ = try await shoppingCartService.deleteShoppingCart(self.shoppingCart)
+            self.shoppingCart = ShoppingCart()
+        } catch {
+            print("delete shopping cart error: \(error)")
         }
     }
 }
