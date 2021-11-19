@@ -24,7 +24,6 @@ class ShoppingCartStore: ObservableObject {
             print("fetch shopping cart error: \(error)")
         }
     }
-    
     func submitShoppingCart() async {
         do {
             let shoppingCart = try await shoppingCartService.submitShoppingCart(self.shoppingCart)
