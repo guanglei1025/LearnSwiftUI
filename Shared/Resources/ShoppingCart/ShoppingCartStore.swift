@@ -80,7 +80,7 @@ class ShoppingCartStore: ObservableObject {
             print("save shopping cart error: \(error)")
         }
     }
-    
+
     private func deleteShoppingCart() async {
         do {
             _ = try await shoppingCartService.deleteShoppingCart(self.shoppingCart)
