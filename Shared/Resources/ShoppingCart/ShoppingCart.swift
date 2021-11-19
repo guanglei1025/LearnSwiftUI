@@ -20,6 +20,10 @@ extension ShoppingCart {
         }
     }
 
+    var isEmpty: Bool {
+        orders.isEmpty
+    }
+    
     mutating func remove(at offsets: IndexSet) {
         orders.remove(atOffsets: offsets)
     }

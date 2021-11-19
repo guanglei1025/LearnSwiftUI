@@ -55,10 +55,11 @@ struct ProductDetailsView: View {
                     }
 
                 Button(action: {
-                    // Trigger alert
                     isAdded = true
                     let order = Order(from: product, quantity: total)
-                    shoppingCartStore.shoppingCart.addOrder(order)
+                    Task {
+                        await shoppingCartStore.addOrder(order)
+                    }
                 }) {
                     Text(LocalizedStringKey("Add to Cart"))
                         .fontWeight(.semibold)
