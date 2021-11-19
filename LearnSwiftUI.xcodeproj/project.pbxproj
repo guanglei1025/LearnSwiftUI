@@ -31,6 +31,7 @@
 		A1BC97F22706A03D003C7E09 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC97F02706A03D003C7E09 /* ProductDetailsView.swift */; };
 		A1BD6E3426F186630052A5D2 /* EmptyShoppingCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BD6E3326F186630052A5D2 /* EmptyShoppingCartView.swift */; };
 		A1BD6E3526F186630052A5D2 /* EmptyShoppingCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BD6E3326F186630052A5D2 /* EmptyShoppingCartView.swift */; };
+		A1C5C5EC27362A0F001F4450 /* ShoppingCartURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5C5EB27362A0F001F4450 /* ShoppingCartURL.swift */; };
 		A1D747A72584002900DCB7E1 /* FoodRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D747A62584002900DCB7E1 /* FoodRow.swift */; };
 		A1D747A82584002900DCB7E1 /* FoodRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D747A62584002900DCB7E1 /* FoodRow.swift */; };
 		A1D747AC258406C000DCB7E1 /* DrinkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D747AB258406C000DCB7E1 /* DrinkRow.swift */; };
@@ -77,6 +78,7 @@
 		A1BC677E25B89C360028737F /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		A1BC97F02706A03D003C7E09 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
 		A1BD6E3326F186630052A5D2 /* EmptyShoppingCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyShoppingCartView.swift; sourceTree = "<group>"; };
+		A1C5C5EB27362A0F001F4450 /* ShoppingCartURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartURL.swift; sourceTree = "<group>"; };
 		A1D747A62584002900DCB7E1 /* FoodRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRow.swift; sourceTree = "<group>"; };
 		A1D747AB258406C000DCB7E1 /* DrinkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRow.swift; sourceTree = "<group>"; };
 		A1D747BA25845F3600DCB7E1 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				DDB5B90F26FC1CB200E42738 /* WebService.swift */,
 				DD1E56A32703BFA8002C58AE /* ProductsAPI.swift */,
 				DDD1F77B27054715000A0873 /* ShoppingCartAPI.swift */,
+				A1C5C5EB27362A0F001F4450 /* ShoppingCartURL.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1E56A62703C01C002C58AE /* Product.swift in Sources */,
+				A1C5C5EC27362A0F001F4450 /* ShoppingCartURL.swift in Sources */,
 				A1B52E1727055C8D00B4F0FF /* ProductRow.swift in Sources */,
 				A1BC677F25B89C360028737F /* NumberPicker.swift in Sources */,
 				A1B52E112705560700B4F0FF /* FoodView.swift in Sources */,

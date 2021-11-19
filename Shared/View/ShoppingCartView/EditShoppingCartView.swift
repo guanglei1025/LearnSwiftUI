@@ -88,7 +88,7 @@ extension EditShoppingCartView {
         // TODO: Mabye we need to make the following call `await` as well? I am not sure.
         shoppingCartStore.shoppingCart.updateOrder(order)
         
-        Task.init {
+        Task {
             await shoppingCartStore.updateShoppingCart()
         }
     }

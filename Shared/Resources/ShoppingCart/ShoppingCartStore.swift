@@ -51,4 +51,13 @@ class ShoppingCartStore: ObservableObject {
             print("submit shopping cart error: \(error)")
         }
     }
+    
+    func saveShoppingCart() async {
+        do {
+            let shoppingCart = try await shoppingCartService.saveShoppingCart(self.shoppingCart)
+            self.shoppingCart = shoppingCart
+        } catch {
+            print("save shopping cart error: \(error)")
+        }
+    }
 }
