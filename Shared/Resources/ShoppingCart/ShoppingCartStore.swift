@@ -24,25 +24,6 @@ class ShoppingCartStore: ObservableObject {
             print("fetch shopping cart error: \(error)")
         }
     }
-
-    func deleteShoppingCart() async {
-        do {
-            _ = try await shoppingCartService.deleteShoppingCart(self.shoppingCart)
-            self.shoppingCart = ShoppingCart()
-        } catch {
-            print("delete shopping cart error: \(error)")
-        }
-    }
-
-    func updateShoppingCart() async {
-        do {
-            let shoppingCart = try await shoppingCartService.updateShoppingCart(self.shoppingCart)
-            self.shoppingCart = shoppingCart
-        } catch {
-            print("update shopping cart error: \(error)")
-        }
-    }
-
     func submitShoppingCart() async {
         do {
             let shoppingCart = try await shoppingCartService.submitShoppingCart(self.shoppingCart)
@@ -51,13 +32,60 @@ class ShoppingCartStore: ObservableObject {
             print("submit shopping cart error: \(error)")
         }
     }
+
+    /// If `shoppingCart` is empty, it will save one on the server, otherwise, updated the `shoppingCart` on server.
+    func addOrder(_ newOrder: Order) async {
+        if shoppingCart.isEmpty {
+            shoppingCart.addOrder(newOrder)
+            await saveShoppingCart()
+        } else {
+            shoppingCart.addOrder(newOrder)
+            await updateShoppingCart()
+        }
+    }
     
-    func saveShoppingCart() async {
+    /// Update existing `shoppingCart` on the sever
+    func updateOrder(_ order: Order) async {
+        shoppingCart.updateOrder(order)
+        await updateShoppingCart()
+    }
+    
+    /// Delete `shoppingCart` from server if deleting the last order, otherwise update it.
+    func deleteOrder(index: IndexSet) async {
+        if shoppingCart.onlyOneLeft {
+            await deleteShoppingCart()
+        } else {
+            shoppingCart.remove(at: index)
+            await updateShoppingCart()
+        }
+    }
+
+    // MARK: - Private methods
+
+    private func updateShoppingCart() async {
+        do {
+            let shoppingCart = try await shoppingCartService.updateShoppingCart(self.shoppingCart)
+            self.shoppingCart = shoppingCart
+        } catch {
+            print("update shopping cart error: \(error)")
+        }
+    }
+
+    private func saveShoppingCart() async {
         do {
             let shoppingCart = try await shoppingCartService.saveShoppingCart(self.shoppingCart)
             self.shoppingCart = shoppingCart
         } catch {
             print("save shopping cart error: \(error)")
+        }
+    }
+
+    private func deleteShoppingCart() async {
+        do {
+            _ = try await shoppingCartService.deleteShoppingCart(self.shoppingCart)
+            self.shoppingCart = ShoppingCart()
+        } catch {
+            print("delete shopping cart error: \(error)")
         }
     }
 }

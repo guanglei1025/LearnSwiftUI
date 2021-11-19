@@ -20,11 +20,20 @@ extension ShoppingCart {
         }
     }
 
+    var isEmpty: Bool {
+        orders.isEmpty
+    }
+    
+    /// Only one order left in the shopping cart
+    var onlyOneLeft: Bool {
+        orders.count == 1
+    }
+    
     mutating func remove(at offsets: IndexSet) {
         orders.remove(atOffsets: offsets)
     }
 
-    // Add order to shopping cart based on different condition
+    /// Add order to shopping cart based on different condition
     mutating func addOrder(_ newOrder: Order) {
         // If the product of the new order already exists in the orders,
         // then get the sum of quantity as the updated quantity of the order for this specific product
