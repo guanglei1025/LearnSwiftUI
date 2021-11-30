@@ -10,6 +10,7 @@ import Foundation
 struct Product: Codable, Identifiable, Hashable {
     let id: UUID
     let stockQuantity: Int
+    let selectedQuantity: Int
     let price: String
     let imageURL: String
     let description: String

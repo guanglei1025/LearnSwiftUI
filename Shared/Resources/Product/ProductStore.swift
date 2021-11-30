@@ -57,6 +57,7 @@ extension ProductStore {
         [
             Product(id: UUID(uuidString: "AAEDBCB7-D32C-4F1E-89F8-C41E2D93CA32")!,
                     stockQuantity: 10,
+                    selectedQuantity: 1,
                     price: "3.99",
                     imageURL: "https://lovingitvegan.com/wp-content/uploads/2018/11/Vegan-Eggnog-8.jpg",
                     description: "description",
