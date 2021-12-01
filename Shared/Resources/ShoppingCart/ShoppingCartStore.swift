@@ -50,7 +50,7 @@ class ShoppingCartStore: ObservableObject {
         await updateShoppingCart()
     }
     
-    /// Delete `shoppingCart` from server if deleting the last order, otherwise update it.
+    /// Delete `shoppingCart` from server if deleting the last product, otherwise update it.
     func deleteProduct(at index: IndexSet) async {
         if shoppingCart.onlyOneLeft {
             await deleteShoppingCart()

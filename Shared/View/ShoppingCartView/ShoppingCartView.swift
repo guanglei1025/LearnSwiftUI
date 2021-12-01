@@ -14,7 +14,7 @@ struct ShoppingCartView: View {
     var body: some View {
 
         let shoppingCart = shoppingCartStore.shoppingCart
-        
+
         if shoppingCart.isEmpty {
             NavigationView {
                 EmptyShoppingCartView()
@@ -63,7 +63,7 @@ struct ShoppingCartView: View {
         }
     }
 
-    /// Delete order from `shoppingCart`
+    /// Delete product from `shoppingCart`
     private func deleteProduct(at index: IndexSet) {
         Task {
             await shoppingCartStore.deleteProduct(at: index)

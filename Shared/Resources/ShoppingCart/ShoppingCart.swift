@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// A list of orders that user selected
+/// A list of products that user selected
 struct ShoppingCart: Codable {
     var id = UUID()
     private(set) var products = [Product]()
@@ -16,7 +16,7 @@ struct ShoppingCart: Codable {
 extension ShoppingCart {
     func totalAmount() -> Decimal {
         products.reduce(0) {
-            $0 + $1.totalPriceInDecimal
+            $0 + $1.selectedAmountInDecimal
         }
     }
 
@@ -24,7 +24,7 @@ extension ShoppingCart {
         products.isEmpty
     }
     
-    /// Only one order left in the shopping cart
+    /// Only one product left in the shopping cart
     var onlyOneLeft: Bool {
         products.count == 1
     }
@@ -43,7 +43,7 @@ extension ShoppingCart {
 
     mutating func updateProduct(_ newProduct: Product) {
         guard let index = products.firstIndex(where: {$0.id == newProduct.id}) else {
-            preconditionFailure("Error: Not able to find an order from the shopping cart")
+            preconditionFailure("Error: Not able to find an product from the shopping cart")
         }
         products[index] = newProduct
     }

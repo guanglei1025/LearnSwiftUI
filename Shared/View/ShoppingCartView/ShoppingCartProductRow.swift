@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShoppingCartProductRow: View {
     
-    /// Current product in the order
+    /// Current product in the row
     let product: Product
     
     var body: some View {
@@ -32,7 +32,7 @@ struct ShoppingCartProductRow: View {
                     Text("$\(product.price) × \(product.selectedQuantity)")
                         .foregroundColor(.secondary)
                     Spacer()
-                    Text("$\(product.totalPriceInDecimal.stringValue)")
+                    Text("$\(product.selectedAmountInDecimal.stringValue)")
                 }
             }
             Spacer()

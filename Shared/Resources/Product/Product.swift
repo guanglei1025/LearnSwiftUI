@@ -29,7 +29,8 @@ extension Product {
         Decimal.decimalValueOrZero(fromString: price)
     }
     
-    var totalPriceInDecimal: Decimal {
+    /// The total selected amount of the product
+    var selectedAmountInDecimal: Decimal {
         priceInDecimal * Decimal(selectedQuantity)
     }
 }
