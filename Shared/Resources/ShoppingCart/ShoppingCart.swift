@@ -11,26 +11,27 @@ import Foundation
 struct ShoppingCart: Codable {
     var id = UUID()
     private(set) var orders = [Order]()
+    private(set) var products = [Product]()
 }
 
 extension ShoppingCart {
     func totalAmount() -> Decimal {
-        orders.reduce(0) {
-            $0 + $1.totalAmount()
+        products.reduce(0) {
+            $0 + $1.priceInDecimal
         }
     }
 
     var isEmpty: Bool {
-        orders.isEmpty
+        products.isEmpty
     }
     
     /// Only one order left in the shopping cart
     var onlyOneLeft: Bool {
-        orders.count == 1
+        products.count == 1
     }
     
     mutating func remove(at offsets: IndexSet) {
-        orders.remove(atOffsets: offsets)
+        products.remove(atOffsets: offsets)
     }
 
     /// Add order to shopping cart based on different condition
@@ -47,6 +48,14 @@ extension ShoppingCart {
             orders.append(newOrder)
         }
     }
+    
+    mutating func addProduct(_ newProduct: Product) {
+        guard var product = products.first(where: {$0.id == newProduct.id}) else {
+            products.append(newProduct)
+            return
+        }
+        product.selectedQuantity += newProduct.selectedQuantity
+    }
 
     mutating func updateOrder(_ order: Order) {
         guard let index = indexOfOrder(with: order.id) else {
@@ -54,9 +63,15 @@ extension ShoppingCart {
         }
         orders[index] = order
     }
-
+    
     private func indexOfOrder(with id: UUID) -> Int? {
         orders.firstIndex { $0.id == id }
     }
+    
+    mutating func updateProduct(_ newProduct: Product) {
+        guard let index = products.firstIndex(where: {$0.id == newProduct.id}) else {
+            preconditionFailure("Error: Not able to find an order from the shopping cart")
+        }
+        products[index] = newProduct
+    }
 }
-
