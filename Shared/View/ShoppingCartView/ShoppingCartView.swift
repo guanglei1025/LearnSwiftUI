@@ -29,7 +29,7 @@ struct ShoppingCartView: View {
                                 OrderRow(product: product)
                             }
                         }
-                        .onDelete(perform: deleteOrder)
+                        .onDelete(perform: deleteProduct)
                         HStack {
                             Spacer()
                             let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
@@ -64,9 +64,9 @@ struct ShoppingCartView: View {
     }
 
     /// Delete order from `shoppingCart`
-    private func deleteOrder(index: IndexSet) {
+    private func deleteProduct(at index: IndexSet) {
         Task {
-            await shoppingCartStore.deleteOrder(index: index)
+            await shoppingCartStore.deleteProduct(at: index)
         }
     }
     
