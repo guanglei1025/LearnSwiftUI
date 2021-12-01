@@ -35,11 +35,11 @@ class ShoppingCartStore: ObservableObject {
 
     /// If `shoppingCart` is empty, it will save one on the server, otherwise, updated the `shoppingCart` on server.
     func addProduct(_ newProduct: Product) async {
+        shoppingCart.addProduct(newProduct)
+        
         if shoppingCart.isEmpty {
-            shoppingCart.addProduct(newProduct)
             await saveShoppingCart()
         } else {
-            shoppingCart.updateProduct(newProduct)
             await updateShoppingCart()
         }
     }
