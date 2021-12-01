@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductDetailsView: View {
-    let product: Product
+    @State var product: Product
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
     @Environment(\.presentationMode) var presentationMode
 
@@ -56,9 +56,9 @@ struct ProductDetailsView: View {
 
                 Button(action: {
                     isAdded = true
-                    let order = Order(from: product, quantity: total)
+                    product.selectedQuantity = total
                     Task {
-                        await shoppingCartStore.addOrder(order)
+                        await shoppingCartStore.addProduct(product)
                     }
                 }) {
                     Text(LocalizedStringKey("Add to Cart"))

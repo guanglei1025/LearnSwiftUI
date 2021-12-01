@@ -13,9 +13,9 @@ struct ShoppingCartView: View {
 
     var body: some View {
 
-        let orders = shoppingCartStore.shoppingCart.orders
-
-        if orders.isEmpty {
+        let shoppingCart = shoppingCartStore.shoppingCart
+        
+        if shoppingCart.isEmpty {
             NavigationView {
                 EmptyShoppingCartView()
                     .navigationTitle(LocalizedStringKey("Cart"))
@@ -24,9 +24,9 @@ struct ShoppingCartView: View {
             NavigationView {
                 ZStack {
                     List {
-                        ForEach(orders) { order in
-                            NavigationLink(destination: EditShoppingCartView(order: order)) {
-                                OrderRow(order: order)
+                        ForEach(shoppingCart.products) { product in
+                            NavigationLink(destination: EditShoppingCartView(product: product)) {
+                                OrderRow(product: product)
                             }
                         }
                         .onDelete(perform: deleteOrder)

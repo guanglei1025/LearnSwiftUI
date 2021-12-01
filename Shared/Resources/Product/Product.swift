@@ -28,4 +28,8 @@ extension Product {
     var priceInDecimal: Decimal {
         Decimal.decimalValueOrZero(fromString: price)
     }
+    
+    var totalPriceInDecimal: Decimal {
+        priceInDecimal * Decimal(selectedQuantity)
+    }
 }

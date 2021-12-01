@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct OrderRow: View {
-    let order: Order
-
+    
+    /// Current product in the order
+    let product: Product
+    
     var body: some View {
-        // Current product in the order
-        let product = order.product
-        
         HStack {
             CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                 image
@@ -30,11 +29,10 @@ struct OrderRow: View {
                     .font(.headline)
                     .padding(.bottom, 1)
                 HStack {
-                    Text("$\(product.price) × \(order.quantity)")
+                    Text("$\(product.price) × \(product.selectedQuantity)")
                         .foregroundColor(.secondary)
                     Spacer()
-                    let amount = amount(of: product, in: order)
-                    Text("$\(amount.stringValue)")
+                    Text("$\(product.totalPriceInDecimal.stringValue)")
                 }
             }
             Spacer()
@@ -50,7 +48,7 @@ func amount(of product: Product, in order: Order) -> Decimal {
 
 struct OrderRow_Previews: PreviewProvider {
     static var previews: some View {
-        OrderRow(order: ProductStore.fakeOrder())
+        OrderRow(product: ProductStore.fakeProduct())
             .previewLayout(.sizeThatFits)
             .padding()
     }
