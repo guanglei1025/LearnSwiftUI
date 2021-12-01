@@ -15,15 +15,12 @@ struct EditShoppingCartView: View {
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
     @Environment(\.presentationMode) var presentationMode
 
-    /// Current selected order to edit
-    @State var order: Order
+    @State var product: Product
     @State private var isSaved = false
     @State private var quantityChanged = false
 
     var body: some View {
         ScrollView {
-            // Current product in the order
-            let product = order.product
             VStack {
                 CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                     image
@@ -46,11 +43,11 @@ struct EditShoppingCartView: View {
                     .padding()
                 Spacer()
 
-                Text(LocalizedStringKey("Total: \(order.quantity)"))
+                Text(LocalizedStringKey("Total: \(product.selectedQuantity)"))
                     .font(.title2)
                     .fontWeight(.bold)
-                NumberPicker(totalNumber: $order.quantity)
-                    .onChange(of: order.quantity) { _ in
+                NumberPicker(totalNumber: $product.selectedQuantity)
+                    .onChange(of: product.selectedQuantity) { _ in
                         // Enable the save button
                         quantityChanged = true
                     }
@@ -59,7 +56,7 @@ struct EditShoppingCartView: View {
                     if quantityChanged {
                         isSaved = true
                         Task {
-                            await shoppingCartStore.updateOrder(order)
+                            await shoppingCartStore.updateProduct(product)
                         }
                     }
                 }) {
@@ -96,6 +93,6 @@ struct DefaultButtonStyle: ButtonStyle {
 
 struct EditShoppingCartView_Previews: PreviewProvider {
     static var previews: some View {
-        EditShoppingCartView(order: ProductStore.fakeOrder())
+        EditShoppingCartView(product: ProductStore.fakeProduct())
     }
 }

@@ -1,5 +1,5 @@
 //
-//  OrderRow.swift
+//  ShoppingCartProductRow.swift
 //  LearnSwiftUI (iOS)
 //
 //  Created by Lina Gao on 14/09/2021.
@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-struct OrderRow: View {
-    let order: Order
-
+struct ShoppingCartProductRow: View {
+    
+    /// Current product in the row
+    let product: Product
+    
     var body: some View {
-        // Current product in the order
-        let product = order.product
-        
         HStack {
             CacheAsyncImage(url: URL(string: product.imageURL)!) { image in
                 image
@@ -30,11 +29,10 @@ struct OrderRow: View {
                     .font(.headline)
                     .padding(.bottom, 1)
                 HStack {
-                    Text("$\(product.price) × \(order.quantity)")
+                    Text("$\(product.price) × \(product.selectedQuantity)")
                         .foregroundColor(.secondary)
                     Spacer()
-                    let amount = amount(of: product, in: order)
-                    Text("$\(amount.stringValue)")
+                    Text("$\(product.selectedAmountInDecimal.stringValue)")
                 }
             }
             Spacer()
@@ -42,15 +40,9 @@ struct OrderRow: View {
     }
 }
 
-/// Calculate the amount of an `order`, which contains the `product`
-func amount(of product: Product, in order: Order) -> Decimal {
-    product.priceInDecimal * Decimal(order.quantity)
-}
-
-
-struct OrderRow_Previews: PreviewProvider {
+struct ShoppingCartProductRow_Previews: PreviewProvider {
     static var previews: some View {
-        OrderRow(order: ProductStore.fakeOrder())
+        ShoppingCartProductRow(product: ProductStore.fakeProduct())
             .previewLayout(.sizeThatFits)
             .padding()
     }

@@ -13,9 +13,9 @@ struct ShoppingCartView: View {
 
     var body: some View {
 
-        let orders = shoppingCartStore.shoppingCart.orders
+        let shoppingCart = shoppingCartStore.shoppingCart
 
-        if orders.isEmpty {
+        if shoppingCart.isEmpty {
             NavigationView {
                 EmptyShoppingCartView()
                     .navigationTitle(LocalizedStringKey("Cart"))
@@ -24,12 +24,12 @@ struct ShoppingCartView: View {
             NavigationView {
                 ZStack {
                     List {
-                        ForEach(orders) { order in
-                            NavigationLink(destination: EditShoppingCartView(order: order)) {
-                                OrderRow(order: order)
+                        ForEach(shoppingCart.products) { product in
+                            NavigationLink(destination: EditShoppingCartView(product: product)) {
+                                ShoppingCartProductRow(product: product)
                             }
                         }
-                        .onDelete(perform: deleteOrder)
+                        .onDelete(perform: deleteProduct)
                         HStack {
                             Spacer()
                             let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
@@ -63,10 +63,10 @@ struct ShoppingCartView: View {
         }
     }
 
-    /// Delete order from `shoppingCart`
-    private func deleteOrder(index: IndexSet) {
+    /// Delete product from `shoppingCart`
+    private func deleteProduct(at index: IndexSet) {
         Task {
-            await shoppingCartStore.deleteOrder(index: index)
+            await shoppingCartStore.deleteProduct(at: index)
         }
     }
     
