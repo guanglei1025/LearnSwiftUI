@@ -66,11 +66,6 @@ extension ProductStore {
                     category: "food")
         ]
     }
-
-    static func fakeOrder() -> Order {
-        Order(from: fakeItems()[0],
-              quantity: 10)
-    }
     
     static func fakeProduct() -> Product {
         fakeItems()[0]

@@ -1,5 +1,5 @@
 //
-//  OrderRow.swift
+//  ShoppingCartProductRow.swift
 //  LearnSwiftUI (iOS)
 //
 //  Created by Lina Gao on 14/09/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OrderRow: View {
+struct ShoppingCartProductRow: View {
     
     /// Current product in the order
     let product: Product
@@ -40,15 +40,9 @@ struct OrderRow: View {
     }
 }
 
-/// Calculate the amount of an `order`, which contains the `product`
-func amount(of product: Product, in order: Order) -> Decimal {
-    product.priceInDecimal * Decimal(order.quantity)
-}
-
-
-struct OrderRow_Previews: PreviewProvider {
+struct ShoppingCartProductRow_Previews: PreviewProvider {
     static var previews: some View {
-        OrderRow(product: ProductStore.fakeProduct())
+        ShoppingCartProductRow(product: ProductStore.fakeProduct())
             .previewLayout(.sizeThatFits)
             .padding()
     }

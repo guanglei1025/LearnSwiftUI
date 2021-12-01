@@ -26,7 +26,7 @@ struct ShoppingCartView: View {
                     List {
                         ForEach(shoppingCart.products) { product in
                             NavigationLink(destination: EditShoppingCartView(product: product)) {
-                                OrderRow(product: product)
+                                ShoppingCartProductRow(product: product)
                             }
                         }
                         .onDelete(perform: deleteProduct)
