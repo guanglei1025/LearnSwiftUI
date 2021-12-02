@@ -9,13 +9,27 @@ import Foundation
 
 @MainActor
 class ShoppingCartStore: ObservableObject {
-    @Published var shoppingCart = ShoppingCart()
+    @Published private var shoppingCart = ShoppingCart()
     private let shoppingCartService: ShoppingCartService
 
     init(service: ShoppingCartService) {
         self.shoppingCartService = service
     }
 
+    var isEmpty: Bool {
+        shoppingCart.isEmpty
+    }
+    
+    var products: [Product] {
+        shoppingCart.products
+    }
+    
+    var totalAmount: String {
+        shoppingCart.products.reduce(0) {
+            $0 + $1.selectedAmountInDecimal
+        }.stringValue
+    }
+    
     func fetchShoppingCart() async {
         do {
             let shoppingCart = try await shoppingCartService.fetchShoppingCart()
@@ -24,6 +38,7 @@ class ShoppingCartStore: ObservableObject {
             print("fetch shopping cart error: \(error)")
         }
     }
+    
     func submitShoppingCart() async {
         do {
             let shoppingCart = try await shoppingCartService.submitShoppingCart(self.shoppingCart)
