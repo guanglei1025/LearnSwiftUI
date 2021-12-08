@@ -52,8 +52,43 @@ struct MenuView: View {
         }
         .navigationViewStyle(.stack)
         .task {
-            await productStore.fetchProducts()
-            await shoppingCartStore.fetchShoppingCart()
+            await loadProductsAndShoppingCart()
+        }
+    }
+    
+    enum AppError: Error {
+        case product(ProductStoreError?)
+        case shoppingCart(ShoppingCartStoreError?)
+    }
+    
+    func loadProductsAndShoppingCart() async {
+        await withTaskGroup(of: AppError.self) { group in
+            group.addTask {
+                .product(await productStore.fetchProducts())
+            }
+            
+            group.addTask {
+                .shoppingCart(await shoppingCartStore.fetchShoppingCart())
+            }
+            
+            var productError: ProductStoreError?
+            var shoppingCartError: ShoppingCartStoreError?
+            for await result in group {
+                switch result {
+                case .product(let error):
+                    productError = error
+                case .shoppingCart(let error):
+                    shoppingCartError = error
+                }
+            }
+            
+            if productError != nil && shoppingCartError != nil {
+                print("Both API Failed")
+            } else if productError != nil {
+                print("Product API Failed")
+            } else if shoppingCartError != nil {
+                print("Shopping Cart API Failed")
+            }
         }
     }
 }
