@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuView: View {
     @EnvironmentObject var productStore: ProductStore
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
+    @State var hasServerError = false
 
     var body: some View {
         NavigationView {
@@ -54,6 +55,14 @@ struct MenuView: View {
         .task {
             await loadProductsAndShoppingCart()
         }
+        .alert(isPresented: $hasServerError) { () -> Alert in
+            let button = Alert.Button.default(Text(LocalizedStringKey("OK"))) {
+                // Disable save button
+            }
+            return Alert(title: Text(LocalizedStringKey("Shopping cart is updated")),
+                         message: Text(LocalizedStringKey("Please continue check out from shopping cart.")),
+                         dismissButton: button)
+        }
     }
     
     enum AppError: Error {
@@ -73,6 +82,7 @@ struct MenuView: View {
             
             var productError: ProductStoreError?
             var shoppingCartError: ShoppingCartStoreError?
+
             for await result in group {
                 switch result {
                 case .product(let error):
