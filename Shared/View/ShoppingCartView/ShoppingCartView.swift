@@ -13,9 +13,7 @@ struct ShoppingCartView: View {
 
     var body: some View {
 
-        let shoppingCart = shoppingCartStore.shoppingCart
-
-        if shoppingCart.isEmpty {
+        if shoppingCartStore.isEmpty {
             NavigationView {
                 EmptyShoppingCartView()
                     .navigationTitle(LocalizedStringKey("Cart"))
@@ -24,7 +22,7 @@ struct ShoppingCartView: View {
             NavigationView {
                 ZStack {
                     List {
-                        ForEach(shoppingCart.products) { product in
+                        ForEach(shoppingCartStore.products) { product in
                             NavigationLink(destination: EditShoppingCartView(product: product)) {
                                 ShoppingCartProductRow(product: product)
                             }
@@ -32,7 +30,7 @@ struct ShoppingCartView: View {
                         .onDelete(perform: deleteProduct)
                         HStack {
                             Spacer()
-                            let amount = shoppingCartStore.shoppingCart.totalAmount().stringValue
+                            let amount = shoppingCartStore.totalAmount
                             Text(LocalizedStringKey("Total Amount: $\(amount)"))
                                 .font(.title2)
                                 .fontWeight(.semibold)

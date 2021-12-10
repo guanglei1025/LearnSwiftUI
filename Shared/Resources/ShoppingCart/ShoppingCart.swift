@@ -14,12 +14,7 @@ struct ShoppingCart: Codable {
 }
 
 extension ShoppingCart {
-    func totalAmount() -> Decimal {
-        products.reduce(0) {
-            $0 + $1.selectedAmountInDecimal
-        }
-    }
-
+    
     var isEmpty: Bool {
         products.isEmpty
     }
