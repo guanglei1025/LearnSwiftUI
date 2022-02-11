@@ -69,6 +69,9 @@ struct MenuView: View {
         case loadShoppingCart(ShoppingCartStoreError?)
     }
     
+    
+    /// Call `loadProducts*()` and `loadShoppingCart()` asynchronously, and
+    /// update the `alertMessage` based the server errors 
     func loadProductsAndShoppingCart() async {
         await withTaskGroup(of: FeatchDataError.self) { group in
             group.addTask {
