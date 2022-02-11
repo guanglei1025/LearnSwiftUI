@@ -11,7 +11,8 @@ struct MenuView: View {
     @EnvironmentObject var productStore: ProductStore
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
     @State var hasServerError = false
-
+    @State var alertMessage: String = ""
+    
     var body: some View {
         NavigationView {
             List {
@@ -56,48 +57,47 @@ struct MenuView: View {
             await loadProductsAndShoppingCart()
         }
         .alert(isPresented: $hasServerError) { () -> Alert in
-            let button = Alert.Button.default(Text(LocalizedStringKey("OK"))) {
-                // Disable save button
-            }
-            return Alert(title: Text(LocalizedStringKey("Shopping cart is updated")),
-                         message: Text(LocalizedStringKey("Please continue check out from shopping cart.")),
+            let button = Alert.Button.default(Text(LocalizedStringKey("OK")))
+            return Alert(title: Text(LocalizedStringKey("Server Error")),
+                         message: Text(alertMessage),
                          dismissButton: button)
         }
     }
     
-    enum AppError: Error {
-        case product(ProductStoreError?)
-        case shoppingCart(ShoppingCartStoreError?)
+    enum FeatchDataError: Error {
+        case loadProducts(ProductStoreError?)
+        case loadShoppingCart(ShoppingCartStoreError?)
     }
     
     func loadProductsAndShoppingCart() async {
-        await withTaskGroup(of: AppError.self) { group in
+        await withTaskGroup(of: FeatchDataError.self) { group in
             group.addTask {
-                .product(await productStore.fetchProducts())
+                .loadProducts(await productStore.fetchProducts())
             }
             
             group.addTask {
-                .shoppingCart(await shoppingCartStore.fetchShoppingCart())
+                .loadShoppingCart(await shoppingCartStore.fetchShoppingCart())
             }
             
             var productError: ProductStoreError?
             var shoppingCartError: ShoppingCartStoreError?
-
             for await result in group {
                 switch result {
-                case .product(let error):
+                case .loadProducts(let error):
                     productError = error
-                case .shoppingCart(let error):
+                    hasServerError = true
+                case .loadShoppingCart(let error):
                     shoppingCartError = error
+                    hasServerError = true
                 }
             }
             
             if productError != nil && shoppingCartError != nil {
-                print("Both API Failed")
+                alertMessage = "Unable to load products and shopping cart"
             } else if productError != nil {
-                print("Product API Failed")
+                alertMessage = "Unable to load products"
             } else if shoppingCartError != nil {
-                print("Shopping Cart API Failed")
+                alertMessage = "Unable to load shopping cart"
             }
         }
     }
