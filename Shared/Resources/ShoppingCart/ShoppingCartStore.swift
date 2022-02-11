@@ -34,15 +34,6 @@ class ShoppingCartStore: ObservableObject {
         }.stringValue
     }
     
-//    func fetchShoppingCart() async {
-//        do {
-//            let shoppingCart = try await shoppingCartService.fetchShoppingCart()
-//            self.shoppingCart = shoppingCart
-//        } catch {
-//            print("fetch shopping cart error: \(error)")
-//        }
-//    }
-    
     func fetchShoppingCart() async -> ShoppingCartStoreError? {
         do {
             let shoppingCart = try await shoppingCartService.fetchShoppingCart()
