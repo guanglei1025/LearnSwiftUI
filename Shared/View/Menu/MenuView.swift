@@ -10,7 +10,9 @@ import SwiftUI
 struct MenuView: View {
     @EnvironmentObject var productStore: ProductStore
     @EnvironmentObject var shoppingCartStore: ShoppingCartStore
-
+    @State var hasServerError = false
+    @State var alertMessage: String = ""
+    
     var body: some View {
         NavigationView {
             List {
@@ -52,8 +54,54 @@ struct MenuView: View {
         }
         .navigationViewStyle(.stack)
         .task {
-            await productStore.fetchProducts()
-            await shoppingCartStore.fetchShoppingCart()
+            await loadProductsAndShoppingCart()
+        }
+        .alert(isPresented: $hasServerError) { () -> Alert in
+            let button = Alert.Button.default(Text(LocalizedStringKey("OK")))
+            return Alert(title: Text(LocalizedStringKey("Server Error")),
+                         message: Text(alertMessage),
+                         dismissButton: button)
+        }
+    }
+    
+    enum FeatchDataError: Error {
+        case loadProducts(ProductStoreError?)
+        case loadShoppingCart(ShoppingCartStoreError?)
+    }
+    
+    
+    /// Call `loadProducts*()` and `loadShoppingCart()` asynchronously, and
+    /// update the `alertMessage` based the server errors 
+    func loadProductsAndShoppingCart() async {
+        await withTaskGroup(of: FeatchDataError.self) { group in
+            group.addTask {
+                .loadProducts(await productStore.fetchProducts())
+            }
+            
+            group.addTask {
+                .loadShoppingCart(await shoppingCartStore.fetchShoppingCart())
+            }
+            
+            var productError: ProductStoreError?
+            var shoppingCartError: ShoppingCartStoreError?
+            for await result in group {
+                switch result {
+                case .loadProducts(let error):
+                    productError = error
+                    hasServerError = true
+                case .loadShoppingCart(let error):
+                    shoppingCartError = error
+                    hasServerError = true
+                }
+            }
+            
+            if productError != nil && shoppingCartError != nil {
+                alertMessage = "Unable to load products and shopping cart"
+            } else if productError != nil {
+                alertMessage = "Unable to load products"
+            } else if shoppingCartError != nil {
+                alertMessage = "Unable to load shopping cart"
+            }
         }
     }
 }

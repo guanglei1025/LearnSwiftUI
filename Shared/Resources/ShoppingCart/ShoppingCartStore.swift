@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum ShoppingCartStoreError: Error {
+    case fetchShoppingCart
+}
+
 @MainActor
 class ShoppingCartStore: ObservableObject {
     @Published private var shoppingCart = ShoppingCart()
@@ -30,13 +34,14 @@ class ShoppingCartStore: ObservableObject {
         }.stringValue
     }
     
-    func fetchShoppingCart() async {
+    func fetchShoppingCart() async -> ShoppingCartStoreError? {
         do {
             let shoppingCart = try await shoppingCartService.fetchShoppingCart()
             self.shoppingCart = shoppingCart
         } catch {
-            print("fetch shopping cart error: \(error)")
+            return .fetchShoppingCart
         }
+        return nil
     }
     
     func submitShoppingCart() async {

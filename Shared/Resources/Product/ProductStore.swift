@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum ProductStoreError: Error {
+    case fetchAllProducts
+}
+
 @MainActor
 final class ProductStore: ObservableObject {
     @Published var products = [Product]()
@@ -16,13 +20,14 @@ final class ProductStore: ObservableObject {
         self.service = service
     }
 
-    func fetchProducts() async {
+    func fetchProducts() async -> ProductStoreError? {
         do {
             let items = try await service.fetchAllProducts()
             self.products = items
         } catch {
-            print("fetch products error: \(error)")
+            return ProductStoreError.fetchAllProducts
         }
+        return nil
     }
 
     func fetchProduct() async {
